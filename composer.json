@@ -2,6 +2,7 @@
     "name": "hillpy/mini-program-api",
     "description": "a miniprogram api library",
     "keywords": ["小程序", "miniprogram", "微信"],
+    "version": "1.0.0",
     "type": "library",
     "license": "MIT",
     "authors": [
