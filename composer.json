@@ -1,7 +1,7 @@
 {
-    "name": "hillpy/mini-program-api",
-    "description": "a miniprogram api library",
-    "keywords": ["小程序", "miniprogram", "微信"],
+    "name": "hillpy/mini-program-sdk",
+    "description": "a miniprogram sdk",
+    "keywords": ["小程序", "miniprogram", "微信", "wechat"],
     "version": "1.0.0",
     "type": "library",
     "license": "MIT",
@@ -15,7 +15,7 @@
     "minimum-stability": "stable",
     "autoload": {
         "psr-4": {
-            "hillpy\\MiniProgramApi\\": "src/"
+            "hillpy\\MiniProgramSDK\\": "src/"
         }
     }
 }

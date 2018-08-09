@@ -1,11 +1,11 @@
 <?php
 
-use hillpy\MiniProgramApi;
+use hillpy\MiniProgramSDK;
 
 $appid = '';
 $appsecret = '';
 
-$MiniProgramApi = new MiniProgramApi($appid, $appsecret);
+$MiniProgramApi = new MiniProgramSDK($appid, $appsecret);
 
 $params['code'] = '';
 $params['rawData'] = '';

@@ -6,7 +6,7 @@
  */
 namespace hillpy;
 
-class MiniProgramApi
+class MiniProgramSDK
 {
     private $appId = '';
     private $appSecret = '';
