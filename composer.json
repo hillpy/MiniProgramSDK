@@ -1,0 +1,20 @@
+{
+    "name": "hillpy/mini-program-api",
+    "description": "a miniprogram api library",
+    "keywords": ["小程序", "miniprogram", "微信"],
+    "type": "library",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "shinn lancelot",
+            "email": "945226793@qq.com"
+        }
+    ],
+    "require": {},
+    "minimum-stability": "stable",
+    "autoload": {
+        "psr-4": {
+            "hillpy\\MiniProgramApi\\": "src/"
+        }
+    }
+}
