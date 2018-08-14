@@ -38,7 +38,7 @@ class MiniProgramSDK
         $sessionData = $this->jscode2Session($params['code']);
         if (isset($sessionData['errcode'])) {
             $res['code'] = -101;
-            $res['msg'] = 'sessionKey获取失败';
+            $res['msg'] = $this->getErrorMsg($sessionData['errcode']);
             return $res;
         }
         $openid = $sessionData['openid'];
@@ -58,7 +58,7 @@ class MiniProgramSDK
         $errCode = $pc->decryptData($params['encryptedData'], $params['iv'], $data);
         if (!empty($errCode)) {
             $res['code'] = -103;
-            $res['msg'] = '解密有误';
+            $res['msg'] = $this->getErrorMsg($errCode);
             return $res;
         }
 
@@ -132,5 +132,31 @@ class MiniProgramSDK
         $str = $str1.$str2;
 
         return $str;
+    }
+
+    /**
+     * 根据错误码获取错误信息
+     * @param $errorCode
+     * @return string
+     */
+    private function getErrorMsg($errorCode)
+    {
+        switch ($errorCode) {
+            case '40029':
+                $errorMsg = 'code 非法';
+                break;
+            case '-41001':
+                $errorMsg = 'sessionKey 非法';
+                break;
+            case '-41002':
+                $errorMsg = 'iv 非法';
+                break;
+            case '-41003':
+                $errorMsg = '解密失败';
+                break;
+            default:
+                $errorMsg = '';
+        }
+        return $errorMsg;
     }
 }
