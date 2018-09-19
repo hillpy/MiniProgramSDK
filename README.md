@@ -23,7 +23,7 @@ use hillpy\MiniProgramSDK;
 $appid = '';
 $appsecret = '';
 
-$MiniProgramSDK = new MiniProgramSDK($appid, $appsecret);
+$MiniProgram = new MiniProgram($appid, $appsecret);
 
 $params['code'] = '';
 $params['rawData'] = '';
@@ -32,13 +32,13 @@ $params['encryptedData'] = '';
 $params['iv'] = '';
 
 /**
- * 调用登录功能（解密用户信息）
+ * 调用解密用户信息功能
  * 登录成功后，返回的数组包含code、msg、data三个元素
  * data又包含session3rd（缓存标识名）、sessionKey（通过微信接口获取，用于解密用户信息）、data（用户信息数组，比如昵称、头像等）
  * 之后建议将用户信息存库，并根据session3rd缓存用户信息。
  * session3rd可理解为用户登录令牌token，session3rd需返回给小程序端
  */
-$res = $MiniProgramSDK->login($params);
+$res = $MiniProgram->decryptData($params);
 
 
 if ($res['code'] == 100) {
