@@ -18,7 +18,7 @@ composer require hillpy/mini-program-sdk
 * 以下为代码实例
 
 ```
-use hillpy\MiniProgramSDK;
+use hillpy\MiniProgramSDK\MiniProgram;
 
 $appid = '';
 $appsecret = '';
