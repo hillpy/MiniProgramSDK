@@ -4,9 +4,9 @@
  * 微信小程序api封装类
  * Author: shinn_lancelot
  */
-namespace hillpy;
+namespace hillpy\MiniProgramSDK;
 
-class MiniProgramSDK
+class MiniProgram
 {
     private $appId = '';
     private $appSecret = '';
@@ -23,11 +23,11 @@ class MiniProgramSDK
     }
 
     /**
-     * 小程序登录封装
+     * 小程序登录解密用户数据
      * @param array $params
      * @return mixed
      */
-    public function login($params = array())
+    public function decryptData($params = array())
     {
         // 初始化返回数据
         $res['code'] = -100;

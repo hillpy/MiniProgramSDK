@@ -1,18 +1,18 @@
 <?php
 
-use hillpy\MiniProgramSDK;
+use hillpy\MiniProgramSDK\MiniProgram;
 
 $appid = '';
 $appsecret = '';
 
-$MiniProgramSDK = new MiniProgramSDK($appid, $appsecret);
+$MiniProgram = new MiniProgram($appid, $appsecret);
 
 $params['code'] = '';
 $params['rawData'] = '';
 $params['signature'] = '';
 $params['encryptedData'] = '';
 $params['iv'] = '';
-$res = $MiniProgramSDK->login($params);
+$res = $MiniProgram->decryptData($params);
 
 if ($res['code'] == 100) {
     echo '登录成功';
