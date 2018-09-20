@@ -7,11 +7,16 @@
     "authors": [
         {
             "name": "shinn_lancelot",
-            "email": "945226793@qq.com"
+            "email": "945226793@qq.com",
+            "homepage": "https://hillpy.com",
+            "role": "Developer"
         }
     ],
     "require": {
         "php": ">=5.3.0"
+    },
+    "support": {
+        "issues": "https://github.com/hillpy/MiniProgramSDK/issues"
     },
     "minimum-stability": "stable",
     "autoload": {
