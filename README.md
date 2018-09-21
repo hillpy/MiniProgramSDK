@@ -42,7 +42,7 @@ $res = $MiniProgram->decryptData($params);
 
 
 if ($res['code'] == 100) {
-    echo '登录成功';
+    echo '解密成功';
 } else {
     echo $res['msg'];
 }
