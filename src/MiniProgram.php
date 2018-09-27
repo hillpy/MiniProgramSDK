@@ -10,16 +10,46 @@ class MiniProgram
 {
     private $appId = '';
     private $appSecret = '';
+    private $accessToken = '';
+    public $accessTokenData = array();
+
+    const API_HOST = 'https://api.weixin.qq.com';
+    const ACCESS_TOKEN_PATH = '/cgi-bin/token?';
+    const JSCODE_2_SESSSION_PATH = '/sns/jscode2session?';
+    const WXACODE_UNLIMIT_PATH = '/wxa/getwxacodeunlimit?';
 
     /**
      * MiniProgramApi constructor.
      * @param $appId
      * @param $appSecret
      */
-    public function __construct($appId, $appSecret)
+    public function __construct($appId, $appSecret, $accessToken)
     {
         $this->appId = $appId;
         $this->appSecret = $appSecret;
+        if ($accessToken) {
+            $this->accessToken = $accessToken;
+        } else {
+            $this->accessTokenData = $this->getAccessTokenData();
+            $this->accessTokenData && $this->accessToken = $this->accessTokenData['access_token'];
+        }
+    }
+
+
+    public function getAccessTokenData()
+    {
+        $urlParamArr = array(
+            'grant_type'=>'client_credential',
+            'appid'=>$this->appId,
+            'secret'=>$this->appSecret
+        );
+        $url = MiniProgram::API_HOST . MiniProgram::ACCESS_TOKEN_PATH . http_build_query($urlParamArr);
+        $res = json_decode($this->http_request($url), true);
+        if ($res['errcode']) {
+            return '';
+        } else {
+            return $res;
+        }
     }
 
     /**
@@ -27,7 +57,7 @@ class MiniProgram
      * @param array $params
      * @return mixed
      */
-    public function decryptData($params = array())
+    public function decryptData($paramArr = array())
     {
         // 初始化返回数据
         $res['code'] = -100;
@@ -35,7 +65,7 @@ class MiniProgram
         $res['data'] = array();
 
         // 1.获取openid、session_key
-        $sessionData = $this->jscode2Session($params['code']);
+        $sessionData = $this->jscode2Session($paramArr['code']);
         if (isset($sessionData['errcode'])) {
             $res['code'] = -101;
             $res['msg'] = $this->getErrorMsg($sessionData['errcode']);
@@ -45,8 +75,8 @@ class MiniProgram
         $sessionKey = $sessionData['session_key'];
 
         // 2.计算签名并与传入签名进行校验
-        $newSignature = sha1($params['rawData'] . $sessionKey);
-        if ($newSignature !== $params['signature']) {
+        $newSignature = sha1($paramArr['rawData'] . $sessionKey);
+        if ($newSignature !== $paramArr['signature']) {
             $res['code'] = -102;
             $res['msg'] = '签名不匹配';
             return $res;
@@ -55,7 +85,7 @@ class MiniProgram
         // 3.使用sessionKey解密加密数据包
         include_once "wxBizDataCrypt/wxBizDataCrypt.php";
         $pc = new \WXBizDataCrypt($this->appId, $sessionKey);
-        $errCode = $pc->decryptData($params['encryptedData'], $params['iv'], $data);
+        $errCode = $pc->decryptData($paramArr['encryptedData'], $paramArr['iv'], $data);
         if (!empty($errCode)) {
             $res['code'] = -103;
             $res['msg'] = $this->getErrorMsg($errCode);
@@ -83,8 +113,28 @@ class MiniProgram
      */
     public function jscode2Session($code)
     {
-        $url = 'https://api.weixin.qq.com/sns/jscode2session?appid=' . $this->appId . '&secret=' . $this->appSecret . '&js_code=' . $code . '&grant_type=authorization_code';
-        $res = json_decode($this->https_request($url),true);
+        $urlParamArr = array(
+            'appid'=>$this->appId,
+            'secret'=>$this->appSecret,
+            'js_code'=>$code,
+            'grant_type'=>'authorization_code'
+        );
+        $url = MiniProgram::API_HOST . MiniProgram::JSCODE_2_SESSSION_PATH . http_build_query($urlParamArr);
+        $res = json_decode($this->http_request($url),true);
+        return $res;
+    }
+
+    /**
+     * 获取小程序码
+     * @return mixed
+     */
+    public function getWxacodeUnlimit($postParamArr = array())
+    {
+        $urlParamArr = array(
+            'access_token'=>$this->accessToken
+        );
+        $url = MiniProgram::API_HOST . MiniProgram::WXACODE_UNLIMIT_PATH . http_build_query($urlParamArr);
+        $res = json_decode($this->http_request($url, json_encode($postParamArr)), true);
         return $res;
     }
 
@@ -94,17 +144,17 @@ class MiniProgram
      * @param null $data
      * @return mixed
      */
-    private function https_request($url, $data = null)
+    private function http_request($url, $data = null)
     {
         $curl = curl_init();
         curl_setopt($curl, CURLOPT_URL, $url);
-        curl_setopt($curl, CURLOPT_SSL_VERIFYPEER, FALSE);
-        curl_setopt($curl, CURLOPT_SSL_VERIFYHOST, FALSE);
+        curl_setopt($curl, CURLOPT_SSL_VERIFYPEER, false);
+        curl_setopt($curl, CURLOPT_SSL_VERIFYHOST, false);
         if (!empty($data)) {
-            curl_setopt($curl, CURLOPT_POST, 1);
+            curl_setopt($curl, CURLOPT_POST, true);
             curl_setopt($curl, CURLOPT_POSTFIELDS, $data);
         }
-        curl_setopt($curl, CURLOPT_RETURNTRANSFER, 1);
+        curl_setopt($curl, CURLOPT_RETURNTRANSFER, true);
         $output = curl_exec($curl);
         curl_close($curl);
         return $output;
@@ -120,16 +170,16 @@ class MiniProgram
         $str2 = time();
         $length2 = strlen($str2);
         $length1 = $length - $length2;
-        if($length1 <= 0){
+        if ($length1 <= 0) {
             $length1 = 6;
         }
 
         $chars = "abcdefghijklmnopqrstuvwxyz";
         $str1 = "";
-        for ( $i = 0; $i < $length1; $i++ )  {
+        for ($i = 0; $i < $length1; $i++) {
             $str1 .= substr($chars, mt_rand(0, strlen($chars)-1), 1);
         }
-        $str = $str1.$str2;
+        $str = $str1 . $str2;
 
         return $str;
     }
