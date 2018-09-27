@@ -1,5 +1,10 @@
 # 微信小程序php后端开发包
 
+[![issue](https://img.shields.io/github/issues/hillpy/MiniProgramSDK.svg)](https://github.com/hillpy/MiniProgramSDK/issues)
+[![star](https://img.shields.io/github/stars/hillpy/MiniProgramSDK.svg)](https://github.com/hillpy/MiniProgramSDK)
+[![fork](https://img.shields.io/github/forks/hillpy/MiniProgramSDK.svg)](https://github.com/hillpy/MiniProgramSDK)
+[![license](https://img.shields.io/github/license/hillpy/MiniProgramSDK.svg)](https://github.com/hillpy/MiniProgramSDK/blob/master/LICENSE)
+
 ### 功能描述
 #### 封装微信小程序php端相关接口，比如php端微信用户信息解密（即登陆功能）、获取sessionKey等等。主要功能为后端用户信息解密。
 
@@ -72,3 +77,13 @@ if ($res['code'] == 100) {
     echo $res['msg'];
 }
 ```
+
+### 仓库地址
+
+[Coding](https://coding.net/u/shinn_lancelot/p/MiniProgramSDK/git "MiniProgramSDK")<br>
+[Gitee](https://gitee.com/hillpy/MiniProgramSDK "MiniProgramSDK")<br>
+[Github](https://github.com/hillpy/MiniProgramSDK "MiniProgramSDK")<br>
+
+### 协议
+
+[MIT](https://github.com/hillpy/MiniProgramSDK/blob/master/LICENSE "MIT")<br>
