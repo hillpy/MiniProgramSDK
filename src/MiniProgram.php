@@ -125,7 +125,7 @@ class MiniProgram
     }
 
     /**
-     * 获取小程序码
+     * 获取小程序码（无数量限制）
      * @return mixed
      */
     public function getWxacodeUnlimit($postParamArr = array())
@@ -134,7 +134,7 @@ class MiniProgram
             'access_token'=>$this->accessToken
         );
         $url = MiniProgram::API_HOST . MiniProgram::WXACODE_UNLIMIT_PATH . http_build_query($urlParamArr);
-        $res = json_decode($this->http_request($url, json_encode($postParamArr)), true);
+        $res = $this->http_request($url, json_encode($postParamArr));
         return $res;
     }
 
