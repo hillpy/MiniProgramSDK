@@ -43,6 +43,7 @@ if ($accessToken == '') {
     echo 'accessToken:' . $accessToken . '<br>';
 }
 
+// 解密登录用户数据
 $paramArr['code'] = '';
 $paramArr['rawData'] = '';
 $paramArr['signature'] = '';
