@@ -6,7 +6,7 @@
 [![license](https://img.shields.io/github/license/hillpy/MiniProgramSDK.svg)](https://github.com/hillpy/MiniProgramSDK/blob/master/LICENSE)
 
 ### 功能描述
-#### 封装微信小程序php端相关接口，比如php端微信用户信息解密（即登陆功能）、获取sessionKey等等。主要功能为后端用户信息解密。
+#### 封装微信小程序php端相关接口，比如php端微信用户信息解密（即登陆功能）、获取sessionKey、获取小程序码等等。
 
 ### 安装方法
 
@@ -20,7 +20,7 @@ composer require hillpy/mini-program-sdk
 
 ### 使用方法
 
-* 以下为代码实例
+* 实例化开发包、accessToken获取及缓存
 
 ```
 /**
@@ -63,7 +63,11 @@ if ($accessToken == '') {
 } else {
     echo 'accessToken:' . $accessToken . '<br>';
 }
+```
 
+* 解密登录用户数据
+
+```
 // 解密登录用户数据
 $paramArr['code'] = '';
 $paramArr['rawData'] = '';
@@ -78,6 +82,7 @@ if ($res['code'] == 100) {
     echo $res['msg'];
 }
 ```
+
 
 ### 仓库地址
 
