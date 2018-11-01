@@ -21,7 +21,6 @@ composer require hillpy/mini-program-sdk
 ### 使用方法
 
 * 实例化开发包、accessToken获取及缓存
-
 ```
 /**
  * 使用案例
@@ -66,7 +65,6 @@ if ($accessToken == '') {
 ```
 
 * 解密登录用户数据
-
 ```
 // 解密登录用户数据
 $paramArr['code'] = '';
@@ -81,6 +79,30 @@ if ($res['code'] == 100) {
 } else {
     echo $res['msg'];
 }
+```
+
+* 获取无数量限制的小程序码
+```
+// 小程序码图片的保存路径
+$path = '';
+// 小程序码图片的保存名称
+$filename = '';
+
+// 小程序码接口所需参数
+$paramArr['scene'] = '';
+$paramArr['page'] = '';
+$paramArr['width'] = '';
+$paramArr['auto_color'] = '';
+$paramArr['line_color'] = '';
+$paramArr['is_hyaline'] = '';
+
+// 请求小程序码接口
+$res = $miniProgram->getWxacodeUnlimit($paramArr);
+
+// 打开文件并写入二进制流，生成图片
+$file = fopen($path . $filename, 'w');
+fwrite($file, $res);
+fclose($file);
 ```
 
 
