@@ -204,8 +204,11 @@ class MiniProgram
             case '-41003':
                 $errorMsg = '解密失败';
                 break;
+            case '41008':
+                $errorMsg = '缺少code参数';
+                break;
             default:
-                $errorMsg = '';
+                $errorMsg = '操作失败，错误码：' . $errorCode;
         }
         return $errorMsg;
     }
