@@ -23,7 +23,7 @@ class MiniProgram
      * @param $appId
      * @param $appSecret
      */
-    public function __construct($appId, $appSecret, $accessToken)
+    public function __construct($appId, $appSecret, $accessToken = '')
     {
         $this->appId = $appId;
         $this->appSecret = $appSecret;
