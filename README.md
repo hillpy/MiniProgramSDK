@@ -21,6 +21,7 @@ composer require hillpy/mini-program-sdk
 ### 使用方法
 
 * 实例化开发包、accessToken获取及缓存
+
 ```
 /**
  * 使用案例
@@ -65,6 +66,7 @@ if ($accessToken == '') {
 ```
 
 * 解密登录用户数据
+
 ```
 // 解密登录用户数据
 $paramArr['code'] = '';
@@ -82,6 +84,7 @@ if ($res['code'] == 100) {
 ```
 
 * 获取无数量限制的小程序码
+
 ```
 // 小程序码图片的保存路径
 $path = '';
