@@ -43,7 +43,7 @@ class MiniProgram
             'appid'=>$this->appId,
             'secret'=>$this->appSecret
         );
-        $url = MiniProgram::API_HOST . MiniProgram::ACCESS_TOKEN_PATH . http_build_query($urlParamArr);
+        $url = self::API_HOST . self::ACCESS_TOKEN_PATH . http_build_query($urlParamArr);
         $res = json_decode($this->http_request($url), true);
         if ($res['errcode']) {
             return '';
@@ -119,7 +119,7 @@ class MiniProgram
             'js_code'=>$code,
             'grant_type'=>'authorization_code'
         );
-        $url = MiniProgram::API_HOST . MiniProgram::JSCODE_2_SESSSION_PATH . http_build_query($urlParamArr);
+        $url = self::API_HOST . self::JSCODE_2_SESSSION_PATH . http_build_query($urlParamArr);
         $res = json_decode($this->http_request($url),true);
         return $res;
     }
@@ -133,7 +133,7 @@ class MiniProgram
         $urlParamArr = array(
             'access_token'=>$this->accessToken
         );
-        $url = MiniProgram::API_HOST . MiniProgram::WXACODE_UNLIMIT_PATH . http_build_query($urlParamArr);
+        $url = self::API_HOST . self::WXACODE_UNLIMIT_PATH . http_build_query($urlParamArr);
         $res = $this->http_request($url, json_encode($postParamArr));
         return $res;
     }
