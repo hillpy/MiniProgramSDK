@@ -1,6 +1,6 @@
 {
     "name": "hillpy/mini-program-sdk",
-    "description": "a miniprogram sdk",
+    "description": "微信小程序后端php开发包，封装微信小程序php端相关接口，比如php端微信用户信息解密（即登陆功能）、获取sessionKey、获取小程序码等",
     "keywords": ["小程序", "miniprogram", "微信", "wechat"],
     "type": "library",
     "license": "MIT",
