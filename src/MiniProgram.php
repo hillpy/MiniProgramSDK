@@ -16,12 +16,15 @@ class MiniProgram
     const API_HOST = 'https://api.weixin.qq.com';
     const ACCESS_TOKEN_PATH = '/cgi-bin/token?';
     const JSCODE_2_SESSSION_PATH = '/sns/jscode2session?';
+    const WXAQRCODE_PATH = '/cgi-bin/wxaapp/createwxaqrcode?';
+    const WXACODE_PATH = '/wxa/getwxacode?';
     const WXACODE_UNLIMIT_PATH = '/wxa/getwxacodeunlimit?';
 
     /**
-     * MiniProgramApi constructor.
+     * MiniProgram constructor.
      * @param $appId
      * @param $appSecret
+     * @param string $accessToken
      */
     public function __construct($appId, $appSecret, $accessToken = '')
     {
@@ -35,7 +38,10 @@ class MiniProgram
         }
     }
 
-
+    /**
+     * 获取accessToken
+     * @return mixed|string
+     */
     public function getAccessTokenData()
     {
         $urlParamArr = array(
@@ -53,7 +59,25 @@ class MiniProgram
     }
 
     /**
-     * 小程序登录解密用户数据
+     * 获取openid、sessionKey
+     * @param $code
+     * @return mixed
+     */
+    public function jscode2Session($code)
+    {
+        $urlParamArr = array(
+            'appid'=>$this->appId,
+            'secret'=>$this->appSecret,
+            'js_code'=>$code,
+            'grant_type'=>'authorization_code'
+        );
+        $url = self::API_HOST . self::JSCODE_2_SESSSION_PATH . http_build_query($urlParamArr);
+        $res = json_decode($this->http_request($url),true);
+        return $res;
+    }
+
+    /**
+     * 解密微信用户的加密数据包
      * @param array $params
      * @return mixed
      */
@@ -107,25 +131,38 @@ class MiniProgram
     }
 
     /**
-     * 获取openid、sessionKey接口
-     * @param $code
+     * 获取小程序二维码
+     * @param array $postParamArr
      * @return mixed
      */
-    public function jscode2Session($code)
+    public function createWXAQRCode($postParamArr = array())
     {
         $urlParamArr = array(
-            'appid'=>$this->appId,
-            'secret'=>$this->appSecret,
-            'js_code'=>$code,
-            'grant_type'=>'authorization_code'
+            'access_token'=>$this->accessToken
         );
-        $url = self::API_HOST . self::JSCODE_2_SESSSION_PATH . http_build_query($urlParamArr);
-        $res = json_decode($this->http_request($url),true);
+        $url = self::API_HOST . self::WXAQRCODE_PATH . http_build_query($urlParamArr);
+        $res = $this->http_request($url, json_encode($postParamArr));
+        return $res;
+    }
+
+    /**
+     * 获取小程序码
+     * @param array $postParamArr
+     * @return mixed
+     */
+    public function getWXACode($postParamArr = array())
+    {
+        $urlParamArr = array(
+            'access_token'=>$this->accessToken
+        );
+        $url = self::API_HOST . self::WXACODE_PATH . http_build_query($urlParamArr);
+        $res = $this->http_request($url, json_encode($postParamArr));
         return $res;
     }
 
     /**
      * 获取小程序码（无数量限制）
+     * @param array $postParamArr
      * @return mixed
      */
     public function getWxacodeUnlimit($postParamArr = array())
