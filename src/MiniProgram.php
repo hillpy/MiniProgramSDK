@@ -94,7 +94,7 @@ class MiniProgram
         $sessionData = $this->jscode2Session($paramArr['code']);
         if (isset($sessionData['errcode'])) {
             $res['code'] = -101;
-            $res['msg'] = $this->getErrorMsg($sessionData['errcode']);
+            $res['msg'] = Common::getErrorMsg($sessionData['errcode']);
             return $res;
         }
         $openid = $sessionData['openid'];
@@ -114,7 +114,7 @@ class MiniProgram
         $errCode = $pc->decryptData($paramArr['encryptedData'], $paramArr['iv'], $data);
         if (!empty($errCode)) {
             $res['code'] = -103;
-            $res['msg'] = $this->getErrorMsg($errCode);
+            $res['msg'] = Common::getErrorMsg($errCode);
             return $res;
         }
 
