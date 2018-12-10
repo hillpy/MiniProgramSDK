@@ -100,7 +100,7 @@ $paramArr['line_color'] = '';
 $paramArr['is_hyaline'] = '';
 
 // 请求小程序码接口
-$res = $miniProgram->getWxacodeUnlimit($paramArr);
+$res = $miniProgram->getWXACodeUnlimit($paramArr);
 
 // 打开文件并写入二进制流，生成图片
 $file = fopen($path . $filename, 'w');
