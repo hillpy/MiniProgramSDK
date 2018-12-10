@@ -120,7 +120,7 @@ class MiniProgram
 
         // 4.生成3rd_session
         $data = json_decode($data, true);
-        $session3rd = $this->getNonceStr(16);
+        $session3rd = Common::getNonce();
 
         // 5.返回相关数据
         $res['code'] = 100;
@@ -143,7 +143,7 @@ class MiniProgram
             'access_token'=>$this->accessToken
         );
         $url = self::API_HOST . self::WXAQRCODE_PATH . http_build_query($urlParamArr);
-        $res = $this->http_request($url, json_encode($postParamArr));
+        $res = Common::httpRequest($url, json_encode($postParamArr));
         return $res;
     }
 
@@ -175,58 +175,5 @@ class MiniProgram
         $url = self::API_HOST . self::WXACODE_UNLIMIT_PATH . http_build_query($urlParamArr);
         $res = Common::httpRequest($url, json_encode($postParamArr));
         return $res;
-    }
-
-    /**
-     * 获取随机字符串
-     * @param int $length
-     * @return string
-     */
-    private function getNonceStr($length = 16)
-    {
-        $str2 = time();
-        $length2 = strlen($str2);
-        $length1 = $length - $length2;
-        if ($length1 <= 0) {
-            $length1 = 6;
-        }
-
-        $chars = "abcdefghijklmnopqrstuvwxyz";
-        $str1 = "";
-        for ($i = 0; $i < $length1; $i++) {
-            $str1 .= substr($chars, mt_rand(0, strlen($chars)-1), 1);
-        }
-        $str = $str1 . $str2;
-
-        return $str;
-    }
-
-    /**
-     * 根据错误码获取错误信息
-     * @param $errorCode
-     * @return string
-     */
-    private function getErrorMsg($errorCode)
-    {
-        switch ($errorCode) {
-            case '40029':
-                $errorMsg = 'code 非法';
-                break;
-            case '-41001':
-                $errorMsg = 'sessionKey 非法';
-                break;
-            case '-41002':
-                $errorMsg = 'iv 非法';
-                break;
-            case '-41003':
-                $errorMsg = '解密失败';
-                break;
-            case '41008':
-                $errorMsg = '缺少code参数';
-                break;
-            default:
-                $errorMsg = '操作失败，错误码：' . $errorCode;
-        }
-        return $errorMsg;
     }
 }
