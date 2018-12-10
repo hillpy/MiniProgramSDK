@@ -6,6 +6,8 @@
  */
 namespace hillpy\MiniProgramSDK;
 
+include "Common.php";
+
 class MiniProgram
 {
     private $appId = '';
@@ -50,7 +52,7 @@ class MiniProgram
             'secret'=>$this->appSecret
         );
         $url = self::API_HOST . self::ACCESS_TOKEN_PATH . http_build_query($urlParamArr);
-        $res = json_decode($this->http_request($url), true);
+        $res = json_decode(Common::httpRequest($url), true);
         if ($res['errcode']) {
             return '';
         } else {
@@ -72,7 +74,7 @@ class MiniProgram
             'grant_type'=>'authorization_code'
         );
         $url = self::API_HOST . self::JSCODE_2_SESSSION_PATH . http_build_query($urlParamArr);
-        $res = json_decode($this->http_request($url),true);
+        $res = json_decode(Common::httpRequest($url),true);
         return $res;
     }
 
@@ -156,7 +158,7 @@ class MiniProgram
             'access_token'=>$this->accessToken
         );
         $url = self::API_HOST . self::WXACODE_PATH . http_build_query($urlParamArr);
-        $res = $this->http_request($url, json_encode($postParamArr));
+        $res = Common::httpRequest($url, json_encode($postParamArr));
         return $res;
     }
 
@@ -171,30 +173,8 @@ class MiniProgram
             'access_token'=>$this->accessToken
         );
         $url = self::API_HOST . self::WXACODE_UNLIMIT_PATH . http_build_query($urlParamArr);
-        $res = $this->http_request($url, json_encode($postParamArr));
+        $res = Common::httpRequest($url, json_encode($postParamArr));
         return $res;
-    }
-
-    /**
-     * http请求函数
-     * @param $url
-     * @param null $data
-     * @return mixed
-     */
-    private function http_request($url, $data = null)
-    {
-        $curl = curl_init();
-        curl_setopt($curl, CURLOPT_URL, $url);
-        curl_setopt($curl, CURLOPT_SSL_VERIFYPEER, false);
-        curl_setopt($curl, CURLOPT_SSL_VERIFYHOST, false);
-        if (!empty($data)) {
-            curl_setopt($curl, CURLOPT_POST, true);
-            curl_setopt($curl, CURLOPT_POSTFIELDS, $data);
-        }
-        curl_setopt($curl, CURLOPT_RETURNTRANSFER, true);
-        $output = curl_exec($curl);
-        curl_close($curl);
-        return $output;
     }
 
     /**
