@@ -31,6 +31,19 @@ class Common
     }
 
     /**
+     * 是否为windows系统
+     * @return bool
+     */
+    public static function isWin()
+    {
+        if (strtoupper(substr(PHP_OS,0,3)) === 'WIN') {
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+    /**
      * 获取字符串
      * @param int $type
      * @param int $length
