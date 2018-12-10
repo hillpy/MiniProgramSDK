@@ -167,7 +167,7 @@ class MiniProgram
      * @param array $postParamArr
      * @return mixed
      */
-    public function getWXACodeUnlimit($postParamArr = array())
+    public function getWXAodeUnlimit($postParamArr = array())
     {
         $urlParamArr = array(
             'access_token'=>$this->accessToken

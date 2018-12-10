@@ -71,6 +71,22 @@ class Common
         return $nonce;
     }
 
+    public static function getNonceByURandom($length = 16)
+    {
+        $nonce = '';
+        $binary = '';
+        $fp = @fopen('/dev/urandom', 'rb');
+        if ($fp !== false) {
+            $binary .= @fread($fp, $length);
+            @fclose($fp);
+        } else {
+            trigger_error('Can not open /dev/urandom.');
+        }
+        $string = base64_encode($binary);
+        $nonce = substr($string, 0, $length);
+        return $nonce;
+    }
+
     /**
      * 根据错误码获取错误信息
      * @param $errorCode
