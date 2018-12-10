@@ -120,7 +120,7 @@ class MiniProgram
 
         // 4.生成3rd_session
         $data = json_decode($data, true);
-        $session3rd = Common::getNonce();
+        $session3rd = Common::isWin() === true ? Common::getNonce() : Common::getNonceByURandom();
 
         // 5.返回相关数据
         $res['code'] = 100;
