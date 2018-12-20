@@ -53,7 +53,7 @@ class MiniProgram
         );
         $url = self::API_HOST . self::ACCESS_TOKEN_PATH . http_build_query($urlParamArr);
         $res = json_decode(Common::httpRequest($url), true);
-        if ($res['errcode']) {
+        if (isset($res['errcode']) && $res['errcode']) {
             return '';
         } else {
             return $res;
