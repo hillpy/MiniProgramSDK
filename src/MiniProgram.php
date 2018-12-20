@@ -91,9 +91,9 @@ class MiniProgram
         $res['data'] = array();
 
         // 1.获取openid、session_key（若存在session_key，则默认理解为session_key未过期，直接使用其进行解密）
-        if ($paramArr['session_key']) {
-            $openid = isset($paramArr['openid']) ? $paramArr['openid'] : '';
-            $sessionKey = $paramArr['session_key'];
+        if (isset($paramArr['sessionKey']) && $paramArr['sessionKey']) {
+            $openId = isset($paramArr['openId']) ? $paramArr['openId'] : '';
+            $sessionKey = $paramArr['sessionKey'];
         } else {
             $sessionData = $this->jscode2Session($paramArr['code']);
             if (isset($sessionData['errcode'])) {
@@ -101,7 +101,7 @@ class MiniProgram
                 $res['msg'] = Common::getErrorMsg($sessionData['errcode']);
                 return $res;
             }
-            $openid = $sessionData['openid'];
+            $openId = $sessionData['openid'];
             $sessionKey = $sessionData['session_key'];
         }
 
