@@ -44,14 +44,29 @@ if ($accessToken == '') {
 }
 
 // 解密登录用户数据
-$paramArr['code'] = '';
-$paramArr['rawData'] = '';
-$paramArr['signature'] = '';
-$paramArr['encryptedData'] = '';
-$paramArr['iv'] = '';
+$paramArr['code'] = isset($_POST['code']) ? $_POST['code'] : '';
+$paramArr['rawData'] = isset($_POST['rawData']) ? $_POST['rawData'] : '';
+$paramArr['signature'] = isset($_POST['signature']) ? $_POST['signature'] : '';
+$paramArr['encryptedData'] = isset($_POST['encryptedData']) ? $_POST['encryptedData'] : '';
+$paramArr['iv'] = isset($_POST['iv']) ? $_POST['iv'] : '';
+$paramArr['sessionKeyExpired'] = isset($_POST['sessionKeyExpired']) ? $_POST['sessionKeyExpired'] : '';
+
+// sessionKeyExpired参数表示session_key是否过期（必须由前端判断），未过期则从缓存获取sessionKeyData
+if ($paramArr['sessionKeyExpired'] != 1) {
+    $sessionKeyData = $redis->get('miniprogram_jscode2session_appid_' . $appId);
+    $sessionKeyDataArr = json_decode($sessionKeyData, true);
+    $paramArr['sessionKey'] = $sessionKeyDataArr['sessionKey'];
+    $paramArr['openId'] = $sessionKeyDataArr['openId'];
+}
+
 $res = $miniProgram->decryptData($paramArr);
 
 if ($res['code'] == 100) {
+    // 将sessionKeyData写入缓存
+    $sessionKeyDataArr['sessionKey'] = $res['data']['sessionKey'];
+    $sessionKeyDataArr['openId'] = $res['data']['data']['openId'];
+    $redis->set('miniprogram_jscode2session_appid_' . $appId, json_encode($sessionKeyDataArr));
+
     echo '解密成功';
 } else {
     echo $res['msg'];
