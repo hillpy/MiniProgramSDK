@@ -90,15 +90,20 @@ class MiniProgram
         $res['msg'] = '操作失败';
         $res['data'] = array();
 
-        // 1.获取openid、session_key
-        $sessionData = $this->jscode2Session($paramArr['code']);
-        if (isset($sessionData['errcode'])) {
-            $res['code'] = -101;
-            $res['msg'] = Common::getErrorMsg($sessionData['errcode']);
-            return $res;
+        // 1.获取openid、session_key（若存在session_key，则默认理解为session_key未过期，直接使用其进行解密）
+        if ($paramArr['session_key']) {
+            $openid = isset($paramArr['openid']) ? $paramArr['openid'] : '';
+            $sessionKey = $paramArr['session_key'];
+        } else {
+            $sessionData = $this->jscode2Session($paramArr['code']);
+            if (isset($sessionData['errcode'])) {
+                $res['code'] = -101;
+                $res['msg'] = Common::getErrorMsg($sessionData['errcode']);
+                return $res;
+            }
+            $openid = $sessionData['openid'];
+            $sessionKey = $sessionData['session_key'];
         }
-        $openid = $sessionData['openid'];
-        $sessionKey = $sessionData['session_key'];
 
         // 2.计算签名并与传入签名进行校验
         $newSignature = sha1($paramArr['rawData'] . $sessionKey);
