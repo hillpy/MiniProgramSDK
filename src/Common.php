@@ -71,6 +71,11 @@ class Common
         return $nonce;
     }
 
+    /**
+     * 根据URandom获取字符串
+     * @param int $length
+     * @return bool|string
+     */
     public static function getNonceByURandom($length = 16)
     {
         $nonce = '';
