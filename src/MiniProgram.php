@@ -13,6 +13,7 @@ class MiniProgram
     private $appId = '';
     private $appSecret = '';
     private $accessToken = '';
+    private $defaultParamInfo = array();
     public $accessTokenData = array();
 
     const API_HOST = 'https://api.weixin.qq.com';
@@ -38,6 +39,7 @@ class MiniProgram
             $this->accessTokenData = $this->getAccessTokenData();
             $this->accessTokenData && $this->accessToken = $this->accessTokenData['access_token'];
         }
+        $this->defaultParamInfo = include_once 'DefaultParamInfo.php';
     }
 
     /**
@@ -85,17 +87,20 @@ class MiniProgram
      */
     public function decryptData($paramArr = array())
     {
+        // 扩展原参数数组
+        $finalParamArr = Common::extendArrayData($this->defaultParamInfo[__FUNCTION__], $paramArr);
+
         // 初始化返回数据
         $res['code'] = -100;
         $res['msg'] = '操作失败';
         $res['data'] = array();
 
         // 1.获取openid、session_key（若存在session_key，则默认理解为session_key未过期，直接使用其进行解密）
-        if (isset($paramArr['sessionKey']) && $paramArr['sessionKey']) {
-            $openId = isset($paramArr['openId']) ? $paramArr['openId'] : '';
-            $sessionKey = $paramArr['sessionKey'];
+        if ($finalParamArr['sessionKey']) {
+            $openId = $finalParamArr['openId'];
+            $sessionKey = $finalParamArr['sessionKey'];
         } else {
-            $sessionData = $this->jscode2Session($paramArr['code']);
+            $sessionData = $this->jscode2Session($finalParamArr['code']);
             if (isset($sessionData['errcode'])) {
                 $res['code'] = -101;
                 $res['msg'] = Common::getErrorMsg($sessionData['errcode']);
@@ -106,8 +111,8 @@ class MiniProgram
         }
 
         // 2.计算签名并与传入签名进行校验
-        $newSignature = sha1($paramArr['rawData'] . $sessionKey);
-        if ($newSignature !== $paramArr['signature']) {
+        $newSignature = sha1($finalParamArr['rawData'] . $sessionKey);
+        if ($newSignature !== $finalParamArr['signature']) {
             $res['code'] = -102;
             $res['msg'] = '签名不匹配';
             return $res;
@@ -116,7 +121,7 @@ class MiniProgram
         // 3.使用sessionKey解密加密数据包
         include_once "wxBizDataCrypt/wxBizDataCrypt.php";
         $pc = new \WXBizDataCrypt($this->appId, $sessionKey);
-        $errCode = $pc->decryptData($paramArr['encryptedData'], $paramArr['iv'], $data);
+        $errCode = $pc->decryptData($finalParamArr['encryptedData'], $finalParamArr['iv'], $data);
         if (!empty($errCode)) {
             $res['code'] = -103;
             $res['msg'] = Common::getErrorMsg($errCode);
