@@ -149,11 +149,12 @@ class MiniProgram
      */
     public function createWXAQRCode($postParamArr = array())
     {
+        $finalParamArr = Common::extendArrayData($this->defaultParamInfo[__FUNCTION__], $postParamArr);
         $urlParamArr = array(
             'access_token'=>$this->accessToken
         );
         $url = self::API_HOST . self::WXAQRCODE_PATH . http_build_query($urlParamArr);
-        $res = Common::httpRequest($url, json_encode($postParamArr));
+        $res = Common::httpRequest($url, json_encode($finalParamArr));
         return $res;
     }
 

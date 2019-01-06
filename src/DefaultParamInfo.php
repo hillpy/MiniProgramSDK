@@ -9,5 +9,9 @@ return array(
         'signature'=>'',
         'encryptedData'=>'',
         'iv'=>''
+    ),
+    'createWXAQRCode'=>array(
+        'path'=>'',
+        'width'=>430
     )
 );
