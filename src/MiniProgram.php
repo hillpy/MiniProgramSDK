@@ -165,11 +165,12 @@ class MiniProgram
      */
     public function getWXACode($postParamArr = array())
     {
+        $finalParamArr = Common::extendArrayData($this->defaultParamInfo[__FUNCTION__], $postParamArr);
         $urlParamArr = array(
             'access_token'=>$this->accessToken
         );
         $url = self::API_HOST . self::WXACODE_PATH . http_build_query($urlParamArr);
-        $res = Common::httpRequest($url, json_encode($postParamArr));
+        $res = Common::httpRequest($url, json_encode($finalParamArr));
         return $res;
     }
 
@@ -180,11 +181,12 @@ class MiniProgram
      */
     public function getWXACodeUnlimit($postParamArr = array())
     {
+        $finalParamArr = Common::extendArrayData($this->defaultParamInfo[__FUNCTION__], $postParamArr);
         $urlParamArr = array(
             'access_token'=>$this->accessToken
         );
         $url = self::API_HOST . self::WXACODE_UNLIMIT_PATH . http_build_query($urlParamArr);
-        $res = Common::httpRequest($url, json_encode($postParamArr));
+        $res = Common::httpRequest($url, json_encode($finalParamArr));
         return $res;
     }
 }
