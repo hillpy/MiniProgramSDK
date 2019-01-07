@@ -18,7 +18,7 @@ return array(
         'path'=>'',
         'width'=>430,
         'auto_color'=>false,
-        'line_color'=>'{"r":0,"g":0,"b":0}',
+        'line_color'=>array('r'=>0, 'g'=>0, 'b'=>0),
         'is_hyaline'=>false
     ),
     'getWXACodeUnlimit'=>array(
@@ -26,7 +26,7 @@ return array(
         'page'=>'page/index/index',
         'width'=>430,
         'auto_color'=>false,
-        'line_color'=>'{"r":0,"g":0,"b":0}',
+        'line_color'=>array('r'=>0, 'g'=>0, 'b'=>0),
         'is_hyaline'=>false
     )
 );
