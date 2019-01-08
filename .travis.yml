@@ -19,7 +19,10 @@ install:
   - gitbook install
 
 script:
-  - gitbook build . ./_book
+  - gitbook build . ./../_book
+  - cd ..
+  - cd v1
+  - gitbook build . ./../_book/v1
 
 branches:
   only:
