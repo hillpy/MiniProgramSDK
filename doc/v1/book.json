@@ -1,0 +1,77 @@
+{
+  "title": "MiniProgramSDK",
+  "author": "shinn_lancelot",
+  "description": "MiniProgramSDK document",
+  "language": "cn",
+  "gitbook": "^3.2.3",
+  "structure": {
+    "readme": "README.md"
+  },
+  "plugins": [
+    "-sharing",
+    "search",
+    "sharing-plus",
+    "search-pro",
+    "expandable-chapters-small",
+    "anchors",
+    "anchor-navigation-ex",
+    "github",
+    "github-buttons",
+    "donate",
+    "theme-vuejs",
+    "scripts",
+    "versions-select"
+  ],
+  "pluginsConfig": {
+    "sharing": {
+      "all": [
+        "facebook",
+        "google",
+        "qq",
+        "twitter",
+        "weibo"
+      ]
+    },
+    "search-pro": {
+      "cutWordLib": "nodejieba",
+      "defineWord" : ["Gitbook Use"]
+    },
+    "anchor-navigation-ex": {
+      "showLevel": false
+    },
+    "github": {
+      "url": "https://github.com/hillpy/MiniProgramSDK"
+    },
+    "github-buttons": {
+      "buttons": [
+        {
+          "user": "hillpy",
+          "repo": "MiniProgramSDK",
+          "type": "star",
+          "size": "small",
+          "count": true
+        }
+      ]
+    },
+    "donate": {
+      "wechat": "http://resource.hillpy.com/image/wechat_new_qrcode.png",
+      "alipay": "http://resource.hillpy.com/image/alipay_new_qrcode.png",
+      "title": "",
+      "button": "Donate",
+      "wechatText": "WeChat Pay",
+      "alipayText": "Alipay"
+    },
+    "versions": {
+      "options": [
+        {
+          "value": "https://hillpy.github.io/MiniProgramSDK/",
+          "text": "2.x"
+        },
+        {
+          "value": "https://hillpy.github.io/MiniProgramSDK/v1",
+          "text": "1.x"
+        }
+      ]
+    }
+  }
+}

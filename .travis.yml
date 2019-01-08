@@ -1,0 +1,38 @@
+language: node_js
+
+node_js:
+  - '8'
+
+cache:
+  directories:
+    - $HOME/.npm
+
+before_install:
+  - export TZ='Asia/Shanghai'
+
+install:
+  - npm install gitbook-cli -g
+  - cd doc/v1
+  - gitbook install
+  - cd .. && cd v2
+  - gitbook install
+
+script:
+  - gitbook build . ./_book # 构建v2文档
+  - cd .. && cd v1
+  - gitbook build . ./_book/v1 # 构建v1文档
+
+branches:
+  only:
+    - master
+
+deploy:
+  provider: pages
+  skip_cleanup: true
+  github_token: $GITHUB_TOKEN
+  local_dir: ./doc/_book
+  #fqdn: $CUSTOM_DOMAIN
+  name: $GIT_NAME
+  email: $GIT_EMAIL
+  on:
+    branch: master
