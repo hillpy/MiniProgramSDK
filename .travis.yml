@@ -14,7 +14,10 @@ install:
   - npm install gitbook-cli -g && cd doc/v1 && gitbook install && cd .. && cd v2 && gitbook install
 
 script:
-  - gitbook build . ./_book && cd .. && cd v1 && gitbook build . ./_book/v1
+  - gitbook build . ./_book
+  - cd ..
+  - cd v1
+  - gitbook build . ./_book/v1
 
 branches:
   only:
