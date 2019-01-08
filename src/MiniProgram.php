@@ -22,6 +22,12 @@ class MiniProgram
     const WXAQRCODE_PATH = '/cgi-bin/wxaapp/createwxaqrcode?';
     const WXACODE_PATH = '/wxa/getwxacode?';
     const WXACODE_UNLIMIT_PATH = '/wxa/getwxacodeunlimit?';
+    const ADD_TEMPLATE_PATH = '/cgi-bin/wxopen/template/add?';
+    const DELETE_TEMPLATE_PATH = '/cgi-bin/wxopen/template/del?';
+    const GET_TEMPLATE_LIBRARY_BY_ID_PATH = '/cgi-bin/wxopen/template/library/get?';
+    const GET_TEMPLATE_LIBRARY_LIST_PATH = '/cgi-bin/wxopen/template/library/list?';
+    const GET_TEMPLATE_LIST_PATH = '/cgi-bin/wxopen/template/list?';
+    const SEND_TEMPLATE_MESSAGE = '/cgi-bin/message/wxopen/template/send?';
 
     /**
      * MiniProgram constructor.
@@ -186,6 +192,102 @@ class MiniProgram
             'access_token'=>$this->accessToken
         );
         $url = self::API_HOST . self::WXACODE_UNLIMIT_PATH . http_build_query($urlParamArr);
+        $res = Common::httpRequest($url, json_encode($finalParamArr));
+        return $res;
+    }
+
+    /**
+     * 组合模板并添加至帐号下的个人模板库
+     * @param array $postParamArr
+     * @return mixed
+     */
+    public function addTemplate($postParamArr = array())
+    {
+        $finalParamArr = Common::extendArrayData($this->defaultParamInfo[__FUNCTION__], $postParamArr);
+        $urlParamArr = array(
+            'access_token'=>$this->accessToken
+        );
+        $url = self::API_HOST . self::ADD_TEMPLATE_PATH . http_build_query($urlParamArr);
+        $res = Common::httpRequest($url, json_encode($finalParamArr));
+        return $res;
+    }
+
+    /**
+     * 删除帐号下的某个模板
+     * @param array $postParamArr
+     * @return mixed
+     */
+    public function deleteTemplate($postParamArr = array())
+    {
+        $finalParamArr = Common::extendArrayData($this->defaultParamInfo[__FUNCTION__], $postParamArr);
+        $urlParamArr = array(
+            'access_token'=>$this->accessToken
+        );
+        $url = self::API_HOST . self::DELETE_TEMPLATE_PATH . http_build_query($urlParamArr);
+        $res = Common::httpRequest($url, json_encode($finalParamArr));
+        return $res;
+    }
+
+    /**
+     * 获取模板库某个模板标题下关键词库
+     * @param array $postParamArr
+     * @return mixed
+     */
+    public function getTemplateLibraryById($postParamArr = array())
+    {
+        $finalParamArr = Common::extendArrayData($this->defaultParamInfo[__FUNCTION__], $postParamArr);
+        $urlParamArr = array(
+            'access_token'=>$this->accessToken
+        );
+        $url = self::API_HOST . self::GET_TEMPLATE_LIBRARY_BY_ID_PATH . http_build_query($urlParamArr);
+        $res = Common::httpRequest($url, json_encode($finalParamArr));
+        return $res;
+    }
+
+    /**
+     * 获取小程序模板库标题列表
+     * @param array $postParamArr
+     * @return mixed
+     */
+    public function getTemplateLibraryList($postParamArr = array())
+    {
+        $finalParamArr = Common::extendArrayData($this->defaultParamInfo[__FUNCTION__], $postParamArr);
+        $urlParamArr = array(
+            'access_token'=>$this->accessToken
+        );
+        $url = self::API_HOST . self::GET_TEMPLATE_LIBRARY_LIST_PATH . http_build_query($urlParamArr);
+        $res = Common::httpRequest($url, json_encode($finalParamArr));
+        return $res;
+    }
+
+    /**
+     * 获取帐号下已存在的模板列表
+     * @param array $postParamArr
+     * @return mixed
+     */
+    public function getTemplateList($postParamArr = array())
+    {
+        $finalParamArr = Common::extendArrayData($this->defaultParamInfo[__FUNCTION__], $postParamArr);
+        $urlParamArr = array(
+            'access_token'=>$this->accessToken
+        );
+        $url = self::API_HOST . self::GET_TEMPLATE_LIST_PATH . http_build_query($urlParamArr);
+        $res = Common::httpRequest($url, json_encode($finalParamArr));
+        return $res;
+    }
+
+    /**
+     * 发送模板消息
+     * @param array $postParamArr
+     * @return mixed
+     */
+    public function sendTemplateMessage($postParamArr = array())
+    {
+        $finalParamArr = Common::extendArrayData($this->defaultParamInfo[__FUNCTION__], $postParamArr);
+        $urlParamArr = array(
+            'access_token'=>$this->accessToken
+        );
+        $url = self::API_HOST . self::SEND_TEMPLATE_MESSAGE . http_build_query($urlParamArr);
         $res = Common::httpRequest($url, json_encode($finalParamArr));
         return $res;
     }
