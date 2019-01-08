@@ -159,7 +159,7 @@ class MiniProgram
     }
 
     /**
-     * 获取小程序码
+     * 获取有数量限制的小程序码
      * @param array $postParamArr
      * @return mixed
      */
@@ -175,7 +175,7 @@ class MiniProgram
     }
 
     /**
-     * 获取小程序码（无数量限制）
+     * 获取无数量限制的小程序码
      * @param array $postParamArr
      * @return mixed
      */
