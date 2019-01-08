@@ -6,45 +6,45 @@
 
 1. 添加命名空间。如下：
 
-```PHP
-use hillpy\MiniProgramSDK\MiniProgram;
-```
+    ```PHP
+    use hillpy\MiniProgramSDK\MiniProgram;
+    ```
 
 2. 实例化MiniProgram。实例化时需要传入小程序的appId和appSecret，以及accessToken三个参数。其中accessToken为小程序全局唯一后台接口调用凭据，若不传此参数，则将会调用微信接口来获取accessToken数据。若传入此参数且不为空，则不会通过微信接口来获取accessToken数据。故请自行缓存accessToken。示例代码如下：
 
-```PHP
-// 设置变量。
-$appId = '';
-$appSecret = '';
-$accessToken = '';
-
-// 从redis获取accessToken。
-$redis = new Redis();
-$redis->connect('127.0.0.1', 6379);
-$accessToken = $redis->get('miniprogram_access_token_appid_' . $appId);
-
-// 实例化MiniProgram。
-$miniProgram = new MiniProgram($appId, $appSecret, $accessToken);
-```
+    ```PHP
+    // 设置变量。
+    $appId = '';
+    $appSecret = '';
+    $accessToken = '';
+    
+    // 从redis获取accessToken。
+    $redis = new Redis();
+    $redis->connect('127.0.0.1', 6379);
+    $accessToken = $redis->get('miniprogram_access_token_appid_' . $appId);
+    
+    // 实例化MiniProgram。
+    $miniProgram = new MiniProgram($appId, $appSecret, $accessToken);
+    ```
 
 3. 缓存accessToken。此参数为小程序全局唯一后台接口调用凭据，需要自行缓存，以便多次使用。在实例化之后进行缓存，示例代码如下：
 
-```PHP
-//若缓存中不存在accessToken，从新实例化对象中获取并写入redis。
-if (!$accessToken) {
-    isset($miniProgram->accessTokenData['access_token']) && $accessToken = $miniProgram->accessTokenData['access_token'];
-
-    if ($accessToken) {
-        // 获取的expires_in为秒时间戳，减去30秒（过期时间适当提前避免accessToken实际已失效）。
-        if (isset($miniProgram->accessTokenData['expires_in'])) {
-            $cacheTime = $miniProgram->accessTokenData['expires_in'] - 30;
-        } else {
-            $cacheTime = 0;
+    ```PHP
+    //若缓存中不存在accessToken，从新实例化对象中获取并写入redis。
+    if (!$accessToken) {
+        isset($miniProgram->accessTokenData['access_token']) && $accessToken = $miniProgram->accessTokenData['access_token'];
+    
+        if ($accessToken) {
+            // 获取的expires_in为秒时间戳，减去30秒（过期时间适当提前避免accessToken实际已失效）。
+            if (isset($miniProgram->accessTokenData['expires_in'])) {
+                $cacheTime = $miniProgram->accessTokenData['expires_in'] - 30;
+            } else {
+                $cacheTime = 0;
+            }
+            $redis->setex('miniprogram_access_token_appid_' . $appId, $cacheTime, $accessToken);
         }
-        $redis->setex('miniprogram_access_token_appid_' . $appId, $cacheTime, $accessToken);
     }
-}
-```
+    ```
 
 ### 解密微信用户的加密数据包
 
@@ -115,7 +115,7 @@ $result['data'] = $filepath . $filename;
 echo json_encode($result);
 ```
 
-### 获取小程序码（有数量限制）
+### 获取有数量限制的小程序码
 
 除设置参数意外，其它同获取小程序二维码接口。示例代码如下：
 
@@ -150,7 +150,7 @@ $result['data'] = $filepath . $filename;
 echo json_encode($result);
 ```
 
-### 获取小程序码（无数量限制）
+### 获取无数量限制的小程序码
 
 除设置参数意外，其它同获取小程序二维码接口。示例代码如下：
 

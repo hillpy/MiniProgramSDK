@@ -17,6 +17,7 @@
     "anchor-navigation-ex",
     "github",
     "github-buttons",
+    "edit-link",
     "donate",
     "theme-vuejs",
     "scripts",
@@ -52,6 +53,10 @@
           "count": true
         }
       ]
+    },
+    "edit-link": {
+      "base": "https://github.com/hillpy/MiniProgramSDK/tree/master/doc/v1",
+      "label": "Edit This Page"
     },
     "donate": {
       "wechat": "http://resource.hillpy.com/image/wechat_new_qrcode.png",

@@ -17,6 +17,7 @@
     "anchor-navigation-ex",
     "github",
     "github-buttons",
+    "edit-link",
     "donate",
     "theme-vuejs",
     "scripts",
@@ -60,6 +61,10 @@
       "button": "Donate",
       "wechatText": "WeChat Pay",
       "alipayText": "Alipay"
+    },
+    "edit-link": {
+      "base": "https://github.com/hillpy/MiniProgramSDK/tree/master/doc/v2",
+      "label": "Edit This Page"
     },
     "versions": {
       "options": [
