@@ -15,10 +15,12 @@ install:
   - cd doc/v1
   - gitbook install
   - cd ..
+  - cd v2
   - gitbook install
 
 script:
-  - gitbook build . ./../_book  # 构建顶级版本文档
+  - gitbook build . ./../_book/v2  # 构建顶级版本文档
+  - cd ..
   - cd v1
   - gitbook build . ./../_book/v1 # 构建v1版本文档
 

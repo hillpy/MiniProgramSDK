@@ -10,4 +10,4 @@ $ composer require hillpy/mini-program-sdk
 
 ### 直接拷贝
 
-直接拷贝项目至你的项目下，引入src目录的MiniProgram.php文件。命名空间为（hillpy\MiniProgramSDK\MiniProgramSDK）。
+直接拷贝项目（[发行版](https://github.com/hillpy/MiniProgramSDK/releases)）或至你的项目下，引入src目录的MiniProgram.php文件。命名空间为（hillpy\MiniProgramSDK\MiniProgramSDK）。

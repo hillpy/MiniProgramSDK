@@ -64,7 +64,7 @@
     "versions": {
       "options": [
         {
-          "value": "https://hillpy.github.io/MiniProgramSDK/",
+          "value": "https://hillpy.github.io/MiniProgramSDK/v2",
           "text": "2.x"
         },
         {
