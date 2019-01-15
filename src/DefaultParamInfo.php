@@ -54,5 +54,10 @@ return array(
         'form_id'=>'',
         'data'=>array(),
         'emphasis_keyword'=>''
+    ),
+    'sendUniformMessage'=>array(
+        'touser'=>'',
+        'weapp_template_msg'=>array(),
+        'mp_template_msg'=>array()
     )
 );

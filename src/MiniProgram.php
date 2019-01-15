@@ -28,6 +28,7 @@ class MiniProgram
     const GET_TEMPLATE_LIBRARY_LIST_PATH = '/cgi-bin/wxopen/template/library/list?';
     const GET_TEMPLATE_LIST_PATH = '/cgi-bin/wxopen/template/list?';
     const SEND_TEMPLATE_MESSAGE = '/cgi-bin/message/wxopen/template/send?';
+    const SEND_UNIFORM_MESSAGE = '/cgi-bin/message/wxopen/template/uniform_send?';
 
     /**
      * MiniProgram constructor.
@@ -288,6 +289,22 @@ class MiniProgram
             'access_token'=>$this->accessToken
         );
         $url = self::API_HOST . self::SEND_TEMPLATE_MESSAGE . http_build_query($urlParamArr);
+        $res = Common::httpRequest($url, json_encode($finalParamArr));
+        return $res;
+    }
+
+    /**
+     * 下发小程序和公众号统一的服务消息
+     * @param array $postParamArr
+     * @return mixed
+     */
+    public function sendUniformMessage($postParamArr = array())
+    {
+        $finalParamArr = Common::extendArrayData($this->defaultParamInfo[__FUNCTION__], $postParamArr);
+        $urlParamArr = array(
+            'access_token'=>$this->accessToken
+        );
+        $url = self::API_HOST . self::SEND_UNIFORM_MESSAGE . http_build_query($urlParamArr);
         $res = Common::httpRequest($url, json_encode($finalParamArr));
         return $res;
     }
