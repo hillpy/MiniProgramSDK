@@ -308,4 +308,19 @@ class MiniProgram
         $res = Common::httpRequest($url, json_encode($finalParamArr));
         return $res;
     }
+
+    /**
+     * 创建被分享动态消息的 activity_id
+     * @param array $postParamArr
+     * @return mixed
+     */
+    public function createActivityId()
+    {
+        $urlParamArr = array(
+            'access_token'=>$this->accessToken
+        );
+        $url = self::API_HOST . self::SEND_UNIFORM_MESSAGE . http_build_query($urlParamArr);
+        $res = Common::httpRequest($url);
+        return $res;
+    }
 }
