@@ -19,9 +19,8 @@ MiniProgramSDK是一个PHP的小程序开发包。封装微信小程序后端相
 
 ### 仓库地址
 
-[Coding](https://coding.net/u/shinn_lancelot/p/MiniProgramSDK/git "MiniProgramSDK")<br>
-[Gitee](https://gitee.com/hillpy/MiniProgramSDK "MiniProgramSDK")<br>
 [Github](https://github.com/hillpy/MiniProgramSDK "MiniProgramSDK")<br>
+[Gitee](https://gitee.com/hillpy/MiniProgramSDK "MiniProgramSDK")<br>
 
 ### 协议
 
