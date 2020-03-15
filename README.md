@@ -35,9 +35,8 @@
 
 ### 仓库地址
 
-[Coding](https://coding.net/u/shinn_lancelot/p/MiniProgramSDK/git "MiniProgramSDK")<br>
-[Gitee](https://gitee.com/hillpy/MiniProgramSDK "MiniProgramSDK")<br>
 [Github](https://github.com/hillpy/MiniProgramSDK "MiniProgramSDK")<br>
+[Gitee](https://gitee.com/hillpy/MiniProgramSDK "MiniProgramSDK")<br>
 
 ### 协议
 
