@@ -21,7 +21,7 @@ return array(
         'line_color'=>array('r'=>0, 'g'=>0, 'b'=>0),
         'is_hyaline'=>false
     ),
-    'getWXACodeUnlimit'=>array(
+    'getWxacodeUnlimit'=>array(
         'scene'=>'',
         'page'=>'page/index/index',
         'width'=>430,
