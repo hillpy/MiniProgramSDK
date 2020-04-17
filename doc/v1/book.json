@@ -68,10 +68,10 @@
     },
     "versions": {
       "options": [
-        {
-          "value": "https://hillpy.github.io/MiniProgramSDK/v2",
-          "text": "2.x"
-        },
+        // {
+        //   "value": "https://hillpy.github.io/MiniProgramSDK/v2",
+        //   "text": "2.x"
+        // },
         {
           "value": "https://hillpy.github.io/MiniProgramSDK/v1",
           "text": "1.x"
