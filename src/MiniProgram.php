@@ -4,6 +4,7 @@
  * 微信小程序api封装类
  * Author: shinn_lancelot
  */
+
 namespace hillpy\MiniProgramSDK;
 
 include "Common.php";
@@ -49,9 +50,9 @@ class MiniProgram
     public function getAccessTokenData()
     {
         $urlParamArr = array(
-            'grant_type'=>'client_credential',
-            'appid'=>$this->appId,
-            'secret'=>$this->appSecret
+            'grant_type' => 'client_credential',
+            'appid' => $this->appId,
+            'secret' => $this->appSecret
         );
         $url = self::API_HOST . self::ACCESS_TOKEN_PATH . http_build_query($urlParamArr);
         $res = json_decode(Common::httpRequest($url), true);
@@ -70,13 +71,13 @@ class MiniProgram
     public function jscode2Session($code)
     {
         $urlParamArr = array(
-            'appid'=>$this->appId,
-            'secret'=>$this->appSecret,
-            'js_code'=>$code,
-            'grant_type'=>'authorization_code'
+            'appid' => $this->appId,
+            'secret' => $this->appSecret,
+            'js_code' => $code,
+            'grant_type' => 'authorization_code'
         );
         $url = self::API_HOST . self::JSCODE_2_SESSSION_PATH . http_build_query($urlParamArr);
-        $res = json_decode(Common::httpRequest($url),true);
+        $res = json_decode(Common::httpRequest($url), true);
         return $res;
     }
 
@@ -97,8 +98,8 @@ class MiniProgram
 
         // 1.获取openid、session_key（若存在session_key，则默认理解为session_key未过期，直接使用其进行解密）
         if ($finalParamArr['sessionKey']) {
-            $openId = $finalParamArr['openId'];
             $sessionKey = $finalParamArr['sessionKey'];
+            $openId = isset($finalParamArr['openId']) ? $finalParamArr['openId'] : '';
         } else {
             $sessionData = $this->jscode2Session($finalParamArr['code']);
             if (isset($sessionData['errcode'])) {
@@ -106,16 +107,21 @@ class MiniProgram
                 $res['msg'] = Common::getErrorMsg($sessionData['errcode']);
                 return $res;
             }
-            $openId = $sessionData['openid'];
             $sessionKey = $sessionData['session_key'];
+            $openId = isset($sessionData['openId']) ? $sessionData['openId'] : '';
         }
 
         // 2.计算签名并与传入签名进行校验
-        $newSignature = sha1($finalParamArr['rawData'] . $sessionKey);
-        if ($newSignature !== $finalParamArr['signature']) {
-            $res['code'] = -102;
-            $res['msg'] = '签名不匹配';
-            return $res;
+        if (
+            $finalParamArr['rawData'] != '' &&
+            $finalParamArr['signature'] != ''
+        ) {
+            $newSignature = sha1($finalParamArr['rawData'] . $sessionKey);
+            if ($newSignature !== $finalParamArr['signature']) {
+                $res['code'] = -102;
+                $res['msg'] = '签名不匹配';
+                return $res;
+            }
         }
 
         // 3.使用sessionKey解密加密数据包
@@ -138,6 +144,7 @@ class MiniProgram
         $resData['session3rd'] = $session3rd;
         $resData['data'] = $data;
         $resData['sessionKey'] = $sessionKey;
+        $resData['openId'] = $openId;
         $res['data'] = $resData;
         return $res;
     }
@@ -151,7 +158,7 @@ class MiniProgram
     {
         $finalParamArr = Common::extendArrayData($this->defaultParamInfo[__FUNCTION__], $postParamArr);
         $urlParamArr = array(
-            'access_token'=>$this->accessToken
+            'access_token' => $this->accessToken
         );
         $url = self::API_HOST . self::WXAQRCODE_PATH . http_build_query($urlParamArr);
         $res = Common::httpRequest($url, json_encode($finalParamArr));
@@ -167,7 +174,7 @@ class MiniProgram
     {
         $finalParamArr = Common::extendArrayData($this->defaultParamInfo[__FUNCTION__], $postParamArr);
         $urlParamArr = array(
-            'access_token'=>$this->accessToken
+            'access_token' => $this->accessToken
         );
         $url = self::API_HOST . self::WXACODE_PATH . http_build_query($urlParamArr);
         $res = Common::httpRequest($url, json_encode($finalParamArr));
@@ -183,7 +190,7 @@ class MiniProgram
     {
         $finalParamArr = Common::extendArrayData($this->defaultParamInfo[__FUNCTION__], $postParamArr);
         $urlParamArr = array(
-            'access_token'=>$this->accessToken
+            'access_token' => $this->accessToken
         );
         $url = self::API_HOST . self::WXACODE_UNLIMIT_PATH . http_build_query($urlParamArr);
         $res = Common::httpRequest($url, json_encode($finalParamArr));
