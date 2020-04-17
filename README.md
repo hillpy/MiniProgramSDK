@@ -5,17 +5,11 @@
 
 ### MiniProgramSDK是什么
 
-MiniProgramSDK是一个PHP的小程序开发包。封装微信小程序后端相关接口，比如php端微信用户信息解密（微信登录）、获取小程序码等等。 
+MiniProgramSDK是一个PHP的小程序开发包。封装微信小程序后端相关接口，比如解密信息（用户信息、手机号）、获取小程序码等。
 
 ### 项目文档
 
 [MiniProgramSDK Document](https://hillpy.github.io/MiniProgramSDK/v1/)
-
-### TODO
-
-~~1. 微信用户数据解密~~
-
-~~2. 小程序二维码、小程序码~~
 
 ### 仓库地址
 

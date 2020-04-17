@@ -43,7 +43,7 @@ if ($accessToken == '') {
     echo 'accessToken:' . $accessToken . '<br>';
 }
 
-// 解密登录用户数据。
+// 客户端请求参数。
 $paramArr['code'] = isset($_POST['code']) ? $_POST['code'] : '';
 $paramArr['rawData'] = isset($_POST['rawData']) ? $_POST['rawData'] : '';
 $paramArr['signature'] = isset($_POST['signature']) ? $_POST['signature'] : '';
