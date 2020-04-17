@@ -9,8 +9,8 @@ require __DIR__ . '/src/MiniProgram.php';
 use hillpy\MiniProgramSDK\MiniProgram;
 
 // 设置变量。
-$appId = '';
-$appSecret = '';
+$appId = '小程序APPID';
+$appSecret = '小程序APPSECRET';
 $accessToken = '';
 
 // 从redis获取accessToken。
@@ -49,23 +49,22 @@ $paramArr['rawData'] = isset($_POST['rawData']) ? $_POST['rawData'] : '';
 $paramArr['signature'] = isset($_POST['signature']) ? $_POST['signature'] : '';
 $paramArr['encryptedData'] = isset($_POST['encryptedData']) ? $_POST['encryptedData'] : '';
 $paramArr['iv'] = isset($_POST['iv']) ? $_POST['iv'] : '';
-$paramArr['sessionKeyExpired'] = isset($_POST['sessionKeyExpired']) ? $_POST['sessionKeyExpired'] : '';
+$sessionCacheKey = isset($_POST['sessionCacheKey']) ? $_POST['sessionCacheKey'] : '';
 
-// sessionKeyExpired参数表示session_key是否过期（必须由前端判断），未过期则从缓存获取sessionKeyData。
-if ($paramArr['sessionKeyExpired'] != 1) {
-    $sessionKeyData = $redis->get('miniprogram_jscode2session_appid_' . $appId);
-    $sessionKeyDataArr = json_decode($sessionKeyData, true);
-    $paramArr['sessionKey'] = $sessionKeyDataArr['sessionKey'];
-    $paramArr['openId'] = $sessionKeyDataArr['openId'];
-}
+// sessionCacheKey为sessionKey缓存名的一部分。若存在，则从缓存获取。否则，从接口请求。
+$sessionCacheKey && $paramArr['sessionKey'] = $redis->get('miniprogram_session_key_appid_' . $appId . '_key_' . $sessionCacheKey);
 
 $res = $miniProgram->decryptData($paramArr);
 
 if ($res['code'] == 100) {
-    // 将sessionKeyData写入缓存。
-    $sessionKeyDataArr['sessionKey'] = $res['data']['sessionKey'];
-    $sessionKeyDataArr['openId'] = $res['data']['data']['openId'];
-    $redis->set('miniprogram_jscode2session_appid_' . $appId, json_encode($sessionKeyDataArr));
+    if (!$sessionCacheKey) {
+        // 将sessionKey写入缓存，过期时间尽量长一些，此处缓存30天。
+        $sessionCacheKey = '随机生成字符串';
+        $redis->setex('miniprogram_session_key_appid_' . $appId . '_key_' . $sessionCacheKey, $res['data']['sessionKey'], 3600 * 24 * 30);
+    }
+
+    // data为解密后的数据。可根据解密数据，做相关处理。如登录注册，并生成jwt。然后将jwt、sessionCacheKey、用户信息返回给小程序端
+    $data = $res['data']['data'];
 
     echo '解密成功';
 } else {
