@@ -20,7 +20,7 @@ class WXBizDataCrypt
      * @param $sessionKey string 用户在小程序登录后获取的会话密钥
      * @param $appid string 小程序的appid
      */
-    public function __construct( $appid, $sessionKey)
+    public function __construct($appid, $sessionKey)
     {
         $this->sessionKey = $sessionKey;
         $this->appid = $appid;
@@ -35,35 +35,31 @@ class WXBizDataCrypt
      *
      * @return int 成功0，失败返回对应的错误码
      */
-    public function decryptData( $encryptedData, $iv, &$data )
+    public function decryptData($encryptedData, $iv, &$data)
     {
         if (strlen($this->sessionKey) != 24) {
             return ErrorCode::$IllegalAesKey;
         }
-        $aesKey=base64_decode($this->sessionKey);
+        $aesKey = base64_decode($this->sessionKey);
 
 
         if (strlen($iv) != 24) {
             return ErrorCode::$IllegalIv;
         }
-        $aesIV=base64_decode($iv);
+        $aesIV = base64_decode($iv);
 
-        $aesCipher=base64_decode($encryptedData);
+        $aesCipher = base64_decode($encryptedData);
 
-        $result=openssl_decrypt( $aesCipher, "AES-128-CBC", $aesKey, 1, $aesIV);
+        $result = openssl_decrypt($aesCipher, "AES-128-CBC", $aesKey, 1, $aesIV);
 
-        $dataObj=json_decode( $result );
-        if( $dataObj  == NULL )
-        {
+        $dataObj = json_decode($result);
+        if ($dataObj  == NULL) {
             return ErrorCode::$IllegalBuffer;
         }
-        if( $dataObj->watermark->appid != $this->appid )
-        {
+        if ($dataObj->watermark->appid != $this->appid) {
             return ErrorCode::$IllegalBuffer;
         }
         $data = $result;
         return ErrorCode::$OK;
     }
-
 }
-

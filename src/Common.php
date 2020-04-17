@@ -3,6 +3,7 @@
 /**
  * 通用函数类
  */
+
 namespace hillpy\MiniProgramSDK;
 
 class Common
@@ -36,7 +37,7 @@ class Common
      */
     public static function isWin()
     {
-        if (strtoupper(substr(PHP_OS,0,3)) === 'WIN') {
+        if (strtoupper(substr(PHP_OS, 0, 3)) === 'WIN') {
             return true;
         } else {
             return false;
@@ -108,7 +109,7 @@ class Common
             return $rawData;
         }
 
-        foreach ($rawData as $key=>$value) {
+        foreach ($rawData as $key => $value) {
             isset($newData[$key]) && $rawData[$key] = $newData[$key];
         }
 
@@ -144,4 +145,3 @@ class Common
         return $errorMsg;
     }
 }
-
