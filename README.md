@@ -1,15 +1,11 @@
+## MiniProgramSDK
+
 [![license](https://img.shields.io/github/license/hillpy/MiniProgramSDK.svg)](https://github.com/hillpy/MiniProgramSDK/blob/master/LICENSE)
 [![release](https://img.shields.io/github/release/hillpy/MiniProgramSDK.svg)](https://img.shields.io/github/release/hillpy/MiniProgramSDK.svg)
 [![packagist](https://img.shields.io/packagist/v/hillpy/mini-program-sdk.svg)](https://packagist.org/packages/hillpy/mini-program-sdk)
 [![downloads](https://img.shields.io/packagist/dt/hillpy/mini-program-sdk.svg)](https://img.shields.io/packagist/dt/hillpy/mini-program-sdk.svg)
 
-### MiniProgramSDK是什么
-
-MiniProgramSDK是一个PHP的小程序开发包。封装微信小程序后端相关接口，比如解密信息（用户信息、手机号）、获取小程序码等。
-
-### 项目文档
-
-[MiniProgramSDK Document](https://hillpy.github.io/MiniProgramSDK/v1/)
+> MiniProgramSDK是一个PHP的小程序开发包。封装微信小程序后端相关接口，比如解密信息（用户信息、手机号）、获取小程序码等。
 
 ### 仓库地址
 
