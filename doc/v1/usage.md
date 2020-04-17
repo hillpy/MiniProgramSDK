@@ -55,7 +55,7 @@
 3. 执行解密操作，若不存在sessionCacheKey，则随机生成sessionCacheKey，并缓存sessionKey。以上步骤示例代码如下：
 
 ```PHP
-    // 客户端请求参数
+    // 客户端请求参数。
     $paramArr['code'] = isset($_POST['code']) ? $_POST['code'] : '';
     $paramArr['rawData'] = isset($_POST['rawData']) ? $_POST['rawData'] : '';
     $paramArr['signature'] = isset($_POST['signature']) ? $_POST['signature'] : '';
