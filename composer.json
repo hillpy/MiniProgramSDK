@@ -13,7 +13,7 @@
         }
     ],
     "require": {
-        "php": ">=5.3.0"
+        "php": ">=5.4.0"
     },
     "support": {
         "issues": "https://github.com/hillpy/MiniProgramSDK/issues"
@@ -21,7 +21,7 @@
     "minimum-stability": "stable",
     "autoload": {
         "psr-4": {
-            "hillpy\\MiniProgramSDK\\": "src/"
+            "Hillpy\\MiniProgramSDK\\": "src/"
         }
     }
 }
