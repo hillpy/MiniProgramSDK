@@ -17,7 +17,8 @@ class MP implements
     // 配置参数
     private $config = [
         'app_id' => '',
-        'app_secret' => ''
+        'app_secret' => '',
+        'cache_driver' => 'file',
     ];
     
     // MP类实例
