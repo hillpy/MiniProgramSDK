@@ -30,7 +30,7 @@ class MP implements
         if (is_null(self::$instance)) {
             self::$instance = new self($config);
         } else {
-            self::$instance->initConfig($config);
+            self::$instance->init($config);
         }
 
         return self::$instance;
@@ -38,14 +38,14 @@ class MP implements
 
     private function __construct($config = [])
     {
-        $this->initConfig($config);
+        $this->init($config);
     }
 
     private function __clone()
     {
     }
 
-    private function initConfig($config = [])
+    private function init($config = [])
     {
         if (
             is_array($config) &&
