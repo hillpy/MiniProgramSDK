@@ -52,6 +52,16 @@ class MP implements
             count($config) > 0
         ) {
             $this->config = Helpers::updateArrayData($this->config, $config);
+
+            // 从缓存获取token
+            
+            // 若过期，则重新请求获取
+            $res = $this->getAccessToken(['appid' => $this->config['app_id'], 'secret' => $this->config['app_secret']]);
+            if (!isset($res['errcode'])) {
+                $this->token = $res['access_token'];
+                
+                // 缓存token
+            }
         }
     }
 

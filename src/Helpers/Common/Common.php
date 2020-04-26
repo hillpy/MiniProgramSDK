@@ -28,7 +28,7 @@ trait Common
     public static function updateArrayData($rawData, $newData)
     {
         if (!is_array($rawData) || count($rawData) <= 0) {
-            return array();
+            return [];
         }
         if (!is_array($newData)) {
             return $rawData;

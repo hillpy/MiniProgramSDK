@@ -10,7 +10,7 @@ trait BaseTrait
 {
     public function getAccessToken($paramArr = [])
     {
-        $urlParamArr = Helpers::updateArrayData(Param::$getAccessToken['url_param'], $paramArr);
+        $urlParamArr = Helpers::updateArrayData(Param::$getAccessToken, $paramArr);
         $url = BaseConstant::HOST . BaseConstant::ACCESS_TOKEN_PATH . http_build_query($urlParamArr);
         return json_decode(Helpers::httpRequest($url), true);
     }

@@ -13,11 +13,11 @@ trait Curl
     public static function get($url = '')
     {
         $curl = curl_init();
-        $optionArr = array(
+        $optionArr = [
             CURLOPT_URL => $url,
             CURLOPT_HEADER => false,
             CURLOPT_RETURNTRANSFER => true
-        );
+        ];
         curl_setopt_array($curl, $optionArr);
         $res = curl_exec($curl);
         curl_close($curl);
@@ -34,13 +34,13 @@ trait Curl
     public static function post($url = '', $data = '')
     {
         $curl = curl_init();
-        $optionArr = array(
+        $optionArr = [
             CURLOPT_URL => $url,
             CURLOPT_HEADER => false,
             CURLOPT_RETURNTRANSFER => true,
             CURLOPT_POST => true,
             CURLOPT_POSTFIELDS => $data
-        );
+        ];
         curl_setopt_array($curl, $optionArr);
         $res = curl_exec($curl);
         curl_close($curl);
