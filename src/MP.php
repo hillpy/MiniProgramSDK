@@ -20,6 +20,7 @@ class MP implements
         'app_secret' => '',
         'cache_driver' => 'file',
         'cache_file_path' => '',
+        'cache_prefix' => 'mp_sdk_',
     ];
 
     // 接口调用凭证
