@@ -23,7 +23,7 @@ class MP implements
     ];
 
     // 接口调用凭证
-    private $accessToken;
+    private $token;
 
     public static function getInstance($config = [])
     {
@@ -70,5 +70,16 @@ class MP implements
     public function getConfig()
     {
         return $this->config;
+    }
+
+    public function setToken($token = '')
+    {
+        $this->token = $token;
+        return $this;
+    }
+
+    public function getToken()
+    {
+        return $this->token;
     }
 }
