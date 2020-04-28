@@ -14,8 +14,8 @@ class MP implements
     // MP类实例
     private static $instance;
 
-    // 配置参数
-    private $config = [
+    // 配置选项
+    private $options = [
         'app_id' => '',
         'app_secret' => '',
         'cache_driver' => 'file',
@@ -26,38 +26,38 @@ class MP implements
     // 接口调用凭证
     private $token;
 
-    public static function getInstance($config = [])
+    public static function getInstance($options = [])
     {
         if (is_null(self::$instance)) {
-            self::$instance = new self($config);
+            self::$instance = new self($options);
         } else {
-            self::$instance->init($config);
+            self::$instance->init($options);
         }
 
         return self::$instance;
     }
 
-    private function __construct($config = [])
+    private function __construct($options = [])
     {
-        $this->init($config);
+        $this->init($options);
     }
 
     private function __clone()
     {
     }
 
-    private function init($config = [])
+    private function init($options = [])
     {
         if (
-            is_array($config) &&
-            count($config) > 0
+            is_array($options) &&
+            count($options) > 0
         ) {
-            $this->config = Common::updateArrayData($this->config, $config);
+            $this->options = Common::updateArrayData($this->options, $options);
 
             // 从缓存获取token
             
             // // 若过期，则重新请求获取
-            // $res = $this->getAccessToken(['appid' => $this->config['app_id'], 'secret' => $this->config['app_secret']]);
+            // $res = $this->getAccessToken(['appid' => $this->options['app_id'], 'secret' => $this->options['app_secret']]);
             // if (!isset($res['errcode'])) {
             //     $this->token = $res['access_token'];
                 
@@ -66,21 +66,21 @@ class MP implements
         }
     }
 
-    public function setConfig($config = [])
+    public function setOptions($options = [])
     {
         if (
-            is_array($config) &&
-            count($config) > 0
+            is_array($options) &&
+            count($options) > 0
         ) {
-            $this->config = Common::updateArrayData($this->config, $config);
+            $this->options = Common::updateArrayData($this->options, $options);
         }
 
         return $this;
     }
 
-    public function getConfig()
+    public function getOptions()
     {
-        return $this->config;
+        return $this->options;
     }
 
     public function setToken($token = '')

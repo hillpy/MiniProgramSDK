@@ -16,8 +16,11 @@ class Cache implements CacheInterface
     private static $instance;
 
     // 配置参数
-    private $config = [
+    private $options = [
         'driver' => 'file',
+        'prefix' => 'cache_',
+        'file_base_path' => '',
+        'file_ext' => 'php'
     ];
 
     /**
@@ -43,38 +46,39 @@ class Cache implements CacheInterface
     // 驱动trait
     private $driver;
 
-    public static function getInstance($config = [])
+    public static function getInstance($options = [])
     {
         if (is_null(self::$instance)) {
-            self::$instance = new self($config);
+            self::$instance = new self($options);
         } else {
-            self::$instance->init($config);
+            self::$instance->init($options);
         }
 
         return self::$instance;
     }
 
-    private function __construct($config = [])
+    private function __construct($options = [])
     {
-        $this->init($config);
+        $this->init($options);
     }
 
     private function __clone()
     {
     }
 
-    private function init($config = [])
+    private function init($options = [])
     {
         if (
-            is_array($config) &&
-            count($config) > 0
+            is_array($options) &&
+            count($options) > 0
         ) {
-            $this->config = Common::updateArrayData($this->config, $config);
+            $this->options = Common::updateArrayData($this->options, $options);
         }
 
-        in_array($this->config['driver'], $this->allowDriverArr) || $this->config['driver'] = 'file';
+        in_array($this->options['driver'], $this->allowDriverArr) || $this->options['driver'] = 'file';
 
-        $this->driver = $this->driverTraitArr[$this->config['driver']];
+        $this->driver = $this->driverTraitArr[$this->options['driver']];
+        $this->driver::init($this->options);
     }
 
     public function set($key = '', $value = '', $expire = 0)
