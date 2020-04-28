@@ -18,6 +18,7 @@ class Cache implements CacheInterface
     // 配置参数
     private $options = [
         'driver' => 'file',
+        'expire' => 3600,
         'prefix' => 'cache_',
         'file_base_path' => '',
         'file_ext' => 'php'

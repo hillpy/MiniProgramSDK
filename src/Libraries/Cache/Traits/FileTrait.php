@@ -8,6 +8,7 @@ trait FileTrait
 {
     private static $fileOptions = [
         'prefix' => 'cache_',
+        'expire' => 3600,
         'file_base_path' => '',
         'file_ext' => 'php',
     ];
