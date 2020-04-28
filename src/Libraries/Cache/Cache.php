@@ -21,6 +21,16 @@ class Cache implements CacheInterface
     ];
 
     /**
+     * 允许使用的驱动类型
+     *
+     * @var array
+     */
+    private $allowDriverArr = [
+        'file',
+        'redis'
+    ];
+
+    /**
      * 驱动trait数组
      *
      * @var array
@@ -60,23 +70,25 @@ class Cache implements CacheInterface
             count($config) > 0
         ) {
             $this->config = Common::updateArrayData($this->config, $config);
-
-            $this->driver = $this->driverTraitArr[$this->config['driver']];
         }
+
+        in_array($this->config['driver'], $this->allowDriverArr) || $this->config['driver'] = 'file';
+
+        $this->driver = $this->driverTraitArr[$this->config['driver']];
     }
 
     public function set($key = '', $value = '', $expire = 0)
     {
-        $this->driver::set();
+        $this->driver::set($key, $value, $expire);
     }
 
     public function get($key = '')
     {
-        $this->driver::get();
+        $this->driver::get($key);
     }
 
     public function delete($key = '')
     {
-        $this->driver::delete();
+        $this->driver::delete($key);
     }
 }
