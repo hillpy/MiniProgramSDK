@@ -1,8 +1,8 @@
 <?php
 
-namespace Hillpy\MiniProgramSDK\Helpers\Curl;
+namespace Hillpy\MiniProgramSDK\Libraries\Curl;
 
-trait Curl
+class Curl
 {
     /**
      * 简易get请求

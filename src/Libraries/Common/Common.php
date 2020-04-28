@@ -1,8 +1,8 @@
 <?php
 
-namespace Hillpy\MiniProgramSDK\Helpers\Common;
+namespace Hillpy\MiniProgramSDK\Libraries\Common;
 
-trait Common
+class Common
 {
     /**
      * 是否为windows系统
