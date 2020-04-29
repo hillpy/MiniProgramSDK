@@ -8,6 +8,7 @@ trait FileTrait
 {
     private static $fileOptions = [
         'prefix' => 'cache_',
+        'key' => 'cache',
         'expire' => 3600,
         'file_base_path' => '',
         'file_path' => '/cache',
@@ -46,6 +47,8 @@ trait FileTrait
     private static function filename($key)
     {
         $filename = '';
+        $name = md5(self::$fileOptions['key'] . $key);
+        $filename = self::$fileOptions['prefix'] . $name . '.' . self::$fileOptions['file_ext'];
         return $filename;
     }
 
