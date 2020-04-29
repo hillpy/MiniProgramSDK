@@ -21,6 +21,7 @@ class Cache implements CacheInterface
         'expire' => 3600,
         'prefix' => 'cache_',
         'file_base_path' => '',
+        'file_path' => '/cache',
         'file_ext' => 'php'
     ];
 
