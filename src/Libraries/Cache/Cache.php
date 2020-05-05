@@ -31,7 +31,7 @@ class Cache implements CacheInterface
      *
      * @var array
      */
-    private $allowDriverArr = [
+    private $allowDriver = [
         'file',
         'redis'
     ];
@@ -48,6 +48,16 @@ class Cache implements CacheInterface
 
     // 驱动trait
     private $driver;
+
+    /**
+     * 允许传入的文件扩展
+     *
+     * @var array
+     */
+    private $allowFileExt = [
+        'php',
+        'json'
+    ];
 
     public static function getInstance($options = [])
     {
@@ -77,14 +87,15 @@ class Cache implements CacheInterface
         ) {
             $this->options = Common::updateArrayData($this->options, $options);
         }
-
-        in_array($this->options['driver'], $this->allowDriverArr) || $this->options['driver'] = 'file';
+        $this->options['file_base_path'] || $this->options['file_base_path'] = $_SERVER['DOCUMENT_ROOT'];
+        in_array($this->options['file_ext'], $this->allowFileExt) || $this->options['file_ext'] = 'php';
+        in_array($this->options['driver'], $this->allowDriver) || $this->options['driver'] = 'file';
 
         $this->driver = $this->driverTraitArr[$this->options['driver']];
         $this->driver::init($this->options);
     }
 
-    public function set($key = '', $value = '', $expire = 0)
+    public function set($key = '', $value = '', $expire = '')
     {
         $this->driver::set($key, $value, $expire);
     }

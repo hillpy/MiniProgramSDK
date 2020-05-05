@@ -4,9 +4,9 @@ namespace Hillpy\MiniProgramSDK\Libraries\Cache\Interfaces;
 
 interface CacheInterface
 {
-    public function set();
+    public function set($key, $value, $expire);
     
-    public function get();
+    public function get($key);
 
-    public function delete();
+    public function delete($key);
 }
