@@ -39,16 +39,32 @@ trait FileTrait
         // 创建目录
         self::makeDir($allPath);
         // 获取文件名
-        $filename = self::filename(self::$fileOptions['key']);
+        $filename = self::filename($key);
         // 获取写入内容
-        $content = self::handleContent($key, $value, $expire);
+        $content = self::buildContent($key, $value, $expire);
         // 写入文件
-        self::writeFile($allPath . '/' . $filename, $content);
+        return self::writeFile($allPath . '/' . $filename, $content);
     }
 
     public static function get($key = '')
     {
-        echo 'file get' . PHP_EOL;
+        // 完整路径
+        $allPath = self::$fileOptions['file_base_path'] . self::$fileOptions['file_path'];
+        // 获取文件名
+        $filename = self::filename($key);
+
+        // php缓存文件直接引入，其它直接读取
+        $content = '';
+        if (self::$fileOptions['file_ext'] == 'php') {
+            $content = '';
+            if (file_exists($allPath . '/' . $filename)) {
+                $content = include_once ($allPath . '/' . $filename);
+            }
+        } else {
+            $content = self::readFile($allPath . '/' . $filename);
+        }
+
+        return self::parseContent($content, $allPath . '/' . $filename);
     }
 
     public static function delete($key = '')
@@ -69,7 +85,7 @@ trait FileTrait
         return $filename;
     }
 
-    private static function handleContent($key, $content, $expire)
+    private static function buildContent($key, $content, $expire)
     {
         $contentArr = [
             'key' => Common::encryptData($key, self::$fileOptions['key']),
@@ -93,6 +109,30 @@ trait FileTrait
         }
 
         return $allContent;
+    }
+
+    private static function parseContent($content, $filename)
+    {
+        $res = '';
+        $contentArr = json_decode($content, true);
+        if (
+            !isset($contentArr['expire']) ||
+            !isset($contentArr['time']) ||
+            ($contentArr['expire'] > 0 && time() >= ($contentArr['expire'] + $contentArr['time']))
+        ) {
+            file_exists($filename) && unlink($filename);
+        }
+
+        if (
+            isset($contentArr['content']) &&
+            $contentArr['content']
+        ) {
+            $res = $contentArr['content'];
+        }
+
+        $res = Common::decryptData($res, self::$fileOptions['key']);
+
+        return $res;
     }
 
     private static function writeFile($filename, $content)

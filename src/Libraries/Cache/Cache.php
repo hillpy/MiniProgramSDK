@@ -97,16 +97,16 @@ class Cache implements CacheInterface
 
     public function set($key = '', $value = '', $expire = '')
     {
-        $this->driver::set($key, $value, $expire);
+        return $this->driver::set($key, $value, $expire);
     }
 
     public function get($key = '')
     {
-        $this->driver::get($key);
+        return $this->driver::get($key);
     }
 
     public function delete($key = '')
     {
-        $this->driver::delete($key);
+        return $this->driver::delete($key);
     }
 }
