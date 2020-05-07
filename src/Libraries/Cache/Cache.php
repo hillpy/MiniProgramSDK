@@ -95,6 +95,23 @@ class Cache implements CacheInterface
         $this->driver::init($this->options);
     }
 
+    public function setOptions($options = [])
+    {
+        if (
+            is_array($options) &&
+            count($options) > 0
+        ) {
+            $this->options = Common::updateArrayData($this->options, $options);
+        }
+
+        return $this;
+    }
+
+    public function getOptions()
+    {
+        return $this->options;
+    }
+
     public function set($key = '', $value = '', $expire = '')
     {
         return $this->driver::set($key, $value, $expire);

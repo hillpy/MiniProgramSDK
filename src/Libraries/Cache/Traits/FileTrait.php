@@ -69,7 +69,15 @@ trait FileTrait
 
     public static function delete($key = '')
     {
-        echo 'file delete' . PHP_EOL;
+        // 完整路径
+        $allPath = self::$fileOptions['file_base_path'] . self::$fileOptions['file_path'];
+        // 获取文件名
+        $filename = self::filename($key);
+        $res = true;
+        if (file_exists($allPath . '/' . $filename)) {
+            $res = unlink($allPath . '/' . $filename);
+        }
+        return $res;
     }
 
     private static function makeDir($path)
