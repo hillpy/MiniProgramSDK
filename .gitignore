@@ -7,3 +7,4 @@ node_modules
 test.php
 composer.lock
 cache
+mpsdk_cache
