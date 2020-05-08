@@ -15,9 +15,6 @@ class MP implements
     // MP类实例
     private static $instance;
 
-    // Cache类实例
-    private static $cache;
-
     // 配置选项
     private $options = [
         'app_id' => '',
@@ -33,6 +30,9 @@ class MP implements
 
     // 接口调用凭证
     private $token;
+
+    // Cache类实例
+    private $cache;
 
     public static function getInstance($options = [])
     {
@@ -64,10 +64,11 @@ class MP implements
         }
         $this->options['cache_file_base_path'] || $this->options['cache_file_base_path'] = $_SERVER['DOCUMENT_ROOT'];
 
-        self::$cache = $this->initCache();
+        // 获取Cache类实例
+        $this->cache = $this->initCache();
 
         // 从缓存获取token
-        $this->token = self::$cache->get('access_token_mp_appid_' . $this->options['app_id']);
+        $this->token = $this->cache->get('access_token_mp_appid_' . $this->options['app_id']);
 
         // 若过期，则重新请求获取
         if (!$this->token) {
@@ -76,10 +77,9 @@ class MP implements
                 $this->token = $res['access_token'];
                 
                 // 缓存token
-                self::$cache->set('access_token_mp_appid_' . $this->options['app_id'], $this->token, $res['expires_in'] - 5);
+                $this->cache->set('access_token_mp_appid_' . $this->options['app_id'], $this->token, $res['expires_in'] - 5);
             }
         }
-        echo $this->token;
     }
 
     private function initCache()
