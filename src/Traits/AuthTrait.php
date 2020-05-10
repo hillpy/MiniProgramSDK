@@ -3,15 +3,21 @@
 namespace Hillpy\MiniProgramSDK\Traits;
 
 use Hillpy\MiniProgramSDK\Constants\AuthConstant;
-use Hillpy\MiniProgramSDK\Traits\BaseTrait;
+use Hillpy\MiniProgramSDK\Libraries\Common\Common;
+use Hillpy\MiniProgramSDK\Libraries\Curl\Curl;
+use Hillpy\MiniProgramSDK\Param;
 
 trait AuthTrait
 {
-    use BaseTrait;
-
-    public function login()
+    public function getAccessToken($paramArr = [])
     {
-        echo 'login' . PHP_EOL;
-        echo AuthConstant::HOST . AuthConstant::JSCODE_2_SESSSION_PATH . PHP_EOL;
+        $urlParamArr = Common::updateArrayData(Param::$auth['getAccessToken'], $paramArr);
+        $url = AuthConstant::HOST . AuthConstant::ACCESS_TOKEN_PATH . http_build_query($urlParamArr);
+        return json_decode(Curl::httpRequest($url), true);
+    }
+
+    public function code2Session($paramArr = [])
+    {
+        echo 'this is code2Session method'; echo PHP_EOL;
     }
 }

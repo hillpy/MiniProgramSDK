@@ -4,7 +4,6 @@
 _book
 node_modules
 .DS_Store
-test.php
 composer.lock
 cache
 mpsdk_cache

@@ -2,7 +2,8 @@
 
 namespace Hillpy\MiniProgramSDK\Interfaces;
 
-interface AuthInterface extends BaseInterface
+interface AuthInterface
 {
-    public function login();
+    public function getAccessToken();
+    public function code2Session();
 }
