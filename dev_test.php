@@ -14,9 +14,11 @@ $option = [
   'app_secret' => 'f9407291812252a890faf770b46b6b25'
 ];
 $mp = MP::getInstance($option);
-echo $mp->getToken();
-echo PHP_EOL;
-echo $mp->code2Session();
+
+echo 'code2Session: ' . PHP_EOL;
+print_r($mp->code2Session());
+echo 'getAccessToken: ' . PHP_EOL;
+print_r($mp->getToken());
 
 // 测试缓存库
 // $cacheOption = [

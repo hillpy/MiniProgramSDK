@@ -9,15 +9,17 @@ use Hillpy\MiniProgramSDK\Param;
 
 trait AuthTrait
 {
-    public function getAccessToken($paramArr = [])
+    public function code2Session($paramArr = [])
     {
-        $urlParamArr = Common::updateArrayData(Param::$auth['getAccessToken'], $paramArr);
-        $url = AuthConstant::HOST . AuthConstant::ACCESS_TOKEN_PATH . http_build_query($urlParamArr);
+        $urlParamArr = Common::updateArrayData(Param::$auth[__FUNCTION__], $paramArr);
+        $url = AuthConstant::HOST . AuthConstant::JSCODE_2_SESSSION_PATH . http_build_query($urlParamArr);
         return json_decode(Curl::httpRequest($url), true);
     }
 
-    public function code2Session($paramArr = [])
+    public function getAccessToken($paramArr = [])
     {
-        echo 'this is code2Session method'; echo PHP_EOL;
+        $urlParamArr = Common::updateArrayData(Param::$auth[__FUNCTION__], $paramArr);
+        $url = AuthConstant::HOST . AuthConstant::ACCESS_TOKEN_PATH . http_build_query($urlParamArr);
+        return json_decode(Curl::httpRequest($url), true);
     }
 }
