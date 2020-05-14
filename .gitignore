@@ -7,3 +7,4 @@ node_modules
 composer.lock
 cache
 mpsdk_cache
+env.php

@@ -66,20 +66,8 @@ class MP implements
 
         // 获取Cache类实例
         $this->cache = $this->initCache();
-
-        // 从缓存获取token
-        $this->token = $this->cache->get('access_token_mp_appid_' . $this->options['app_id']);
-
-        // 若过期，则重新请求获取
-        if (!$this->token) {
-            $res = $this->getAccessToken(['appid' => $this->options['app_id'], 'secret' => $this->options['app_secret']]);
-            if (!isset($res['errcode'])) {
-                $this->token = $res['access_token'];
-                
-                // 缓存token
-                $this->cache->set('access_token_mp_appid_' . $this->options['app_id'], $this->token, $res['expires_in'] - 5);
-            }
-        }
+        // 获取accessToken
+        $this->token = $this->getAccessTokenWithCache();
     }
 
     private function initCache()
@@ -122,5 +110,36 @@ class MP implements
     public function getToken()
     {
         return $this->token;
+    }
+
+    public function getAccessTokenWithCache()
+    {
+        // 从缓存获取accessToken
+        $accessToken = $this->cache->get('access_token_mp_appid_' . $this->options['app_id']);
+
+        // 若过期，则重新请求获取
+        if (!$accessToken) {
+            $res = $this->getAccessToken(['appid' => $this->options['app_id'], 'secret' => $this->options['app_secret']]);
+            if (!isset($res['errcode']) || $res['errcode'] == 0) {
+                $accessToken = $res['access_token'];
+                
+                // 缓存token
+                $this->cache->set('access_token_mp_appid_' . $this->options['app_id'], $accessToken, $res['expires_in'] - 5);
+            }
+        }
+
+        return $accessToken;
+    }
+
+    public function code2SessionWithCache($paramArr = [])
+    {
+        // 待完善
+        
+        // $code2Session = $this->cache->get('code_2_session_' . );
+        
+        $res = $this->code2Session($paramArr);
+        if (!isset($res['errcode']) || $res['errcode'] == 0) {
+            
+        }
     }
 }
