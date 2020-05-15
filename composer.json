@@ -16,7 +16,9 @@
         "php": ">=5.4.0"
     },
     "require-dev": {
-        "phpunit/phpunit": "^9.1"
+        "phpunit/phpunit": "^9.1",
+        "friendsofphp/php-cs-fixer": "^2.16",
+        "brainmaestro/composer-git-hooks": "^2.8"
     },
     "support": {
         "issues": "https://github.com/hillpy/MiniProgramSDK/issues"
@@ -32,12 +34,37 @@
             "Tests\\": "tests/"
         }
     },
+    "extra": {
+        "hooks": {
+            "pre-commit": [
+                "composer test",
+                "composer check-style"
+            ],
+            "pre-push": [
+                "composer test",
+                "composer check-style"
+            ],
+            "post-merge": "composer install"
+        }
+    },
     "scripts": {
+        "post-install-cmd": [
+            "cghooks add --ignore-lock",
+            "cghooks update"
+        ],
+        "post-update-cmd": [
+            "cghooks update"
+        ],
+        "cghooks": "cghooks",
+        "check-style": "php-cs-fixer fix --using-cache=no --diff --config=.php_cs --dry-run --ansi",
+        "fix-style": "php-cs-fixer fix --using-cache=no --config=.php_cs --ansi",
         "test": [
             "phpunit tests --colors=always"
         ]
     },
     "scripts-descriptions": {
-        "test": "Run all tests."
+        "test": "Run all tests.",
+        "check-style": "Run style checks (only dry run - no fixing!).",
+        "fix-style": "Run style checks and fix violations."
     }
 }

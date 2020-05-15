@@ -58,7 +58,7 @@ trait FileTrait
         if (self::$fileOptions['file_ext'] == 'php') {
             $content = '';
             if (file_exists($allPath . '/' . $filename)) {
-                $content = include_once ($allPath . '/' . $filename);
+                $content = include_once($allPath . '/' . $filename);
             }
         } else {
             $content = self::readFile($allPath . '/' . $filename);
@@ -107,7 +107,7 @@ trait FileTrait
             if (self::$fileOptions['file_ext'] == $v && $v == 'php') {
                 $allContent = '<?php return \'' . json_encode($contentArr) . '\';';
                 break;
-            } else if (self::$fileOptions['file_ext'] == $v && $v == 'json') {
+            } elseif (self::$fileOptions['file_ext'] == $v && $v == 'json') {
                 $allContent = json_encode($contentArr);
                 break;
             } else {

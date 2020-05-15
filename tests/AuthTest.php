@@ -11,7 +11,7 @@ class AuthTest extends TestCase
     public function testGetAccessToken()
     {
         $mp = $this->getMPInstance();
-        echo PHP_EOL;
-        echo $mp->getToken();
+        print PHP_EOL;
+        print $mp->getToken();
     }
 }

@@ -122,7 +122,7 @@ class MP implements
             $res = $this->getAccessToken(['appid' => $this->options['app_id'], 'secret' => $this->options['app_secret']]);
             if (!isset($res['errcode']) || $res['errcode'] == 0) {
                 $accessToken = $res['access_token'];
-                
+
                 // 缓存token
                 $this->cache->set('access_token_mp_appid_' . $this->options['app_id'], $accessToken, $res['expires_in'] - 5);
             }
@@ -134,12 +134,11 @@ class MP implements
     public function code2SessionWithCache($paramArr = [])
     {
         // 待完善
-        
+
         // $code2Session = $this->cache->get('code_2_session_' . );
-        
+
         $res = $this->code2Session($paramArr);
         if (!isset($res['errcode']) || $res['errcode'] == 0) {
-            
         }
     }
 }
