@@ -2,9 +2,9 @@
 
 namespace Hillpy\MiniProgramSDK\Constants;
 
-class AuthConstant
+class AuthConstant extends BaseConstant
 {
-    const HOST = 'https://api.weixin.qq.com';
     const JSCODE_2_SESSSION_PATH = '/sns/jscode2session?';
-    const ACCESS_TOKEN_PATH = '/cgi-bin/token?';
+    const GET_PAID_UNION_ID = '/wxa/getpaidunionid?';
+    const TOKEN_PATH = '/cgi-bin/token?';
 }
