@@ -50,7 +50,8 @@
     "scripts": {
         "post-install-cmd": [
             "cghooks add --ignore-lock",
-            "cghooks update"
+            "cghooks update",
+            "@php -r \"file_exists('tests/Env.php') || copy('tests/EnvExample.php', 'tests/Env.php');\""
         ],
         "post-update-cmd": [
             "cghooks update"
