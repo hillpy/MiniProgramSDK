@@ -6,7 +6,6 @@ use Hillpy\MiniProgramSDK\Libraries\Common\Common;
 use Hillpy\MiniProgramSDK\Interfaces\AuthInterface;
 use Hillpy\MiniProgramSDK\Libraries\Cache\Cache;
 use Hillpy\MiniProgramSDK\Traits\AuthTrait;
-use Hillpy\MiniProgramSDK\CacheKey;
 use Hillpy\MiniProgramSDK\Libraries\Curl\Str;
 
 class MP implements
@@ -91,6 +90,17 @@ class MP implements
         return Cache::getInstance($cacheOption);
     }
 
+    private function parseCacheKey($key = '', $varArr = [])
+    {
+        if (!$key) {
+            return $this->cacheKeyPrefix . $key;
+        }
+
+        $str = Common::parseStr($key, $varArr);
+
+        return $this->cacheKeyPrefix . $str;
+    }
+
     public function setOptions($options = [])
     {
         if (
@@ -145,7 +155,7 @@ class MP implements
                 return $code2Session;
             }
         }
-        
+
         return [
             'code_2_session' => is_array($code2Session) ? $code2Session : json_decode($code2Session, true),
             'code_2_session_key' => $code2SessionKey
@@ -172,16 +182,5 @@ class MP implements
         }
 
         return $accessToken;
-    }
-
-    private function parseCacheKey($key = '', $varArr = [])
-    {
-        if (!$key) {
-            return $this->cacheKeyPrefix . $key;
-        }
-
-        $str = Common::parseStr($key, $varArr);
-
-        return $this->cacheKeyPrefix . $str;
     }
 }

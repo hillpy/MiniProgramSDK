@@ -2,10 +2,6 @@
 
 namespace Hillpy\MiniProgramSDK\Libraries\Curl;
 
-/**
- * Class Str
- * @package Hillpy\PHPTools
- */
 class Str
 {
     /**
@@ -39,7 +35,7 @@ class Str
 
     /**
      * 根据URandom获取字符串
-     * 
+     *
      * @param int $length
      * @return bool|string
      */
