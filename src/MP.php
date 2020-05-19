@@ -6,6 +6,8 @@ use Hillpy\MiniProgramSDK\Libraries\Common\Common;
 use Hillpy\MiniProgramSDK\Interfaces\AuthInterface;
 use Hillpy\MiniProgramSDK\Libraries\Cache\Cache;
 use Hillpy\MiniProgramSDK\Traits\AuthTrait;
+use Hillpy\MiniProgramSDK\CacheKey;
+use Hillpy\MiniProgramSDK\Libraries\Curl\Str;
 
 class MP implements
     AuthInterface
@@ -22,7 +24,7 @@ class MP implements
         'cache_driver' => 'file',
         'cache_prefix' => 'mp_sdk_',
         'cache_key' => 'miniprogram_sdk',
-        'cache_expire' => 3600,
+        'cache_expire' => 3600 * 7,
         'cache_file_base_path' => '',
         'cache_file_path' => '/mpsdk_cache',
         'cache_file_ext' => 'php'
@@ -33,6 +35,9 @@ class MP implements
 
     // Cache类实例
     private $cache;
+
+    // 缓存key的前缀
+    private $cacheKeyPrefix;
 
     public static function getInstance($options = [])
     {
@@ -66,6 +71,8 @@ class MP implements
 
         // 获取Cache类实例
         $this->cache = $this->initCache();
+        // 解析缓存key的通用前缀
+        $this->cacheKeyPrefix = Common::parseStr(CacheKey::$prefix, ['app_id' => $this->options['app_id']]);
         // 获取accessToken
         $this->token = $this->getAccessTokenWithCache();
     }
@@ -112,10 +119,46 @@ class MP implements
         return $this->token;
     }
 
+    public function code2SessionWithCache($paramArr = [])
+    {
+        // 从缓存获取code2Session数据
+        $code2Session = '';
+        $code2SessionKey = '';
+        if (
+            isset($paramArr['code_2_session_key']) &&
+            $paramArr['code_2_session_key']
+        ) {
+            $code2SessionKey = $paramArr['code_2_session_key'];
+            $code2Session = $this->cache->get($this->parseCacheKey(CacheKey::$code2Session, ['code_2_session_key' => $code2SessionKey]));
+        }
+
+        // 调用接口获取code2Session，并写入缓存
+        if (!$code2Session) {
+            $paramArr['appid'] = $this->options['app_id'];
+            $paramArr['secret'] = $this->options['app_secret'];
+            $res = $this->code2Session($paramArr);
+            if (!isset($res['errcode']) || $res['errcode'] == 0) {
+                $code2Session = json_encode($res);
+                $code2SessionKey = Str::getNonce(1, 32);
+                $this->cache->set($this->parseCacheKey(CacheKey::$code2Session, ['code_2_session_key' => $code2SessionKey]), $code2Session, $this->options['cache_expire']);
+            } else {
+                return $code2Session;
+            }
+        }
+        
+        return [
+            'code_2_session' => is_array($code2Session) ? $code2Session : json_decode($code2Session, true),
+            'code_2_session_key' => $code2SessionKey
+        ];
+    }
+
     public function getAccessTokenWithCache()
     {
+        // 计算缓存名
+        $accessTokenCacheKey = $this->parseCacheKey(CacheKey::$accessToken, ['app_id' => $this->options['app_id']]);
+
         // 从缓存获取accessToken
-        $accessToken = $this->cache->get('access_token_mp_appid_' . $this->options['app_id']);
+        $accessToken = $this->cache->get($accessTokenCacheKey);
 
         // 若过期，则重新请求获取
         if (!$accessToken) {
@@ -124,21 +167,21 @@ class MP implements
                 $accessToken = $res['access_token'];
 
                 // 缓存token
-                $this->cache->set('access_token_mp_appid_' . $this->options['app_id'], $accessToken, $res['expires_in'] - 5);
+                $this->cache->set($accessTokenCacheKey, $accessToken, $res['expires_in'] - 5);
             }
         }
 
         return $accessToken;
     }
 
-    public function code2SessionWithCache($paramArr = [])
+    private function parseCacheKey($key = '', $varArr = [])
     {
-        // 待完善
-
-        // $code2Session = $this->cache->get('code_2_session_' . );
-
-        $res = $this->code2Session($paramArr);
-        if (!isset($res['errcode']) || $res['errcode'] == 0) {
+        if (!$key) {
+            return $this->cacheKeyPrefix . $key;
         }
+
+        $str = Common::parseStr($key, $varArr);
+
+        return $this->cacheKeyPrefix . $str;
     }
 }
