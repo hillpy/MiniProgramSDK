@@ -60,4 +60,19 @@ class Common
         $k || $k = substr($key, 16);
         return openssl_decrypt(base64_decode($content), 'AES-128-CBC', $k, OPENSSL_RAW_DATA, $iv);
     }
+
+    public static function parseStr($str = '', $varArr = [])
+    {
+        if (!$str) {
+            return $str;
+        }
+
+        if (count($varArr) > 0) {
+            foreach ($varArr as $key => $value) {
+                ${$key} = $value;
+            }
+        }
+
+        return eval('return "' . $str . '";');
+    }
 }
