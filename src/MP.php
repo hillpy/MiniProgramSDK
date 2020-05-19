@@ -152,7 +152,10 @@ class MP implements
                 $code2SessionKey = Str::getNonce(1, 32);
                 $this->cache->set($this->parseCacheKey(CacheKey::$code2Session, ['code_2_session_key' => $code2SessionKey]), $code2Session, $this->options['cache_expire']);
             } else {
-                return $code2Session;
+                return [
+                    'code_2_session' => $res,
+                    'code_2_session_key' => ''
+                ];
             }
         }
 
