@@ -1,6 +1,6 @@
 <?php
 
-namespace Hillpy\MiniProgramSDK\Libraries\Curl;
+namespace Hillpy\MiniProgramSDK\Libraries\Str;
 
 class Str
 {

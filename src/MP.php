@@ -6,7 +6,7 @@ use Hillpy\MiniProgramSDK\Libraries\Common\Common;
 use Hillpy\MiniProgramSDK\Interfaces\AuthInterface;
 use Hillpy\MiniProgramSDK\Libraries\Cache\Cache;
 use Hillpy\MiniProgramSDK\Traits\AuthTrait;
-use Hillpy\MiniProgramSDK\Libraries\Curl\Str;
+use Hillpy\MiniProgramSDK\Libraries\Str\Str;
 
 class MP implements
     AuthInterface
