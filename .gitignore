@@ -7,5 +7,5 @@ node_modules
 composer.lock
 cache
 mpsdk_cache
-env.phpcghooks.lock
 Env.php
+cghooks.lock
