@@ -14,8 +14,8 @@ class MP implements
     AuthInterface,
     DecryptionInterface
 {
-    use AuthTrait,
-        DecryptionTrait;
+    use AuthTrait;
+    use DecryptionTrait;
 
     // MP类实例
     private static $instance;

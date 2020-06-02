@@ -13,7 +13,6 @@ trait DecryptionTrait
 
         $newSignature = sha1($finalParamArr['rawData'] . $finalParamArr['session_key']);
         if ($newSignature !== $finalParamArr['signature']) {
-
         }
 
         $data = $this->decryptData(
