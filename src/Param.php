@@ -24,4 +24,21 @@ class Param
             'secret' => '',
         ],
     ];
+
+    public static $decryption = [
+        'decryptUserInfo' => [
+            'code' => '',
+            'rawData' => '',
+            'signature' => '',
+            'encryptedData' => '',
+            'iv' => '',
+            'appid' => '',
+        ],
+        'decryptPhone' => [
+            'code' => '',
+            'rawData' => '',
+            'encryptedData' => '',
+            'appid'
+        ],
+    ];
 }
