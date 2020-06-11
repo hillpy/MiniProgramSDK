@@ -2,6 +2,7 @@
 
 namespace Hillpy\MiniProgramSDK\Traits;
 
+use Hillpy\MiniProgramSDK\Errors\DecryptionError;
 use Hillpy\MiniProgramSDK\Libraries\Common\Common;
 use Hillpy\MiniProgramSDK\Param;
 
@@ -15,7 +16,7 @@ trait DecryptionTrait
         if ($newSignature !== $finalParamArr['signature']) {
         }
 
-        $data = $this->decryptData(
+        return $this->decryptData(
             $finalParamArr['encryptedData'],
             $finalParamArr['sessionKey'],
             $finalParamArr['iv'],
@@ -27,7 +28,7 @@ trait DecryptionTrait
     {
         $finalParamArr = Common::updateArrayData(Param::$decryption[__FUNCTION__], $paramArr);
 
-        $data = $this->decryptData(
+        return $this->decryptData(
             $finalParamArr['encryptedData'],
             $finalParamArr['sessionKey'],
             $finalParamArr['iv'],
@@ -37,24 +38,34 @@ trait DecryptionTrait
 
     public function decryptData($encryptedData = '', $sessionKey = '', $iv = '', $appid = '')
     {
-        if (strlen($sessionKey) != 24) {
-            return '';
-        }
-        $aesKey = base64_decode($sessionKey);
+        $resData = [
+            'code' => DecryptionError::$OK,
+            'data' => []
+        ];
 
+        if (strlen($sessionKey) != 24) {
+            $resData['code'] = DecryptionError::$ErrorSessionKey;
+            return $resData;
+        }
         if (strlen($iv) != 24) {
-            return '';
+            $resData['code'] = DecryptionError::$ErrorIv;
+            return $resData;
         }
-        $aesIV = base64_decode($encryptedData);
+
         $aesCipher = base64_decode($encryptedData);
-        $data = openssl_decrypt($aesCipher, 'AES-128-CBC', $aesKey, 1, $aesIV);
-        $dataObj = json_decode($data);
-        if ($dataObj == null) {
-            return '';
+        $aesKey = base64_decode($sessionKey);
+        $aesIV = base64_decode($iv);
+        $resData['data'] = json_decode(openssl_decrypt($aesCipher, 'AES-128-CBC', $aesKey, 1, $aesIV), true);
+        
+        if (!$resData['data']) {
+            $resData['code'] = DecryptionError::$ErrorBuffer;
+            return $resData;
         }
-        if ($dataObj->watermark->appid != $appid) {
-            return '';
+        if ($resData['watermark']['appid'] != $appid) {
+            $resData['code'] = DecryptionError::$ErrorBuffer;
+            return $resData;
         }
-        return $data;
+
+        return $resData;
     }
 }

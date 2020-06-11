@@ -38,7 +38,7 @@ class Param
             'code' => '',
             'rawData' => '',
             'encryptedData' => '',
-            'appid'
+            'appid' => '',
         ],
     ];
 }
