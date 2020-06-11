@@ -14,13 +14,17 @@ trait DecryptionTrait
 
         $newSignature = sha1($finalParamArr['rawData'] . $finalParamArr['session_key']);
         if ($newSignature !== $finalParamArr['signature']) {
+            return [
+                'code' => $resData['code'] = DecryptionError::$ErrorSessionKey,
+                'data' => []
+            ];
         }
 
         return $this->decryptData(
             $finalParamArr['encryptedData'],
             $finalParamArr['sessionKey'],
             $finalParamArr['iv'],
-            isset($this->options['app_id']) ? $this->options['app_id'] : $finalParamArr['appid']
+            isset($this->options['app_id']) && $this->options['app_id'] ? $this->options['app_id'] : $finalParamArr['appid']
         );
     }
 
@@ -32,7 +36,7 @@ trait DecryptionTrait
             $finalParamArr['encryptedData'],
             $finalParamArr['sessionKey'],
             $finalParamArr['iv'],
-            isset($this->options['app_id']) ? $this->options['app_id'] : $finalParamArr['appid']
+            isset($this->options['app_id']) && $this->options['app_id'] ? $this->options['app_id'] : $finalParamArr['appid']
         );
     }
 
