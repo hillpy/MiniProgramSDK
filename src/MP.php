@@ -10,6 +10,7 @@ use Hillpy\MiniProgramSDK\Interfaces\NearbyPoiInterface;
 use Hillpy\MiniProgramSDK\Interfaces\PluginManagerInterface;
 use Hillpy\MiniProgramSDK\Interfaces\UniformMessageInterface;
 use Hillpy\MiniProgramSDK\Interfaces\UpdatableMessageInterface;
+use Hillpy\MiniProgramSDK\Interfaces\WxacodeInterface;
 use Hillpy\MiniProgramSDK\Libraries\Cache\Cache;
 use Hillpy\MiniProgramSDK\Libraries\Common\Common;
 use Hillpy\MiniProgramSDK\Libraries\Str\Str;
@@ -21,6 +22,7 @@ use Hillpy\MiniProgramSDK\Traits\NearbyPoiTrait;
 use Hillpy\MiniProgramSDK\Traits\PluginManagerTrait;
 use Hillpy\MiniProgramSDK\Traits\UniformMessageTrait;
 use Hillpy\MiniProgramSDK\Traits\UpdatableMessageTrait;
+use Hillpy\MiniProgramSDK\Traits\WxacodeTrait;
 
 class MP implements
     AnalysisInterface,
@@ -30,7 +32,8 @@ class MP implements
     NearbyPoiInterface,
     PluginManagerInterface,
     UniformMessageInterface,
-    UpdatableMessageInterface
+    UpdatableMessageInterface,
+    WxacodeInterface
 {
     use AnalysisTrait;
     use AuthTrait;
@@ -40,6 +43,7 @@ class MP implements
     use PluginManagerTrait;
     use UniformMessageTrait;
     use UpdatableMessageTrait;
+    use WxacodeTrait;
 
     // MP类实例
     private static $instance;
