@@ -8,6 +8,7 @@ use Hillpy\MiniProgramSDK\Interfaces\CustomerServiceMessageInterface;
 use Hillpy\MiniProgramSDK\Interfaces\DecryptionInterface;
 use Hillpy\MiniProgramSDK\Interfaces\NearbyPoiInterface;
 use Hillpy\MiniProgramSDK\Interfaces\PluginManagerInterface;
+use Hillpy\MiniProgramSDK\Interfaces\SecurityInterface;
 use Hillpy\MiniProgramSDK\Interfaces\UniformMessageInterface;
 use Hillpy\MiniProgramSDK\Interfaces\UpdatableMessageInterface;
 use Hillpy\MiniProgramSDK\Interfaces\WxacodeInterface;
@@ -20,6 +21,7 @@ use Hillpy\MiniProgramSDK\Traits\CustomerServiceMessageTrait;
 use Hillpy\MiniProgramSDK\Traits\DecryptionTrait;
 use Hillpy\MiniProgramSDK\Traits\NearbyPoiTrait;
 use Hillpy\MiniProgramSDK\Traits\PluginManagerTrait;
+use Hillpy\MiniProgramSDK\Traits\SecurityTrait;
 use Hillpy\MiniProgramSDK\Traits\UniformMessageTrait;
 use Hillpy\MiniProgramSDK\Traits\UpdatableMessageTrait;
 use Hillpy\MiniProgramSDK\Traits\WxacodeTrait;
@@ -31,6 +33,7 @@ class MP implements
     DecryptionInterface,
     NearbyPoiInterface,
     PluginManagerInterface,
+    SecurityInterface,
     UniformMessageInterface,
     UpdatableMessageInterface,
     WxacodeInterface
@@ -41,6 +44,7 @@ class MP implements
     use DecryptionTrait;
     use NearbyPoiTrait;
     use PluginManagerTrait;
+    use SecurityTrait;
     use UniformMessageTrait;
     use UpdatableMessageTrait;
     use WxacodeTrait;

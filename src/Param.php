@@ -255,4 +255,20 @@ class Param
             'is_hyaline' => '',
         ],
     ];
+
+    public static $security = [
+        'imgSecCheck' => [
+            'access_token' => '',
+            'media' => '',
+        ],
+        'mediaCheckAsync' => [
+            'access_token' => '',
+            'media_url' => '',
+            'media_type' => '',
+        ],
+        'msgSecCheck' => [
+            'access_token' => '',
+            'content' => '',
+        ],
+    ];
 }
