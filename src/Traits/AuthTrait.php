@@ -13,7 +13,7 @@ trait AuthTrait
     {
         $urlParamArr = Common::updateArrayData(Param::$auth[__FUNCTION__], $paramArr);
 
-        $url = AuthConstant::HOST . AuthConstant::JSCODE_2_SESSSION_PATH . http_build_query($urlParamArr);
+        $url = AuthConstant::HOST . AuthConstant::CODE_2_SESSSION_PATH . http_build_query($urlParamArr);
 
         return json_decode(Curl::httpRequest($url), true);
     }
@@ -31,7 +31,7 @@ trait AuthTrait
     {
         $urlParamArr = Common::updateArrayData(Param::$auth[__FUNCTION__], $paramArr);
 
-        $url = AuthConstant::HOST . AuthConstant::TOKEN_PATH . http_build_query($urlParamArr);
+        $url = AuthConstant::HOST . AuthConstant::GET_ACCESS_TOKEN_PATH . http_build_query($urlParamArr);
 
         return json_decode(Curl::httpRequest($url), true);
     }

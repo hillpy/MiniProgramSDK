@@ -60,7 +60,7 @@ trait DecryptionTrait
         $aesKey = base64_decode($sessionKey);
         $aesIV = base64_decode($iv);
         $resData['data'] = json_decode(openssl_decrypt($aesCipher, 'AES-128-CBC', $aesKey, 1, $aesIV), true);
-        
+
         if (!$resData['data']) {
             $resData['code'] = DecryptionError::$ErrorBuffer;
             return $resData;

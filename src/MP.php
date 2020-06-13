@@ -2,18 +2,22 @@
 
 namespace Hillpy\MiniProgramSDK;
 
+use Hillpy\MiniProgramSDK\Interfaces\AnalysisInterface;
 use Hillpy\MiniProgramSDK\Interfaces\AuthInterface;
 use Hillpy\MiniProgramSDK\Interfaces\DecryptionInterface;
 use Hillpy\MiniProgramSDK\Libraries\Cache\Cache;
 use Hillpy\MiniProgramSDK\Libraries\Common\Common;
 use Hillpy\MiniProgramSDK\Libraries\Str\Str;
+use Hillpy\MiniProgramSDK\Traits\AnalysisTrait;
 use Hillpy\MiniProgramSDK\Traits\AuthTrait;
 use Hillpy\MiniProgramSDK\Traits\DecryptionTrait;
 
 class MP implements
+    AnalysisInterface,
     AuthInterface,
     DecryptionInterface
 {
+    use AnalysisTrait;
     use AuthTrait;
     use DecryptionTrait;
 

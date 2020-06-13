@@ -13,7 +13,7 @@ trait AnalysisTrait
     {
         $finalParamArr = Common::updateArrayData(Param::$analysis[__FUNCTION__], $paramArr);
 
-        $url = AnalysisConstant::HOST . AnalysisConstant::GET_WE_ANALYSIS_APPID_DAILY_RETAIN_INFO_PATH . http_build_query(['access_token' => $finalParamArr['access_token']]);
+        $url = AnalysisConstant::HOST . AnalysisConstant::GET_DAILY_RETAIN_PATH . http_build_query(['access_token' => $finalParamArr['access_token']]);
 
         return json_decode(Curl::httpRequest($url, $finalParamArr), true);
     }
@@ -22,7 +22,7 @@ trait AnalysisTrait
     {
         $finalParamArr = Common::updateArrayData(Param::$analysis[__FUNCTION__], $paramArr);
 
-        $url = AnalysisConstant::HOST . AnalysisConstant::GET_WE_ANALYSIS_APPID_MONTHLY_RETAIN_INFO_PATH . http_build_query(['access_token' => $finalParamArr['access_token']]);
+        $url = AnalysisConstant::HOST . AnalysisConstant::GET_MONTHLY_RETAIN_PATH . http_build_query(['access_token' => $finalParamArr['access_token']]);
 
         return json_decode(Curl::httpRequest($url, $finalParamArr), true);
     }
@@ -31,7 +31,7 @@ trait AnalysisTrait
     {
         $finalParamArr = Common::updateArrayData(Param::$analysis[__FUNCTION__], $paramArr);
 
-        $url = AnalysisConstant::HOST . AnalysisConstant::GET_WE_ANALYSIS_APPID_WEEKLY_RETAIN_INFO_PATH . http_build_query(['access_token' => $finalParamArr['access_token']]);
+        $url = AnalysisConstant::HOST . AnalysisConstant::GET_WEEKLY_RETAIN_PATH . http_build_query(['access_token' => $finalParamArr['access_token']]);
 
         return json_decode(Curl::httpRequest($url, $finalParamArr), true);
     }
@@ -40,7 +40,7 @@ trait AnalysisTrait
     {
         $finalParamArr = Common::updateArrayData(Param::$analysis[__FUNCTION__], $paramArr);
 
-        $url = AnalysisConstant::HOST . AnalysisConstant::GET_WE_ANALYSIS_APPID_DAILY_SUMMARY_PATH . http_build_query(['access_token' => $finalParamArr['access_token']]);
+        $url = AnalysisConstant::HOST . AnalysisConstant::GET_DAILY_SUMMARY_PATH . http_build_query(['access_token' => $finalParamArr['access_token']]);
 
         return json_decode(Curl::httpRequest($url, $finalParamArr), true);
     }
@@ -49,7 +49,7 @@ trait AnalysisTrait
     {
         $finalParamArr = Common::updateArrayData(Param::$analysis[__FUNCTION__], $paramArr);
 
-        $url = AnalysisConstant::HOST . AnalysisConstant::GET_WE_ANALYSIS_APPID_DAILY_VISIT_TREND_PATH . http_build_query(['access_token' => $finalParamArr['access_token']]);
+        $url = AnalysisConstant::HOST . AnalysisConstant::GET_DAILY_VISIT_TREND_PATH . http_build_query(['access_token' => $finalParamArr['access_token']]);
 
         return json_decode(Curl::httpRequest($url, $finalParamArr), true);
     }
@@ -58,7 +58,7 @@ trait AnalysisTrait
     {
         $finalParamArr = Common::updateArrayData(Param::$analysis[__FUNCTION__], $paramArr);
 
-        $url = AnalysisConstant::HOST . AnalysisConstant::GET_WE_ANALYSIS_APPID_MONTHLY_VISIT_TREND_PATH . http_build_query(['access_token' => $finalParamArr['access_token']]);
+        $url = AnalysisConstant::HOST . AnalysisConstant::GET_MONTHLY_VISIT_TREND_PATH . http_build_query(['access_token' => $finalParamArr['access_token']]);
 
         return json_decode(Curl::httpRequest($url, $finalParamArr), true);
     }
@@ -67,7 +67,7 @@ trait AnalysisTrait
     {
         $finalParamArr = Common::updateArrayData(Param::$analysis[__FUNCTION__], $paramArr);
 
-        $url = AnalysisConstant::HOST . AnalysisConstant::GET_WE_ANALYSIS_APPID_WEEKLY_VISIT_TREND_PATH . http_build_query(['access_token' => $finalParamArr['access_token']]);
+        $url = AnalysisConstant::HOST . AnalysisConstant::GET_WEEKLY_VISIT_TREND_PATH . http_build_query(['access_token' => $finalParamArr['access_token']]);
 
         return json_decode(Curl::httpRequest($url, $finalParamArr), true);
     }
@@ -76,7 +76,7 @@ trait AnalysisTrait
     {
         $finalParamArr = Common::updateArrayData(Param::$analysis[__FUNCTION__], $paramArr);
 
-        $url = AnalysisConstant::HOST . AnalysisConstant::GET_WE_ANALYSIS_APPID_USER_PORTRAIT_PATH . http_build_query(['access_token' => $finalParamArr['access_token']]);
+        $url = AnalysisConstant::HOST . AnalysisConstant::GET_USER_PORTRAIT_PATH . http_build_query(['access_token' => $finalParamArr['access_token']]);
 
         return json_decode(Curl::httpRequest($url, $finalParamArr), true);
     }
@@ -85,7 +85,7 @@ trait AnalysisTrait
     {
         $finalParamArr = Common::updateArrayData(Param::$analysis[__FUNCTION__], $paramArr);
 
-        $url = AnalysisConstant::HOST . AnalysisConstant::GET_WE_ANALYSIS_APPID_VISIT_DISTRIBUTION_PATH . http_build_query(['access_token' => $finalParamArr['access_token']]);
+        $url = AnalysisConstant::HOST . AnalysisConstant::GET_VISIT_DISTRIBUTION_PATH . http_build_query(['access_token' => $finalParamArr['access_token']]);
 
         return json_decode(Curl::httpRequest($url, $finalParamArr), true);
     }
@@ -94,7 +94,7 @@ trait AnalysisTrait
     {
         $finalParamArr = Common::updateArrayData(Param::$analysis[__FUNCTION__], $paramArr);
 
-        $url = AnalysisConstant::HOST . AnalysisConstant::GET_WE_ANALYSIS_APPID_VISIT_PAGE_PATH . http_build_query(['access_token' => $finalParamArr['access_token']]);
+        $url = AnalysisConstant::HOST . AnalysisConstant::GET_VISIT_PAGE_PATH . http_build_query(['access_token' => $finalParamArr['access_token']]);
 
         return json_decode(Curl::httpRequest($url, $finalParamArr), true);
     }
