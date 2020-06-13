@@ -4,6 +4,7 @@ namespace Hillpy\MiniProgramSDK;
 
 use Hillpy\MiniProgramSDK\Interfaces\AnalysisInterface;
 use Hillpy\MiniProgramSDK\Interfaces\AuthInterface;
+use Hillpy\MiniProgramSDK\Interfaces\CustomerServiceMessageInterface;
 use Hillpy\MiniProgramSDK\Interfaces\DecryptionInterface;
 use Hillpy\MiniProgramSDK\Libraries\Cache\Cache;
 use Hillpy\MiniProgramSDK\Libraries\Common\Common;
@@ -15,10 +16,12 @@ use Hillpy\MiniProgramSDK\Traits\DecryptionTrait;
 class MP implements
     AnalysisInterface,
     AuthInterface,
+    CustomerServiceMessageInterface,
     DecryptionInterface
 {
     use AnalysisTrait;
     use AuthTrait;
+    use CustomerServiceMessageInterface;
     use DecryptionTrait;
 
     // MP类实例
