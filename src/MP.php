@@ -6,7 +6,10 @@ use Hillpy\MiniProgramSDK\Interfaces\AnalysisInterface;
 use Hillpy\MiniProgramSDK\Interfaces\AuthInterface;
 use Hillpy\MiniProgramSDK\Interfaces\CustomerServiceMessageInterface;
 use Hillpy\MiniProgramSDK\Interfaces\DecryptionInterface;
+use Hillpy\MiniProgramSDK\Interfaces\NearbyPoiInterface;
+use Hillpy\MiniProgramSDK\Interfaces\PluginManagerInterface;
 use Hillpy\MiniProgramSDK\Interfaces\UniformMessageInterface;
+use Hillpy\MiniProgramSDK\Interfaces\UpdatableMessageInterface;
 use Hillpy\MiniProgramSDK\Libraries\Cache\Cache;
 use Hillpy\MiniProgramSDK\Libraries\Common\Common;
 use Hillpy\MiniProgramSDK\Libraries\Str\Str;
@@ -14,20 +17,29 @@ use Hillpy\MiniProgramSDK\Traits\AnalysisTrait;
 use Hillpy\MiniProgramSDK\Traits\AuthTrait;
 use Hillpy\MiniProgramSDK\Traits\CustomerServiceMessageTrait;
 use Hillpy\MiniProgramSDK\Traits\DecryptionTrait;
+use Hillpy\MiniProgramSDK\Traits\NearbyPoiTrait;
+use Hillpy\MiniProgramSDK\Traits\PluginManagerTrait;
 use Hillpy\MiniProgramSDK\Traits\UniformMessageTrait;
+use Hillpy\MiniProgramSDK\Traits\UpdatableMessageTrait;
 
 class MP implements
     AnalysisInterface,
     AuthInterface,
     CustomerServiceMessageInterface,
     DecryptionInterface,
-    UniformMessageInterface
+    NearbyPoiInterface,
+    PluginManagerInterface,
+    UniformMessageInterface,
+    UpdatableMessageInterface
 {
     use AnalysisTrait;
     use AuthTrait;
     use CustomerServiceMessageTrait;
     use DecryptionTrait;
+    use NearbyPoiTrait;
+    use PluginManagerTrait;
     use UniformMessageTrait;
+    use UpdatableMessageTrait;
 
     // MP类实例
     private static $instance;
