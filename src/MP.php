@@ -6,6 +6,7 @@ use Hillpy\MiniProgramSDK\Interfaces\AnalysisInterface;
 use Hillpy\MiniProgramSDK\Interfaces\AuthInterface;
 use Hillpy\MiniProgramSDK\Interfaces\CustomerServiceMessageInterface;
 use Hillpy\MiniProgramSDK\Interfaces\DecryptionInterface;
+use Hillpy\MiniProgramSDK\Interfaces\UniformMessageInterface;
 use Hillpy\MiniProgramSDK\Libraries\Cache\Cache;
 use Hillpy\MiniProgramSDK\Libraries\Common\Common;
 use Hillpy\MiniProgramSDK\Libraries\Str\Str;
@@ -13,17 +14,20 @@ use Hillpy\MiniProgramSDK\Traits\AnalysisTrait;
 use Hillpy\MiniProgramSDK\Traits\AuthTrait;
 use Hillpy\MiniProgramSDK\Traits\CustomerServiceMessageTrait;
 use Hillpy\MiniProgramSDK\Traits\DecryptionTrait;
+use Hillpy\MiniProgramSDK\Traits\UniformMessageTrait;
 
 class MP implements
     AnalysisInterface,
     AuthInterface,
     CustomerServiceMessageInterface,
-    DecryptionInterface
+    DecryptionInterface,
+    UniformMessageInterface
 {
     use AnalysisTrait;
     use AuthTrait;
     use CustomerServiceMessageTrait;
     use DecryptionTrait;
+    use UniformMessageTrait;
 
     // MP类实例
     private static $instance;
