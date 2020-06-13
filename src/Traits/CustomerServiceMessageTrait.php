@@ -7,7 +7,7 @@ use Hillpy\MiniProgramSDK\Libraries\Common\Common;
 use Hillpy\MiniProgramSDK\Libraries\Curl\Curl;
 use Hillpy\MiniProgramSDK\Param;
 
-class CustomerServiceMessageTrait
+trait CustomerServiceMessageTrait
 {
     public function getTempMedia($paramArr = [])
     {

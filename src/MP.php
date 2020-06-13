@@ -11,6 +11,7 @@ use Hillpy\MiniProgramSDK\Libraries\Common\Common;
 use Hillpy\MiniProgramSDK\Libraries\Str\Str;
 use Hillpy\MiniProgramSDK\Traits\AnalysisTrait;
 use Hillpy\MiniProgramSDK\Traits\AuthTrait;
+use Hillpy\MiniProgramSDK\Traits\CustomerServiceMessageTrait;
 use Hillpy\MiniProgramSDK\Traits\DecryptionTrait;
 
 class MP implements
@@ -21,7 +22,7 @@ class MP implements
 {
     use AnalysisTrait;
     use AuthTrait;
-    use CustomerServiceMessageInterface;
+    use CustomerServiceMessageTrait;
     use DecryptionTrait;
 
     // MP类实例
