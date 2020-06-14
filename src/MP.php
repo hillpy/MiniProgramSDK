@@ -11,6 +11,7 @@ use Hillpy\MiniProgramSDK\Interfaces\NearbyPoiInterface;
 use Hillpy\MiniProgramSDK\Interfaces\OCRInterface;
 use Hillpy\MiniProgramSDK\Interfaces\OperationInterface;
 use Hillpy\MiniProgramSDK\Interfaces\PluginManagerInterface;
+use Hillpy\MiniProgramSDK\Interfaces\SearchInterface;
 use Hillpy\MiniProgramSDK\Interfaces\SecurityInterface;
 use Hillpy\MiniProgramSDK\Interfaces\UniformMessageInterface;
 use Hillpy\MiniProgramSDK\Interfaces\UpdatableMessageInterface;
@@ -27,6 +28,7 @@ use Hillpy\MiniProgramSDK\Traits\NearbyPoiTrait;
 use Hillpy\MiniProgramSDK\Traits\OCRTrait;
 use Hillpy\MiniProgramSDK\Traits\OperationTrait;
 use Hillpy\MiniProgramSDK\Traits\PluginManagerTrait;
+use Hillpy\MiniProgramSDK\Traits\SearchTrait;
 use Hillpy\MiniProgramSDK\Traits\SecurityTrait;
 use Hillpy\MiniProgramSDK\Traits\UniformMessageTrait;
 use Hillpy\MiniProgramSDK\Traits\UpdatableMessageTrait;
@@ -42,6 +44,7 @@ class MP implements
     OCRInterface,
     OperationInterface,
     PluginManagerInterface,
+    SearchInterface,
     SecurityInterface,
     UniformMessageInterface,
     UpdatableMessageInterface,
@@ -56,6 +59,7 @@ class MP implements
     use OCRTrait;
     use OperationTrait;
     use PluginManagerTrait;
+    use SearchTrait;
     use SecurityTrait;
     use UniformMessageTrait;
     use UpdatableMessageTrait;
