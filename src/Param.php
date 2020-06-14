@@ -393,4 +393,13 @@ class Param
             'client_msg_id' => '',
         ],
     ];
+
+    public static $soter = [
+        'verifySignature' => [
+            'access_token' => '',
+            'openid' => '',
+            'json_string' => '',
+            'json_signature' => '',
+        ],
+    ];
 }

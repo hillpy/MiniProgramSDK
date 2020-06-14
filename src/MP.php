@@ -14,6 +14,7 @@ use Hillpy\MiniProgramSDK\Interfaces\PluginManagerInterface;
 use Hillpy\MiniProgramSDK\Interfaces\SearchInterface;
 use Hillpy\MiniProgramSDK\Interfaces\SecurityInterface;
 use Hillpy\MiniProgramSDK\Interfaces\ServiceMarketInterface;
+use Hillpy\MiniProgramSDK\Interfaces\SoterInterface;
 use Hillpy\MiniProgramSDK\Interfaces\UniformMessageInterface;
 use Hillpy\MiniProgramSDK\Interfaces\UpdatableMessageInterface;
 use Hillpy\MiniProgramSDK\Interfaces\WxacodeInterface;
@@ -32,6 +33,7 @@ use Hillpy\MiniProgramSDK\Traits\PluginManagerTrait;
 use Hillpy\MiniProgramSDK\Traits\SearchTrait;
 use Hillpy\MiniProgramSDK\Traits\SecurityTrait;
 use Hillpy\MiniProgramSDK\Traits\ServiceMarketTrait;
+use Hillpy\MiniProgramSDK\Traits\SoterTrait;
 use Hillpy\MiniProgramSDK\Traits\UniformMessageTrait;
 use Hillpy\MiniProgramSDK\Traits\UpdatableMessageTrait;
 use Hillpy\MiniProgramSDK\Traits\WxacodeTrait;
@@ -49,6 +51,7 @@ class MP implements
     SearchInterface,
     SecurityInterface,
     ServiceMarketInterface,
+    SoterInterface,
     UniformMessageInterface,
     UpdatableMessageInterface,
     WxacodeInterface
@@ -65,6 +68,7 @@ class MP implements
     use SearchTrait;
     use SecurityTrait;
     use ServiceMarketTrait;
+    use SoterTrait;
     use UniformMessageTrait;
     use UpdatableMessageTrait;
     use WxacodeTrait;
