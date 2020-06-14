@@ -27,11 +27,11 @@ trait ImgTrait
         return json_decode(Curl::httpRequest($url, $finalParamArr), true);
     }
 
-    public function superResolution($paramArr = [])
+    public function superresolution($paramArr = [])
     {
         $finalParamArr = Common::updateArrayData(Param::$img[__FUNCTION__], $paramArr);
 
-        $url = ImgConstant::HOST . ImgConstant::SUPER_RESOLUTION_PATH . http_build_query(['access_token' => $finalParamArr['access_token']]);
+        $url = ImgConstant::HOST . ImgConstant::SUPERRESOLUTION_PATH . http_build_query(['access_token' => $finalParamArr['access_token']]);
 
         return json_decode(Curl::httpRequest($url, $finalParamArr), true);
     }

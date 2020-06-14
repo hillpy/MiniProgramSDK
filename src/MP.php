@@ -6,7 +6,9 @@ use Hillpy\MiniProgramSDK\Interfaces\AnalysisInterface;
 use Hillpy\MiniProgramSDK\Interfaces\AuthInterface;
 use Hillpy\MiniProgramSDK\Interfaces\CustomerServiceMessageInterface;
 use Hillpy\MiniProgramSDK\Interfaces\DecryptionInterface;
+use Hillpy\MiniProgramSDK\Interfaces\ImgInterface;
 use Hillpy\MiniProgramSDK\Interfaces\NearbyPoiInterface;
+use Hillpy\MiniProgramSDK\Interfaces\OCRInterface;
 use Hillpy\MiniProgramSDK\Interfaces\PluginManagerInterface;
 use Hillpy\MiniProgramSDK\Interfaces\SecurityInterface;
 use Hillpy\MiniProgramSDK\Interfaces\UniformMessageInterface;
@@ -19,7 +21,9 @@ use Hillpy\MiniProgramSDK\Traits\AnalysisTrait;
 use Hillpy\MiniProgramSDK\Traits\AuthTrait;
 use Hillpy\MiniProgramSDK\Traits\CustomerServiceMessageTrait;
 use Hillpy\MiniProgramSDK\Traits\DecryptionTrait;
+use Hillpy\MiniProgramSDK\Traits\ImgTrait;
 use Hillpy\MiniProgramSDK\Traits\NearbyPoiTrait;
+use Hillpy\MiniProgramSDK\Traits\OCRTrait;
 use Hillpy\MiniProgramSDK\Traits\PluginManagerTrait;
 use Hillpy\MiniProgramSDK\Traits\SecurityTrait;
 use Hillpy\MiniProgramSDK\Traits\UniformMessageTrait;
@@ -31,7 +35,9 @@ class MP implements
     AuthInterface,
     CustomerServiceMessageInterface,
     DecryptionInterface,
+    ImgInterface,
     NearbyPoiInterface,
+    OCRInterface,
     PluginManagerInterface,
     SecurityInterface,
     UniformMessageInterface,
@@ -42,7 +48,9 @@ class MP implements
     use AuthTrait;
     use CustomerServiceMessageTrait;
     use DecryptionTrait;
+    use ImgTrait;
     use NearbyPoiTrait;
+    use OCRTrait;
     use PluginManagerTrait;
     use SecurityTrait;
     use UniformMessageTrait;

@@ -6,5 +6,5 @@ interface ImgInterface
 {
     public function aiCrop();
     public function scanQRCode();
-    public function superResolution();
+    public function superresolution();
 }
