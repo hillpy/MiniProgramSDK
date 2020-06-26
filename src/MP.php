@@ -7,6 +7,7 @@ use Hillpy\MiniProgramSDK\Interfaces\AuthInterface;
 use Hillpy\MiniProgramSDK\Interfaces\CustomerServiceMessageInterface;
 use Hillpy\MiniProgramSDK\Interfaces\DecryptionInterface;
 use Hillpy\MiniProgramSDK\Interfaces\ImgInterface;
+use Hillpy\MiniProgramSDK\Interfaces\ImmediateDeliveryInterface;
 use Hillpy\MiniProgramSDK\Interfaces\NearbyPoiInterface;
 use Hillpy\MiniProgramSDK\Interfaces\OCRInterface;
 use Hillpy\MiniProgramSDK\Interfaces\OperationInterface;
@@ -27,6 +28,7 @@ use Hillpy\MiniProgramSDK\Traits\AuthTrait;
 use Hillpy\MiniProgramSDK\Traits\CustomerServiceMessageTrait;
 use Hillpy\MiniProgramSDK\Traits\DecryptionTrait;
 use Hillpy\MiniProgramSDK\Traits\ImgTrait;
+use Hillpy\MiniProgramSDK\Traits\ImmediateDeliveryTrait;
 use Hillpy\MiniProgramSDK\Traits\NearbyPoiTrait;
 use Hillpy\MiniProgramSDK\Traits\OCRTrait;
 use Hillpy\MiniProgramSDK\Traits\OperationTrait;
@@ -46,6 +48,7 @@ class MP implements
     CustomerServiceMessageInterface,
     DecryptionInterface,
     ImgInterface,
+    ImmediateDeliveryInterface,
     NearbyPoiInterface,
     OCRInterface,
     OperationInterface,
@@ -64,6 +67,7 @@ class MP implements
     use CustomerServiceMessageTrait;
     use DecryptionTrait;
     use ImgTrait;
+    use ImmediateDeliveryTrait;
     use NearbyPoiTrait;
     use OCRTrait;
     use OperationTrait;
