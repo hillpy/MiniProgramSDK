@@ -65,25 +65,46 @@ class MP implements
     UpdatableMessageInterface,
     WxacodeInterface
 {
-    use AnalysisTrait;
-    use AuthTrait;
-    use CustomerServiceMessageTrait;
-    use DecryptionTrait;
-    use ImgTrait;
-    use ImmediateDeliveryTrait;
-    use LogisticsTrait;
-    use NearbyPoiTrait;
-    use OCRTrait;
-    use OperationTrait;
-    use PluginManagerTrait;
-    use SearchTrait;
-    use SecurityTrait;
-    use ServiceMarketTrait;
-    use SoterTrait;
-    use SubscribeMessageTrait;
-    use UniformMessageTrait;
-    use UpdatableMessageTrait;
-    use WxacodeTrait;
+    use AnalysisTrait,
+        AuthTrait,
+        CustomerServiceMessageTrait,
+        DecryptionTrait,
+        ImgTrait,
+        ImmediateDeliveryTrait,
+        LogisticsTrait,
+        NearbyPoiTrait,
+        OCRTrait,
+        OperationTrait,
+        PluginManagerTrait,
+        SearchTrait,
+        SecurityTrait,
+        ServiceMarketTrait,
+        SoterTrait,
+        SubscribeMessageTrait,
+        UniformMessageTrait,
+        UpdatableMessageTrait,
+        WxacodeTrait {
+        ImmediateDeliveryTrait::addOrder insteadof LogisticsTrait;
+        ImmediateDeliveryTrait::addOrder as addOrderByImme;
+        LogisticsTrait::addOrder as addOrderByLogi;
+
+        ImmediateDeliveryTrait::bindAccount insteadof LogisticsTrait;
+        ImmediateDeliveryTrait::bindAccount as bindAccountByImme;
+        LogisticsTrait::bindAccount as bindAccountByLogi;
+
+        ImmediateDeliveryTrait::cancelOrder insteadof LogisticsTrait;
+        ImmediateDeliveryTrait::cancelOrder as cancelOrderByImme;
+        LogisticsTrait::cancelOrder as cancelOrderByLogi;
+
+        ImmediateDeliveryTrait::getOrder insteadof LogisticsTrait;
+        ImmediateDeliveryTrait::getOrder as getOrderByImme;
+        LogisticsTrait::getOrder as getOrderByLogi;
+
+        CustomerServiceMessageTrait::send insteadof SubscribeMessageTrait, UniformMessageTrait;
+        CustomerServiceMessageTrait::send as sendByCus;
+        SubscribeMessageTrait::send as sendBySub;
+        UniformMessageTrait::send as sendByUni;
+    }
 
     // MP类实例
     private static $instance;

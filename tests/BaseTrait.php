@@ -9,11 +9,11 @@ trait BaseTrait
 {
     public function getMPInstance()
     {
-        $option = [
+        $options = [
             'app_id' => Env::$mp['app_id'],
             'app_secret' => Env::$mp['app_secret']
         ];
 
-        return MP::getInstance($option);
+        return MP::getInstance($options);
     }
 }

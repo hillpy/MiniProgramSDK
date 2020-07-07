@@ -22,7 +22,7 @@ return PhpCsFixer\Config::create()
         'no_leading_namespace_whitespace' => true,
         'no_whitespace_in_blank_line' => true,
         'return_type_declaration' => ['space_before' => 'none'],
-        'single_trait_insert_per_statement' => true,
+        'single_trait_insert_per_statement' => false,
     ])
     ->setFinder($finder)
 ;
