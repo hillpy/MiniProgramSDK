@@ -16,7 +16,8 @@ class Curl
         $optionArr = [
             CURLOPT_URL => $url,
             CURLOPT_HEADER => false,
-            CURLOPT_RETURNTRANSFER => true
+            CURLOPT_RETURNTRANSFER => true,
+            CURLOPT_SSL_VERIFYPEER => false
         ];
         curl_setopt_array($curl, $optionArr);
         $res = curl_exec($curl);
@@ -38,6 +39,7 @@ class Curl
             CURLOPT_URL => $url,
             CURLOPT_HEADER => false,
             CURLOPT_RETURNTRANSFER => true,
+            CURLOPT_SSL_VERIFYPEER => false,
             CURLOPT_POST => true,
             CURLOPT_POSTFIELDS => $data
         ];
