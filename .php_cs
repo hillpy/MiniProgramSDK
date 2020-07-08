@@ -2,6 +2,7 @@
 
 $finder = PhpCsFixer\Finder::create()
     ->exclude('vendor')
+    ->notPath('mpsdk_cache')
     ->in([__DIR__.'/src/'])
 ;
 
