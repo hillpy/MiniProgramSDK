@@ -20,6 +20,8 @@ trait FileTrait
         'json'
     ];
 
+    private static $basePath = '';
+
     public static function init($options = [])
     {
         if (
@@ -28,14 +30,15 @@ trait FileTrait
         ) {
             self::$fileOptions = Common::updateArrayData(self::$fileOptions, $options);
         }
-        self::$fileOptions['file_base_path'] || self::$fileOptions['file_base_path'] = $_SERVER['DOCUMENT_ROOT'];
         in_array(self::$fileOptions['file_ext'], self::$allowExt) || self::$fileOptions['file_ext'] = 'php';
+        self::$basePath = $_SERVER['DOCUMENT_ROOT'];
+        self::$basePath || self::$basePath = str_replace('\\', '/', realpath(dirname(__FILE__) . '/'));
     }
 
     public static function set($key = '', $value = '', $expire)
     {
         // 完整路径
-        $allPath = self::$fileOptions['file_base_path'] . self::$fileOptions['file_path'];
+        $allPath = self::$basePath . self::$fileOptions['file_base_path'] . self::$fileOptions['file_path'];
         // 创建目录
         self::makeDir($allPath);
         // 获取文件名
@@ -49,7 +52,7 @@ trait FileTrait
     public static function get($key = '')
     {
         // 完整路径
-        $allPath = self::$fileOptions['file_base_path'] . self::$fileOptions['file_path'];
+        $allPath = self::$basePath . self::$fileOptions['file_base_path'] . self::$fileOptions['file_path'];
         // 获取文件名
         $filename = self::filename($key);
 
@@ -70,7 +73,7 @@ trait FileTrait
     public static function delete($key = '')
     {
         // 完整路径
-        $allPath = self::$fileOptions['file_base_path'] . self::$fileOptions['file_path'];
+        $allPath = self::$basePath . self::$fileOptions['file_base_path'] . self::$fileOptions['file_path'];
         // 获取文件名
         $filename = self::filename($key);
         $res = true;
@@ -105,7 +108,7 @@ trait FileTrait
         $allContent = '';
         foreach (self::$allowExt as $v) {
             if (self::$fileOptions['file_ext'] == $v && $v == 'php') {
-                $allContent = '<?php return \'' . json_encode($contentArr) . '\';';
+                $allContent = '<?php' . PHP_EOL . PHP_EOL . 'return \'' . json_encode($contentArr) . '\';' . PHP_EOL;
                 break;
             } elseif (self::$fileOptions['file_ext'] == $v && $v == 'json') {
                 $allContent = json_encode($contentArr);

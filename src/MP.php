@@ -159,7 +159,6 @@ class MP implements
         ) {
             $this->options = Common::updateArrayData($this->options, $options);
         }
-        $this->options['cache_file_base_path'] || $this->options['cache_file_base_path'] = $_SERVER['DOCUMENT_ROOT'];
 
         // 获取Cache类实例
         $this->cache = $this->initCache();
