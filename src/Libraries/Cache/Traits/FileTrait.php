@@ -74,12 +74,47 @@ trait FileTrait
     {
         // 完整路径
         $allPath = self::$basePath . self::$fileOptions['file_base_path'] . self::$fileOptions['file_path'];
+        $res = false;
         // 获取文件名
         $filename = self::filename($key);
-        $res = true;
         if (file_exists($allPath . '/' . $filename)) {
             $res = unlink($allPath . '/' . $filename);
         }
+
+        return $res;
+    }
+
+    public static function deleteAll()
+    {
+        // 完整路径
+        $allPath = self::$basePath . self::$fileOptions['file_base_path'] . self::$fileOptions['file_path'];
+        $res = false;
+        $res = self::delDir($allPath);
+
+        return $res;
+    }
+
+    private static function delDir($dir = '')
+    {
+        $res = false;
+        if (!$dir) {
+            return $res;
+        }
+
+        $dh = opendir($dir);
+        while ($file = readdir($dh)) {
+            if ($file != '.' && $file != '..') {
+                $fullpath = $dir . '/' . $file;
+                if (!is_dir($fullpath)) {
+                    unlink($fullpath);
+                } else {
+                    self::deldir($fullpath);
+                }
+            }
+        }
+        closedir($dh);
+
+        rmdir($dir) && $res = true;
         return $res;
     }
 
@@ -153,6 +188,8 @@ trait FileTrait
 
     private static function readFile($filename)
     {
-        return file_get_contents($filename);
+        $fileContent = '';
+        file_exists($filename) && $fileContent = file_get_contents($filename);
+        return $fileContent;
     }
 }

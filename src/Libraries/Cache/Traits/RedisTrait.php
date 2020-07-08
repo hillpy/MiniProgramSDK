@@ -18,4 +18,9 @@ trait RedisTrait
     {
         echo 'redis delete';
     }
+
+    public static function deleteAll()
+    {
+        echo 'redis deleteAll';
+    }
 }

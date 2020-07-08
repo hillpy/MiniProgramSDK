@@ -125,4 +125,9 @@ class Cache implements CacheInterface
     {
         return $this->driver::delete($key);
     }
+
+    public function deleteAll()
+    {
+        return $this->driver::deleteAll();
+    }
 }
