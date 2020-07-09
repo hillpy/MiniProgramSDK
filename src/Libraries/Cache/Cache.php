@@ -4,12 +4,14 @@ namespace Hillpy\MiniProgramSDK\Libraries\Cache;
 
 use Hillpy\MiniProgramSDK\Libraries\Cache\Interfaces\CacheInterface;
 use Hillpy\MiniProgramSDK\Libraries\Cache\Traits\FileTrait;
+use Hillpy\MiniProgramSDK\Libraries\Cache\Traits\MemcachedTrait;
 use Hillpy\MiniProgramSDK\Libraries\Cache\Traits\RedisTrait;
 use Hillpy\MiniProgramSDK\Libraries\Common\Common;
 
 class Cache implements CacheInterface
 {
     use FileTrait,
+        MemcachedTrait,
         RedisTrait;
 
     // Cache类实例
@@ -23,7 +25,9 @@ class Cache implements CacheInterface
         'expire' => 3600,
         'file_base_path' => '',
         'file_path' => '/cache',
-        'file_ext' => 'php'
+        'file_ext' => 'php',
+        'host' => '127.0.0.1',
+        'port' => '',
     ];
 
     /**
@@ -33,7 +37,8 @@ class Cache implements CacheInterface
      */
     private $allowDriver = [
         'file',
-        'redis'
+        'redis',
+        'memcached',
     ];
 
     /**
@@ -43,7 +48,8 @@ class Cache implements CacheInterface
      */
     private $driverTraitArr = [
         'file' => FileTrait::class,
-        'redis' => RedisTrait::class
+        'redis' => RedisTrait::class,
+        'memcached' => MemcachedTrait::class,
     ];
 
     // 驱动trait
@@ -56,7 +62,17 @@ class Cache implements CacheInterface
      */
     private $allowFileExt = [
         'php',
-        'json'
+        'json',
+    ];
+
+    /**
+     * 默认缓存端口
+     *
+     * @var array
+     */
+    private $defaultPort = [
+        'redis' => 6379,
+        'memcached' => 11211,
     ];
 
     public static function getInstance($options = [])
@@ -89,6 +105,7 @@ class Cache implements CacheInterface
         }
         in_array($this->options['file_ext'], $this->allowFileExt) || $this->options['file_ext'] = 'php';
         in_array($this->options['driver'], $this->allowDriver) || $this->options['driver'] = 'file';
+        $this->options['port'] || (isset($this->defaultPort[$this->options['driver']]) && $this->options['port'] = $this->defaultPort[$this->options['driver']]);
 
         $this->driver = $this->driverTraitArr[$this->options['driver']];
         $this->driver::init($this->options);

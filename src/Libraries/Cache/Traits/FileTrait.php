@@ -17,7 +17,7 @@ trait FileTrait
 
     private static $allowExt = [
         'php',
-        'json'
+        'json',
     ];
 
     private static $basePath = '';

@@ -6,6 +6,7 @@ node_modules
 .DS_Store
 composer.lock
 cache
+!/src/Libraries/Cache
 mpsdk_cache
 Env.php
 cghooks.lock
