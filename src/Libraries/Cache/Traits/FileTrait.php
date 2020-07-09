@@ -84,7 +84,7 @@ trait FileTrait
         return $res;
     }
 
-    public static function deleteAll()
+    public static function clear()
     {
         // 完整路径
         $allPath = self::$basePath . self::$fileOptions['file_base_path'] . self::$fileOptions['file_path'];

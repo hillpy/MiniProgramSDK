@@ -9,8 +9,8 @@ use Hillpy\MiniProgramSDK\Libraries\Common\Common;
 
 class Cache implements CacheInterface
 {
-    use FileTrait;
-    use RedisTrait;
+    use FileTrait,
+        RedisTrait;
 
     // Cache类实例
     private static $instance;
@@ -126,8 +126,8 @@ class Cache implements CacheInterface
         return $this->driver::delete($key);
     }
 
-    public function deleteAll()
+    public function clear()
     {
-        return $this->driver::deleteAll();
+        return $this->driver::clear();
     }
 }
