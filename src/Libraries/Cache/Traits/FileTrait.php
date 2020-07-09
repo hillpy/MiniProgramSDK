@@ -37,6 +37,14 @@ trait FileTrait
 
     public static function set($key = '', $value = '', $expire)
     {
+        $res = false;
+        if (
+            !$key ||
+            !$value
+        ) {
+            return $res;
+        }
+
         // 完整路径
         $allPath = self::$basePath . self::$fileOptions['file_base_path'] . self::$fileOptions['file_path'];
         // 创建目录
@@ -46,11 +54,18 @@ trait FileTrait
         // 获取写入内容
         $content = self::buildContent($key, $value, $expire);
         // 写入文件
-        return self::writeFile($allPath . '/' . $filename, $content);
+        $res = self::writeFile($allPath . '/' . $filename, $content);
+
+        return $res;
     }
 
     public static function get($key = '')
     {
+        $value = '';
+        if (!$key) {
+            return $value;
+        }
+
         // 完整路径
         $allPath = self::$basePath . self::$fileOptions['file_base_path'] . self::$fileOptions['file_path'];
         // 获取文件名
@@ -66,15 +81,20 @@ trait FileTrait
         } else {
             $content = self::readFile($allPath . '/' . $filename);
         }
+        $value = self::parseContent($content, $allPath . '/' . $filename);
 
-        return self::parseContent($content, $allPath . '/' . $filename);
+        return $value;
     }
 
     public static function delete($key = '')
     {
+        $res = false;
+        if (!$key) {
+            return $res;
+        }
+
         // 完整路径
         $allPath = self::$basePath . self::$fileOptions['file_base_path'] . self::$fileOptions['file_path'];
-        $res = false;
         // 获取文件名
         $filename = self::filename($key);
         if (file_exists($allPath . '/' . $filename)) {
@@ -86,15 +106,16 @@ trait FileTrait
 
     public static function clear()
     {
+        $res = false;
+
         // 完整路径
         $allPath = self::$basePath . self::$fileOptions['file_base_path'] . self::$fileOptions['file_path'];
-        $res = false;
         $res = self::delDir($allPath);
 
         return $res;
     }
 
-    private static function delDir($dir = '')
+    private static function delDir($dir)
     {
         $res = false;
         if (!$dir) {
