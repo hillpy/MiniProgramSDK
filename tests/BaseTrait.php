@@ -1,9 +1,8 @@
 <?php
 
-namespace Tests;
+namespace Hillpy\MiniProgramSDK\Tests;
 
 use Hillpy\MiniProgramSDK\MP;
-use Tests\Env;
 
 trait BaseTrait
 {

@@ -1,6 +1,6 @@
 <?php
 
-namespace Tests;
+namespace Hillpy\MiniProgramSDK\Tests;
 
 use PHPUnit\Framework\TestCase;
 
