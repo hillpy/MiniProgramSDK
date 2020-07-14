@@ -7,6 +7,8 @@ use Predis\Client;
 
 trait RedisTrait
 {
+    use CommonTrait;
+
     private static $redisOptions = [
         'prefix' => 'cache_',
         'key' => 'cache',
@@ -48,8 +50,8 @@ trait RedisTrait
             return $res;
         }
 
-        $key = self::finalKey($key);
-        $value = self::encryptValue($value);
+        $key = self::generateKey(self::$redisOptions['prefix'], self::$redisOptions['key'], $key);
+        $value = self::encryptValue($value, self::$redisOptions['key']);
         $expire = ($expire || $expire === 0) ? $expire : self::$redisOptions['expire'];
 
         if ($expire > 0) {
@@ -67,8 +69,8 @@ trait RedisTrait
         if (!$key) {
             return $value;
         }
-        $key = self::finalKey($key);
-        $value = self::decryptValue(self::$redis->get($key));
+        $key = self::generateKey(self::$redisOptions['prefix'], self::$redisOptions['key'], $key);
+        $value = self::decryptValue(self::$redis->get($key), self::$redisOptions['key']);
         return $value;
     }
 
@@ -78,27 +80,13 @@ trait RedisTrait
         if (!$key) {
             return $res;
         }
-        $res = self::$redis->del(self::finalKey($key));
+        $key = self::generateKey(self::$redisOptions['prefix'], self::$redisOptions['key'], $key);
+        $res = self::$redis->del($key);
         return $res;
     }
 
     public static function clear()
     {
         return self::$redis->flushdb();
-    }
-
-    private static function finalKey($key)
-    {
-        return self::$redisOptions['prefix'] . md5(self::$redisOptions['key'] . $key);
-    }
-
-    private static function encryptValue($value)
-    {
-        return Common::encryptData($value, self::$redisOptions['key']);
-    }
-
-    private static function decryptValue($value)
-    {
-        return Common::decryptData($value, self::$redisOptions['key']);
     }
 }

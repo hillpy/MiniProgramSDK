@@ -6,6 +6,8 @@ use Hillpy\MiniProgramSDK\Libraries\Common\Common;
 
 trait FileTrait
 {
+    use CommonTrait;
+
     private static $fileOptions = [
         'prefix' => 'cache_',
         'key' => 'cache',
@@ -147,8 +149,8 @@ trait FileTrait
     private static function filename($key)
     {
         $filename = '';
-        $name = md5(self::$fileOptions['key'] . $key);
-        $filename = self::$fileOptions['prefix'] . $name . '.' . self::$fileOptions['file_ext'];
+        $filename = self::generateKey(self::$fileOptions['prefix'], self::$fileOptions['key'], $key);
+        $filename && $filename .= '.' . self::$fileOptions['file_ext'];
         return $filename;
     }
 
