@@ -6,6 +6,6 @@ class Env
 {
     public static $mp = [
         'app_id' => '',
-        'app_secret' => ''
+        'app_secret' => '',
     ];
 }

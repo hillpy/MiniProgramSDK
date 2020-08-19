@@ -6,8 +6,8 @@ class AnalysisConstant extends BaseConstant
 {
     const GET_DAILY_RETAIN_PATH = '/datacube/getweanalysisappiddailyretaininfo?';
     const GET_MONTHLY_RETAIN_PATH = '/datacube/getweanalysisappidmonthlyretaininfo?';
-    const GET_WEEKLY_RETAIN_PATH = '/getweanalysisappidweeklyretaininfo?';
-    const GET_DAILY_SUMMARY_PATH = '/getweanalysisappiddailysummarytrend?';
+    const GET_WEEKLY_RETAIN_PATH = '/datacube/getweanalysisappidweeklyretaininfo?';
+    const GET_DAILY_SUMMARY_PATH = '/datacube/getweanalysisappiddailysummarytrend?';
     const GET_DAILY_VISIT_TREND_PATH = '/datacube/getweanalysisappiddailyvisittrend?';
     const GET_MONTHLY_VISIT_TREND_PATH = '/datacube/getweanalysisappidmonthlyvisittrend?';
     const GET_WEEKLY_VISIT_TREND_PATH = '/datacube/getweanalysisappidweeklyvisittrend?';

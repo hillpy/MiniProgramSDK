@@ -8,13 +8,6 @@ class AuthTest extends TestCase
 {
     use BaseTrait;
 
-    public function testGetAccessTokenWithCache()
-    {
-        $mp = $this->getMPInstance();
-        echo PHP_EOL;
-        var_dump($mp->getToken());
-    }
-
     public function testCode2SessionWithCache()
     {
         global $argc, $argv;
@@ -25,5 +18,26 @@ class AuthTest extends TestCase
         ];
         echo PHP_EOL;
         var_dump($mp->code2SessionWithCache($paramArr));
+    }
+
+    public function testGetPaidUnionId()
+    {
+        $mp = $this->getMPInstance();
+        $paramArr = [
+            'access_token' => $mp->getToken(),
+            'openid' => '',
+            'transaction_id' => '',
+            'mch_id' => '',
+            'out_trade_no' => '',
+        ];
+        echo PHP_EOL;
+        var_dump($mp->getPaidUnionId($paramArr));
+    }
+
+    public function testGetAccessTokenWithCache()
+    {
+        $mp = $this->getMPInstance();
+        echo PHP_EOL;
+        var_dump($mp->getToken());
     }
 }

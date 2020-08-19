@@ -119,7 +119,7 @@ class MP implements
         'cache_expire' => 3600 * 7,
         'cache_file_base_path' => '',
         'cache_file_path' => '/mpsdk_cache',
-        'cache_file_ext' => 'php'
+        'cache_file_ext' => 'php',
     ];
 
     // 接口调用凭证
@@ -177,7 +177,7 @@ class MP implements
             'expire' => $this->options['cache_expire'],
             'file_base_path' => $this->options['cache_file_base_path'],
             'file_path' => $this->options['cache_file_path'],
-            'file_ext' => $this->options['cache_file_ext']
+            'file_ext' => $this->options['cache_file_ext'],
         ];
         return Cache::getInstance($cacheOption);
     }
@@ -246,14 +246,14 @@ class MP implements
             } else {
                 return [
                     'code_2_session' => $res,
-                    'code_2_session_key' => ''
+                    'code_2_session_key' => '',
                 ];
             }
         }
 
         return [
             'code_2_session' => is_array($code2Session) ? $code2Session : json_decode($code2Session, true),
-            'code_2_session_key' => $code2SessionKey
+            'code_2_session_key' => $code2SessionKey,
         ];
     }
 
