@@ -45,6 +45,15 @@ class Common
         return $rawData;
     }
 
+    /**
+     * 加密数据
+     *
+     * @param [type] $content
+     * @param [type] $key
+     * @param string $iv
+     * @param string $k
+     * @return void
+     */
     public static function encryptData($content, $key, $iv = '', $k = '')
     {
         $key = md5($key);
@@ -53,6 +62,15 @@ class Common
         return base64_encode(openssl_encrypt($content, 'AES-128-CBC', $k, OPENSSL_RAW_DATA, $iv));
     }
 
+    /**
+     * 解密数据
+     *
+     * @param [type] $content
+     * @param [type] $key
+     * @param string $iv
+     * @param string $k
+     * @return void
+     */
     public static function decryptData($content, $key, $iv = '', $k = '')
     {
         $key = md5($key);
@@ -61,6 +79,13 @@ class Common
         return openssl_decrypt(base64_decode($content), 'AES-128-CBC', $k, OPENSSL_RAW_DATA, $iv);
     }
 
+    /**
+     * 解析字符串
+     *
+     * @param string $str
+     * @param array $varArr
+     * @return void
+     */
     public static function parseStr($str = '', $varArr = [])
     {
         if (!$str) {
