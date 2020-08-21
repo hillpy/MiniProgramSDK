@@ -5,13 +5,13 @@ namespace Hillpy\MiniProgramSDK\Traits;
 use Hillpy\MiniProgramSDK\Constants\SubscribeMessageConstant;
 use Hillpy\MiniProgramSDK\Libraries\Common\Common;
 use Hillpy\MiniProgramSDK\Libraries\Curl\Curl;
-use Hillpy\MiniProgramSDK\Param;
+use Hillpy\MiniProgramSDK\Params\SubscribeMessageParam;
 
 trait SubscribeMessageTrait
 {
     public function addTemplate($paramArr = [])
     {
-        $finalParamArr = Common::updateArrayData(Param::$subscribeMessage[__FUNCTION__], $paramArr);
+        $finalParamArr = Common::updateArrayData(SubscribeMessageParam::$subscribeMessage[__FUNCTION__], $paramArr);
 
         $url = SubscribeMessageConstant::HOST . SubscribeMessageConstant::ADD_TEMPLATE_PATH . http_build_query(['access_token' => $finalParamArr['access_token']]);
 
@@ -20,7 +20,7 @@ trait SubscribeMessageTrait
 
     public function deleteTemplate($paramArr = [])
     {
-        $finalParamArr = Common::updateArrayData(Param::$subscribeMessage[__FUNCTION__], $paramArr);
+        $finalParamArr = Common::updateArrayData(SubscribeMessageParam::$subscribeMessage[__FUNCTION__], $paramArr);
 
         $url = SubscribeMessageConstant::HOST . SubscribeMessageConstant::DELETE_TEMPLATE_PATH . http_build_query(['access_token' => $finalParamArr['access_token']]);
 
@@ -29,7 +29,7 @@ trait SubscribeMessageTrait
 
     public function getCategory($paramArr = [])
     {
-        $urlParamArr = Common::updateArrayData(Param::$subscribeMessage[__FUNCTION__], $paramArr);
+        $urlParamArr = Common::updateArrayData(SubscribeMessageParam::$subscribeMessage[__FUNCTION__], $paramArr);
 
         $url = SubscribeMessageConstant::HOST . SubscribeMessageConstant::GET_CATEGORY_PATH . http_build_query($urlParamArr);
 
@@ -38,7 +38,7 @@ trait SubscribeMessageTrait
 
     public function getPubTemplateKeywordsById($paramArr = [])
     {
-        $urlParamArr = Common::updateArrayData(Param::$subscribeMessage[__FUNCTION__], $paramArr);
+        $urlParamArr = Common::updateArrayData(SubscribeMessageParam::$subscribeMessage[__FUNCTION__], $paramArr);
 
         $url = SubscribeMessageConstant::HOST . SubscribeMessageConstant::GET_PUB_TEMPLATE_KEYWORDS_BY_ID_PATH . http_build_query($urlParamArr);
 
@@ -47,7 +47,7 @@ trait SubscribeMessageTrait
 
     public function getPubTemplateTitleList($paramArr = [])
     {
-        $urlParamArr = Common::updateArrayData(Param::$subscribeMessage[__FUNCTION__], $paramArr);
+        $urlParamArr = Common::updateArrayData(SubscribeMessageParam::$subscribeMessage[__FUNCTION__], $paramArr);
 
         $url = SubscribeMessageConstant::HOST . SubscribeMessageConstant::GET_PUB_TEMPLATE_TITLE_LIST_PATH . http_build_query($urlParamArr);
 
@@ -56,7 +56,7 @@ trait SubscribeMessageTrait
 
     public function getTemplateList($paramArr = [])
     {
-        $urlParamArr = Common::updateArrayData(Param::$subscribeMessage[__FUNCTION__], $paramArr);
+        $urlParamArr = Common::updateArrayData(SubscribeMessageParam::$subscribeMessage[__FUNCTION__], $paramArr);
 
         $url = SubscribeMessageConstant::HOST . SubscribeMessageConstant::GET_TEMPLATE_LIST_PATH . http_build_query($urlParamArr);
 
@@ -65,7 +65,7 @@ trait SubscribeMessageTrait
 
     public function send($paramArr = [])
     {
-        $finalParamArr = Common::updateArrayData(Param::$subscribeMessage[__FUNCTION__], $paramArr);
+        $finalParamArr = Common::updateArrayData(SubscribeMessageParam::$subscribeMessage[__FUNCTION__], $paramArr);
 
         $url = SubscribeMessageConstant::HOST . SubscribeMessageConstant::SEND_PATH . http_build_query(['access_token' => $finalParamArr['access_token']]);
 

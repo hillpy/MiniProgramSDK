@@ -4,13 +4,13 @@ namespace Hillpy\MiniProgramSDK\Traits;
 
 use Hillpy\MiniProgramSDK\Errors\DecryptionError;
 use Hillpy\MiniProgramSDK\Libraries\Common\Common;
-use Hillpy\MiniProgramSDK\Param;
+use Hillpy\MiniProgramSDK\Params\DecryptionParam;
 
 trait DecryptionTrait
 {
     public function decryptUserInfo($paramArr = [])
     {
-        $finalParamArr = Common::updateArrayData(Param::$decryption[__FUNCTION__], $paramArr);
+        $finalParamArr = Common::updateArrayData(DecryptionParam::$decryption[__FUNCTION__], $paramArr);
 
         $newSignature = sha1($finalParamArr['rawData'] . $finalParamArr['session_key']);
         if ($newSignature !== $finalParamArr['signature']) {
@@ -30,7 +30,7 @@ trait DecryptionTrait
 
     public function decryptPhone($paramArr = [])
     {
-        $finalParamArr = Common::updateArrayData(Param::$decryption[__FUNCTION__], $paramArr);
+        $finalParamArr = Common::updateArrayData(DecryptionParam::$decryption[__FUNCTION__], $paramArr);
 
         return $this->decryptData(
             $finalParamArr['encryptedData'],

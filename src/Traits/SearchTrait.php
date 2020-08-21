@@ -5,13 +5,13 @@ namespace Hillpy\MiniProgramSDK\Traits;
 use Hillpy\MiniProgramSDK\Constants\SearchConstant;
 use Hillpy\MiniProgramSDK\Libraries\Common\Common;
 use Hillpy\MiniProgramSDK\Libraries\Curl\Curl;
-use Hillpy\MiniProgramSDK\Param;
+use Hillpy\MiniProgramSDK\Params\SearchParam;
 
 trait SearchTrait
 {
     public function imageSearch($paramArr = [])
     {
-        $finalParamArr = Common::updateArrayData(Param::$search[__FUNCTION__], $paramArr);
+        $finalParamArr = Common::updateArrayData(SearchParam::$search[__FUNCTION__], $paramArr);
 
         $url = SearchConstant::HOST . SearchConstant::IMAGE_SEARCH_PATH . http_build_query(['access_token' => $finalParamArr['access_token']]);
 
@@ -20,7 +20,7 @@ trait SearchTrait
 
     public function siteSearch($paramArr = [])
     {
-        $finalParamArr = Common::updateArrayData(Param::$search[__FUNCTION__], $paramArr);
+        $finalParamArr = Common::updateArrayData(SearchParam::$search[__FUNCTION__], $paramArr);
 
         $url = SearchConstant::HOST . SearchConstant::SITE_SEARCH_PATH . http_build_query(['access_token' => $finalParamArr['access_token']]);
 
@@ -29,7 +29,7 @@ trait SearchTrait
 
     public function submitPages($paramArr = [])
     {
-        $finalParamArr = Common::updateArrayData(Param::$search[__FUNCTION__], $paramArr);
+        $finalParamArr = Common::updateArrayData(SearchParam::$search[__FUNCTION__], $paramArr);
 
         $url = SearchConstant::HOST . SearchConstant::SUBMIT_PAGES_PATH . http_build_query(['access_token' => $finalParamArr['access_token']]);
 
