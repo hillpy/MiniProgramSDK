@@ -39,11 +39,11 @@
     "extra": {
         "hooks": {
             "pre-commit": [
-                "composer test",
+                "composer tests",
                 "composer check-style"
             ],
             "pre-push": [
-                "composer test",
+                "composer tests",
                 "composer check-style"
             ],
             "post-merge": "composer install"
