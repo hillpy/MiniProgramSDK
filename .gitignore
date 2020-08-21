@@ -10,4 +10,4 @@ cache
 mpsdk_cache
 Env.php
 cghooks.lock
-test.php
+test.*

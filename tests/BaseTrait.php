@@ -12,7 +12,7 @@ trait BaseTrait
         $options = [
             'app_id' => Env::$mp['app_id'],
             'app_secret' => Env::$mp['app_secret'],
-            'cache_driver' => 'redis'
+            'cache_driver' => 'redis',
         ];
 
         return MP::getInstance($options);
@@ -21,7 +21,7 @@ trait BaseTrait
     public function getCacheInstance()
     {
         $option = [
-            'cache_driver' => 'redis'
+            'cache_driver' => 'redis',
         ];
         return Cache::getInstance($option);
     }

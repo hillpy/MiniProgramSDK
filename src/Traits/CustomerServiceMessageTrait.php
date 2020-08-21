@@ -40,8 +40,8 @@ trait CustomerServiceMessageTrait
     {
         $finalParamArr = Common::updateArrayData(Param::$customerServiceMessage[__FUNCTION__], $paramArr);
 
-        $url = CustomerServiceMessageConstant::HOST . CustomerServiceMessageConstant::UPLOAD_TEMP_MEDIA_PATH . http_build_query(['access_token' => $finalParamArr['access_token']]);
+        $url = CustomerServiceMessageConstant::HOST . CustomerServiceMessageConstant::UPLOAD_TEMP_MEDIA_PATH . http_build_query(['access_token' => $finalParamArr['access_token'], 'type' => $finalParamArr['type']]);
 
-        return json_decode(Curl::httpRequest($url, $finalParamArr), true);
+        return json_decode(Curl::httpRequest($url, $finalParamArr, false), true);
     }
 }

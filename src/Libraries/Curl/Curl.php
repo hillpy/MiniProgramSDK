@@ -17,7 +17,7 @@ class Curl
             CURLOPT_URL => $url,
             CURLOPT_HEADER => false,
             CURLOPT_RETURNTRANSFER => true,
-            CURLOPT_SSL_VERIFYPEER => false
+            CURLOPT_SSL_VERIFYPEER => false,
         ];
         curl_setopt_array($curl, $optionArr);
         $res = curl_exec($curl);
@@ -41,7 +41,7 @@ class Curl
             CURLOPT_RETURNTRANSFER => true,
             CURLOPT_SSL_VERIFYPEER => false,
             CURLOPT_POST => true,
-            CURLOPT_POSTFIELDS => $data
+            CURLOPT_POSTFIELDS => $data,
         ];
         curl_setopt_array($curl, $optionArr);
         $res = curl_exec($curl);
@@ -56,13 +56,13 @@ class Curl
      * @param array $postParamArr
      * @return mixed
      */
-    public static function httpRequest($url = '', $postParamArr = [])
+    public static function httpRequest($url = '', $postParamArr = [], $buildParam = true)
     {
         if (
             is_array($postParamArr) &&
             count($postParamArr) > 0
         ) {
-            $res = self::post($url, json_encode($postParamArr));
+            $res = self::post($url, $buildParam ? http_build_query($postParamArr) : $postParamArr);
         } else {
             $res = self::get($url);
         }
