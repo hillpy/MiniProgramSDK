@@ -116,7 +116,7 @@ class MP implements
         'cache_driver' => 'file',
         'cache_prefix' => 'mp_sdk_',
         'cache_key' => 'miniprogram_sdk',
-        'cache_expire' => 3600 * 7,
+        'cache_expire' => 3600 * 24 * 7,
         'cache_file_base_path' => '',
         'cache_file_path' => '/mpsdk_cache',
         'cache_file_ext' => 'php',
