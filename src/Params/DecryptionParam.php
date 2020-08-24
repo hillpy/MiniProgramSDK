@@ -7,17 +7,19 @@ class DecryptionParam
     public static $decryption = [
         'decryptUserInfo' => [
             'code' => '',
-            'rawData' => '',
-            'signature' => '',
-            'encryptedData' => '',
+            'encrypted_data' => '',
+            'session_key' => '',
             'iv' => '',
-            'appid' => '',
+            'app_id' => '',
+            'raw_data' => '',
+            'signature' => '',
         ],
         'decryptPhone' => [
             'code' => '',
-            'rawData' => '',
-            'encryptedData' => '',
-            'appid' => '',
+            'encrypted_data' => '',
+            'session_key' => '',
+            'iv' => '',
+            'app_id' => '',
         ],
     ];
 }

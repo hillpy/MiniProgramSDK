@@ -56,13 +56,13 @@ class Curl
      * @param array $postParamArr
      * @return mixed
      */
-    public static function httpRequest($url = '', $postParamArr = [], $buildParam = true)
+    public static function httpRequest($url = '', $postParamArr = [], $encodeParam = true)
     {
         if (
             is_array($postParamArr) &&
             count($postParamArr) > 0
         ) {
-            $res = self::post($url, $buildParam ? http_build_query($postParamArr) : $postParamArr);
+            $res = self::post($url, $encodeParam ? json_encode($postParamArr) : $postParamArr);
         } else {
             $res = self::get($url);
         }

@@ -4,8 +4,8 @@ namespace Hillpy\MiniProgramSDK\Errors;
 
 class DecryptionError
 {
-    public static $OK = 0;
-    public static $ErrorSessionKey = -41001;
-    public static $ErrorIv = -41002;
-    public static $ErrorBuffer = -41003;
+    const OK = 0;
+    const ERROR_SESSION_KEY = -40001;
+    const ERROR_IV = -40002;
+    const ERROR_BUFFER = -41003;
 }
