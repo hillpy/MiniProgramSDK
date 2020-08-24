@@ -1,21 +1,34 @@
 <?php
 
-namespace Hillpy\MiniProgramSDK\Params;
+namespace Hillpy\MiniProgramSDK\Tests;
 
-class ImmediateDeliveryParam
+use PHPUnit\Framework\TestCase;
+
+class ImmediateDeliveryTest extends TestCase
 {
-    public static $immediateDelivery = [
-        'abnormalConfirm' => [
-            'access_token' => '',
+    use BaseTrait;
+
+    public function testAbnormalConfirm()
+    {
+        $mp = $this->getMPInstance();
+        $paramArr = [
+            'access_token' => $mp->getToken(),
             'shopid' => '',
             'shop_order_id' => '',
             'shop_no' => '',
             'delivery_sign' => '',
             'waybill_id' => '',
             'remark' => '',
-        ],
-        'addOrder' => [
-            'access_token' => '',
+        ];
+        echo PHP_EOL;
+        var_dump($mp->abnormalConfirm($paramArr));
+    }
+
+    public function testAddOrder()
+    {
+        $mp = $this->getMPInstance();
+        $paramArr = [
+            'access_token' => $mp->getToken(),
             'delivery_token' => '',
             'shopid' => '',
             'shop_order_id' => '',
@@ -89,9 +102,16 @@ class ImmediateDeliveryParam
                 'wxa_appid' => '',
             ],
             'sub_biz_id' => '',
-        ],
-        'addTip' => [
-            'access_token' => '',
+        ];
+        echo PHP_EOL;
+        var_dump($mp->addOrder($paramArr));
+    }
+
+    public function testAddTip()
+    {
+        $mp = $this->getMPInstance();
+        $paramArr = [
+            'access_token' => $mp->getToken(),
             'shopid' => '',
             'shop_order_id' => '',
             'shop_no' => '',
@@ -100,13 +120,27 @@ class ImmediateDeliveryParam
             'openid' => '',
             'tips' => '',
             'remark' => '',
-        ],
-        'bindAccount' => [
-            'access_token' => '',
+        ];
+        echo PHP_EOL;
+        var_dump($mp->addTip($paramArr));
+    }
+
+    public function testBindAccount()
+    {
+        $mp = $this->getMPInstance();
+        $paramArr = [
+            'access_token' => $mp->getToken(),
             'delivery_id' => '',
-        ],
-        'cancelOrder' => [
-            'access_token' => '',
+        ];
+        echo PHP_EOL;
+        var_dump($mp->bindAccount($paramArr));
+    }
+
+    public function testCancelOrder()
+    {
+        $mp = $this->getMPInstance();
+        $paramArr = [
+            'access_token' => $mp->getToken(),
             'shopid' => '',
             'shop_order_id' => '',
             'shop_no' => '',
@@ -115,33 +149,75 @@ class ImmediateDeliveryParam
             'waybill_id' => '',
             'cancel_reason_id' => '',
             'cancel_reason' => '',
-        ],
-        'getAllImmeDelivery' => [
-            'access_token' => '',
-        ],
-        'getBindAccount' => [
-            'access_token' => '',
-        ],
-        'getOrder' => [
-            'access_token' => '',
+        ];
+        echo PHP_EOL;
+        var_dump($mp->cancelOrder($paramArr));
+    }
+
+    public function testGetAllImmeDelivery()
+    {
+        $mp = $this->getMPInstance();
+        $paramArr = [
+            'access_token' => $mp->getToken(),
+        ];
+        echo PHP_EOL;
+        var_dump($mp->getAllImmeDelivery($paramArr));
+    }
+
+    public function testGetBindAccount()
+    {
+        $mp = $this->getMPInstance();
+        $paramArr = [
+            'access_token' => $mp->getToken(),
+        ];
+        echo PHP_EOL;
+        var_dump($mp->getBindAccount($paramArr));
+    }
+
+    public function testGetOrder()
+    {
+        $mp = $this->getMPInstance();
+        $paramArr = [
+            'access_token' => $mp->getToken(),
             'shopid' => '',
             'shop_order_id' => '',
             'shop_no' => '',
             'delivery_sign' => '',
-        ],
-        'mockUpdateOrder' => [
-            'access_token' => '',
+        ];
+        echo PHP_EOL;
+        var_dump($mp->getOrder($paramArr));
+    }
+
+    public function testMockUpdateOrder()
+    {
+        $mp = $this->getMPInstance();
+        $paramArr = [
+            'access_token' => $mp->getToken(),
             'shopid' => '',
             'shop_order_id' => '',
             'action_time' => '',
             'order_status' => '',
             'action_msg' => '',
-        ],
-        'openDelivery' => [
-            'access_token' => '',
-        ],
-        'preAddOrder' => [
-            'access_token' => '',
+        ];
+        echo PHP_EOL;
+        var_dump($mp->mockUpdateOrder($paramArr));
+    }
+
+    public function testOpenDelivery()
+    {
+        $mp = $this->getMPInstance();
+        $paramArr = [
+            'access_token' => $mp->getToken(),
+        ];
+        echo PHP_EOL;
+        var_dump($mp->openDelivery($paramArr));
+    }
+
+    public function testPreAddOrder()
+    {
+        $mp = $this->getMPInstance();
+        $paramArr = [
+            'access_token' => $mp->getToken(),
             'shopid' => '',
             'shop_order_id' => '',
             'shop_no' => '',
@@ -214,9 +290,16 @@ class ImmediateDeliveryParam
                 'wxa_appid' => '',
             ],
             'sub_biz_id' => '',
-        ],
-        'preCancelOrder' => [
-            'access_token' => '',
+        ];
+        echo PHP_EOL;
+        var_dump($mp->preAddOrder($paramArr));
+    }
+
+    public function testPreCancelOrder()
+    {
+        $mp = $this->getMPInstance();
+        $paramArr = [
+            'access_token' => $mp->getToken(),
             'shopid' => '',
             'shop_order_id' => '',
             'shop_no' => '',
@@ -225,18 +308,32 @@ class ImmediateDeliveryParam
             'waybill_id' => '',
             'cancel_reason_id' => '',
             'cancel_reason' => '',
-        ],
-        'realMockUpdateOrder' => [
-            'access_token' => '',
+        ];
+        echo PHP_EOL;
+        var_dump($mp->preCancelOrder($paramArr));
+    }
+
+    public function testRealMockUpdateOrder()
+    {
+        $mp = $this->getMPInstance();
+        $paramArr = [
+            'access_token' => $mp->getToken(),
             'shopid' => '',
             'shop_order_id' => '',
             'action_time' => '',
             'order_status' => '',
             'action_msg' => '',
             'delivery_sign' => '',
-        ],
-        'reOrder' => [
-            'access_token' => '',
+        ];
+        echo PHP_EOL;
+        var_dump($mp->realMockUpdateOrder($paramArr));
+    }
+
+    public function testReOrder()
+    {
+        $mp = $this->getMPInstance();
+        $paramArr = [
+            'access_token' => $mp->getToken(),
             'delivery_token' => '',
             'shopid' => '',
             'shop_order_id' => '',
@@ -310,9 +407,16 @@ class ImmediateDeliveryParam
                 'wxa_appid' => '',
             ],
             'sub_biz_id' => '',
-        ],
-        'updateOrder' => [
-            'access_token' => '',
+        ];
+        echo PHP_EOL;
+        var_dump($mp->reOrder($paramArr));
+    }
+
+    public function testUpdateOrder()
+    {
+        $mp = $this->getMPInstance();
+        $paramArr = [
+            'access_token' => $mp->getToken(),
             'wx_token' => '',
             'shopid' => '',
             'shop_order_id' => '',
@@ -328,6 +432,8 @@ class ImmediateDeliveryParam
                 'is_phone_encrypted' => '',
             ],
             'expected_delivery_time' => '',
-        ]
-    ];
+        ];
+        echo PHP_EOL;
+        var_dump($mp->updateOrder($paramArr));
+    }
 }

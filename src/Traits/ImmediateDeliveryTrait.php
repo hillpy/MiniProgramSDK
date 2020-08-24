@@ -9,15 +9,6 @@ use Hillpy\MiniProgramSDK\Params\ImmediateDeliveryParam;
 
 trait ImmediateDeliveryTrait
 {
-    public function reOrder($paramArr = [])
-    {
-        $finalParamArr = Common::updateArrayData(ImmediateDeliveryParam::$immediateDelivery[__FUNCTION__], $paramArr);
-
-        $url = ImmediateDeliveryConstant::HOST . ImmediateDeliveryConstant::RE_ORDER_PATH . http_build_query(['access_token' => $finalParamArr['access_token']]);
-
-        return json_decode(Curl::httpRequest($url, $finalParamArr), true);
-    }
-
     public function abnormalConfirm($paramArr = [])
     {
         $finalParamArr = Common::updateArrayData(ImmediateDeliveryParam::$immediateDelivery[__FUNCTION__], $paramArr);
@@ -131,6 +122,15 @@ trait ImmediateDeliveryTrait
         $finalParamArr = Common::updateArrayData(ImmediateDeliveryParam::$immediateDelivery[__FUNCTION__], $paramArr);
 
         $url = ImmediateDeliveryConstant::HOST . ImmediateDeliveryConstant::REAL_MOCK_UPDATE_ORDER_PATH . http_build_query(['access_token' => $finalParamArr['access_token']]);
+
+        return json_decode(Curl::httpRequest($url, $finalParamArr), true);
+    }
+
+    public function reOrder($paramArr = [])
+    {
+        $finalParamArr = Common::updateArrayData(ImmediateDeliveryParam::$immediateDelivery[__FUNCTION__], $paramArr);
+
+        $url = ImmediateDeliveryConstant::HOST . ImmediateDeliveryConstant::RE_ORDER_PATH . http_build_query(['access_token' => $finalParamArr['access_token']]);
 
         return json_decode(Curl::httpRequest($url, $finalParamArr), true);
     }
