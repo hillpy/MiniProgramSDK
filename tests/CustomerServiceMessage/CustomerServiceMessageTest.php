@@ -69,6 +69,7 @@ class CustomerServiceMessageTest extends TestCase
             'type' => 'image',
             'media' => $media,
         ];
+        echo PHP_EOL;
         var_dump($mp->uploadTempMedia($paramArr));
     }
 }
