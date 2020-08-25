@@ -42,10 +42,6 @@
                 "composer tests",
                 "composer check-style"
             ],
-            "pre-push": [
-                "composer tests",
-                "composer check-style"
-            ],
             "post-merge": "composer install"
         }
     },
