@@ -88,7 +88,7 @@ class LogisticsTest extends TestCase
             'expect_time' => '',
         ];
         echo PHP_EOL;
-        var_dump($mp->addOrder($paramArr));
+        var_dump($mp->addOrderByLogi($paramArr));
     }
 
     public function testBindAccount()
@@ -103,7 +103,7 @@ class LogisticsTest extends TestCase
             'remark_content' => '',
         ];
         echo PHP_EOL;
-        var_dump($mp->bindAccount($paramArr));
+        var_dump($mp->bindAccountByLogi($paramArr));
     }
 
     public function testCancelOrder()
@@ -117,7 +117,7 @@ class LogisticsTest extends TestCase
             'waybill_id' => '',
         ];
         echo PHP_EOL;
-        var_dump($mp->cancelOrder($paramArr));
+        var_dump($mp->cancelOrderByLogi($paramArr));
     }
 
     public function testGetAllAccount()
@@ -151,7 +151,7 @@ class LogisticsTest extends TestCase
             'waybill_id' => '',
         ];
         echo PHP_EOL;
-        var_dump($mp->getOrder($paramArr));
+        var_dump($mp->getOrderByLogi($paramArr));
     }
 
     public function testGetPath()

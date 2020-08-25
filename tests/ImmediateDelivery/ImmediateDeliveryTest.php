@@ -104,7 +104,7 @@ class ImmediateDeliveryTest extends TestCase
             'sub_biz_id' => '',
         ];
         echo PHP_EOL;
-        var_dump($mp->addOrder($paramArr));
+        var_dump($mp->addOrderByImme($paramArr));
     }
 
     public function testAddTip()
@@ -133,7 +133,7 @@ class ImmediateDeliveryTest extends TestCase
             'delivery_id' => '',
         ];
         echo PHP_EOL;
-        var_dump($mp->bindAccount($paramArr));
+        var_dump($mp->bindAccountByImme($paramArr));
     }
 
     public function testCancelOrder()
@@ -151,7 +151,7 @@ class ImmediateDeliveryTest extends TestCase
             'cancel_reason' => '',
         ];
         echo PHP_EOL;
-        var_dump($mp->cancelOrder($paramArr));
+        var_dump($mp->cancelOrderByImme($paramArr));
     }
 
     public function testGetAllImmeDelivery()
@@ -185,7 +185,7 @@ class ImmediateDeliveryTest extends TestCase
             'delivery_sign' => '',
         ];
         echo PHP_EOL;
-        var_dump($mp->getOrder($paramArr));
+        var_dump($mp->getOrderByImme($paramArr));
     }
 
     public function testMockUpdateOrder()
