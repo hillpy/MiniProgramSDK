@@ -9,6 +9,15 @@ use Hillpy\MiniProgramSDK\Params\OperationParam;
 
 trait OperationTrait
 {
+    public function getFeedback($paramArr = [])
+    {
+        $finalParamArr = Common::updateArrayData(OperationParam::$operation[__FUNCTION__], $paramArr);
+
+        $url = OperationConstant::HOST . OperationConstant::GET_FEEDBACK_PATH . http_build_query(['access_token' => $finalParamArr['access_token']]);
+
+        return json_decode(Curl::httpRequest($url, $finalParamArr), true);
+    }
+
     public function getJsErrSearch($paramArr = [])
     {
         $finalParamArr = Common::updateArrayData(OperationParam::$operation[__FUNCTION__], $paramArr);

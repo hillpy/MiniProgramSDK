@@ -5,6 +5,12 @@ namespace Hillpy\MiniProgramSDK\Params;
 class OperationParam
 {
     public static $operation = [
+        'getFeedback' => [
+            'access_token' => '',
+            'type' => '',
+            'page' => '',
+            'num' => '',
+        ],
         'getJsErrSearch' => [
             'access_token' => '',
             'errmsg_keyword' => '',

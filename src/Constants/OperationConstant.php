@@ -4,6 +4,7 @@ namespace Hillpy\MiniProgramSDK\Constants;
 
 class OperationConstant extends BaseConstant
 {
+    const GET_FEEDBACK_PATH = '/wxaapi/feedback/list?';
     const GET_JS_ERR_SEARCH_PATH = '/wxaapi/log/jserr_search?';
     const GET_PERFORMANCE_PATH = '/wxaapi/log/get_performance?';
     const GET_SCENE_LIST_PATH = '/wxaapi/log/get_scene?';
