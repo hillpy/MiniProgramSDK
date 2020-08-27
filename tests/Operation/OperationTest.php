@@ -18,7 +18,7 @@ class OperationTest extends TestCase
             'num' => '',
         ];
         echo PHP_EOL;
-        var_dump($mp->bankcard($paramArr));
+        var_dump($mp->getFeedback($paramArr));
     }
 
     public function testGetJsErrSearch()
