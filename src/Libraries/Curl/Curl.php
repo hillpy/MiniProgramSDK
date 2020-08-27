@@ -64,7 +64,7 @@ class Curl
             count($postParamData) > 0
         ) {
             $res = self::post($url, $encodeParam ? json_encode($postParamData) : $postParamData);
-        } else if ($postParamData) {
+        } elseif ($postParamData) {
             $res = self::post($url, $postParamData);
         } else {
             $res = self::get($url);
