@@ -15,6 +15,8 @@ trait UniformMessageTrait
 
         $url = UniformMessageConstant::HOST . UniformMessageConstant::SEND_PATH . http_build_query(['access_token' => $finalParamArr['access_token']]);
 
+        unset($finalParamArr['access_token']);
+
         return json_decode(Curl::httpRequest($url, $finalParamArr), true);
     }
 }

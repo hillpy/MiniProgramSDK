@@ -1,12 +1,18 @@
 <?php
 
-namespace Hillpy\MiniProgramSDK\Params;
+namespace Hillpy\MiniProgramSDK\Tests;
 
-class UniformMessageParam
+use PHPUnit\Framework\TestCase;
+
+class UniformMessageTest extends TestCase
 {
-    public static $uniformMessage = [
-        'send' => [
-            'access_token' => '',
+    use BaseTrait;
+
+    public function testSendByUni()
+    {
+        $mp = $this->getMPInstance();
+        $paramArr = [
+            'access_token' => $mp->getToken(),
             'touser' => '',
             'weapp_template_msg' => [
                 'template_id' => '',
@@ -22,6 +28,8 @@ class UniformMessageParam
                 'miniprogram' => '',
                 'data' => '',
             ],
-        ],
-    ];
+        ];
+        echo PHP_EOL;
+        var_dump($mp->sendByUni($paramArr));
+    }
 }
