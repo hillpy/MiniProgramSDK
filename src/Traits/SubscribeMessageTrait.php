@@ -15,6 +15,8 @@ trait SubscribeMessageTrait
 
         $url = SubscribeMessageConstant::HOST . SubscribeMessageConstant::ADD_TEMPLATE_PATH . http_build_query(['access_token' => $finalParamArr['access_token']]);
 
+        unset($finalParamArr['access_token']);
+
         return json_decode(Curl::httpRequest($url, $finalParamArr), true);
     }
 
@@ -23,6 +25,8 @@ trait SubscribeMessageTrait
         $finalParamArr = Common::updateArrayData(SubscribeMessageParam::$subscribeMessage[__FUNCTION__], $paramArr);
 
         $url = SubscribeMessageConstant::HOST . SubscribeMessageConstant::DELETE_TEMPLATE_PATH . http_build_query(['access_token' => $finalParamArr['access_token']]);
+
+        unset($finalParamArr['access_token']);
 
         return json_decode(Curl::httpRequest($url, $finalParamArr), true);
     }
@@ -68,6 +72,8 @@ trait SubscribeMessageTrait
         $finalParamArr = Common::updateArrayData(SubscribeMessageParam::$subscribeMessage[__FUNCTION__], $paramArr);
 
         $url = SubscribeMessageConstant::HOST . SubscribeMessageConstant::SEND_PATH . http_build_query(['access_token' => $finalParamArr['access_token']]);
+
+        unset($finalParamArr['access_token']);
 
         return json_decode(Curl::httpRequest($url, $finalParamArr), true);
     }
