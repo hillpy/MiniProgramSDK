@@ -15,7 +15,7 @@ trait SearchTrait
 
         $url = SearchConstant::HOST . SearchConstant::IMAGE_SEARCH_PATH . http_build_query(['access_token' => $finalParamArr['access_token']]);
 
-        return json_decode(Curl::httpRequest($url, $finalParamArr), true);
+        return json_decode(Curl::httpRequest($url, $finalParamArr, false), true);
     }
 
     public function siteSearch($paramArr = [])

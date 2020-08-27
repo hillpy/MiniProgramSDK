@@ -53,16 +53,19 @@ class Curl
      * 简易http请求，调用当前类的get和post方法
      *
      * @param string $url
-     * @param array $postParamArr
-     * @return mixed
+     * @param array $postParamData
+     * @param boolean $encodeParam
+     * @return void
      */
-    public static function httpRequest($url = '', $postParamArr = [], $encodeParam = true)
+    public static function httpRequest($url = '', $postParamData = [], $encodeParam = true)
     {
         if (
-            is_array($postParamArr) &&
-            count($postParamArr) > 0
+            is_array($postParamData) &&
+            count($postParamData) > 0
         ) {
-            $res = self::post($url, $encodeParam ? json_encode($postParamArr) : $postParamArr);
+            $res = self::post($url, $encodeParam ? json_encode($postParamData) : $postParamData);
+        } else if ($postParamData) {
+            $res = self::post($url, $postParamData);
         } else {
             $res = self::get($url);
         }
