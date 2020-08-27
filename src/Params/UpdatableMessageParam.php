@@ -8,12 +8,12 @@ class UpdatableMessageParam
         'createActivityId' => [
             'access_token' => '',
         ],
-        'createActivityId' => [
+        'setUpdatableMsg' => [
             'access_token' => '',
             'activity_id' => '',
             'target_state' => '',
             'template_info' => [
-                'parameter_list' => '',
+                'parameter_list' => [],
             ],
         ],
     ];
