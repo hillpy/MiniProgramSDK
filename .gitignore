@@ -11,3 +11,6 @@ mpsdk_cache
 Env.php
 cghooks.lock
 test.*
+tests/Wxacode/wxaqrcode
+tests/Wxacode/Wxacode
+tests/Wxacode/wxacodeunlimit

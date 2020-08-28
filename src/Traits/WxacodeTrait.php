@@ -15,6 +15,8 @@ trait WxacodeTrait
 
         $url = WxacodeConstant::HOST . WxacodeConstant::CREATE_QR_CODE_PATH . http_build_query(['access_token' => $finalParamArr['access_token']]);
 
+        unset($finalParamArr['access_token']);
+
         return json_decode(Curl::httpRequest($url, $finalParamArr), true);
     }
 
@@ -24,6 +26,8 @@ trait WxacodeTrait
 
         $url = WxacodeConstant::HOST . WxacodeConstant::GET_PATH . http_build_query(['access_token' => $finalParamArr['access_token']]);
 
+        unset($finalParamArr['access_token']);
+
         return json_decode(Curl::httpRequest($url, $finalParamArr), true);
     }
 
@@ -32,6 +36,8 @@ trait WxacodeTrait
         $finalParamArr = Common::updateArrayData(WxacodeParam::$wxacode[__FUNCTION__], $paramArr);
 
         $url = WxacodeConstant::HOST . WxacodeConstant::GET_UNLIMITED_PATH . http_build_query(['access_token' => $finalParamArr['access_token']]);
+
+        unset($finalParamArr['access_token']);
 
         return json_decode(Curl::httpRequest($url, $finalParamArr), true);
     }
