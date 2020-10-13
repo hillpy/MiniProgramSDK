@@ -13,7 +13,7 @@ trait DecryptionTrait
         $finalParamArr = Common::updateArrayData(DecryptionParam::$decryption[__FUNCTION__], $paramArr);
 
         $newSignature = sha1($finalParamArr['raw_data'] . $finalParamArr['session_key']);
-        if ($newSignature !== $finalParamArr['signature'] && 0) {
+        if ($newSignature !== $finalParamArr['signature']) {
             return [
                 'code' => DecryptionError::ERROR_SESSION_KEY,
                 'data' => []

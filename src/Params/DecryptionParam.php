@@ -6,20 +6,58 @@ class DecryptionParam
 {
     public static $decryption = [
         'decryptUserInfo' => [
-            'code' => '',
-            'encrypted_data' => '',
-            'session_key' => '',
-            'iv' => '',
-            'app_id' => '',
-            'raw_data' => '',
-            'signature' => '',
+            'encrypted_data' => [
+                'default' => '',
+                'required' => true,
+                'value' => '',
+            ],
+            'session_key' => [
+                'default' => '',
+                'required' => true,
+                'value' => '',
+            ],
+            'iv' => [
+                'default' => '',
+                'required' => true,
+                'value' => '',
+            ],
+            'app_id' => [
+                'default' => '',
+                'required' => false,
+                'value' => '',
+            ],
+            'raw_data' => [
+                'default' => '',
+                'required' => true,
+                'value' => '',
+            ],
+            'signature' => [
+                'default' => '',
+                'required' => true,
+                'value' => '',
+            ],
         ],
         'decryptPhone' => [
-            'code' => '',
-            'encrypted_data' => '',
-            'session_key' => '',
-            'iv' => '',
-            'app_id' => '',
+            'encrypted_data' => [
+                'default' => '',
+                'required' => true,
+                'value' => '',
+            ],
+            'session_key' => [
+                'default' => '',
+                'required' => true,
+                'value' => '',
+            ],
+            'iv' => [
+                'default' => '',
+                'required' => true,
+                'value' => '',
+            ],
+            'app_id' => [
+                'default' => '',
+                'required' => false,
+                'value' => '',
+            ],
         ],
     ];
 }

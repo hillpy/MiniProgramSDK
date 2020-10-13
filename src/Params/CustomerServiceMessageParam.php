@@ -6,40 +6,149 @@ class CustomerServiceMessageParam
 {
     public static $customerServiceMessage = [
         'getTempMedia' => [
-            'access_token' => '',
-            'media_id' => '',
+            'access_token' => [
+                'default' => '',
+                'required' => true,
+                'value' => '',
+            ],
+            'media_id' => [
+                'default' => '',
+                'required' => true,
+                'value' => '',
+            ],
         ],
         'send' => [
-            'access_token' => '',
-            'touser' => '',
-            'msgtype' => '',
+            'access_token' => [
+                'default' => '',
+                'required' => true,
+                'value' => '',
+            ],
+            'touser' => [
+                'default' => '',
+                'required' => true,
+                'value' => '',
+            ],
+            'msgtype' => [
+                'default' => '',
+                'required' => true,
+                'value' => '',
+                'enum' => [
+                    'text',
+                    'image',
+                    'link',
+                    'miniprogrampage',
+                ],
+            ],
             'text' => [
-                'content' => '',
+                'default' => '',
+                'required' => true,
+                'value' => [
+                    'content' => [
+                        'default' => '',
+                        'required' => true,
+                        'value' => '',
+                    ],
+                ],
             ],
             'image' => [
-                'media_id' => '',
+                'default' => '',
+                'required' => true,
+                'value' => [
+                    'media_id' => [
+                        'default' => '',
+                        'required' => true,
+                        'value' => '',
+                    ],
+                ],
             ],
             'link' => [
-                'title' => '',
-                'description' => '',
-                'url' => '',
-                'thumb_url' => '',
+                'default' => '',
+                'required' => true,
+                'value' => [
+                    'title' => [
+                        'default' => '',
+                        'required' => true,
+                        'value' => '',
+                    ],
+                    'description' => [
+                        'default' => '',
+                        'required' => true,
+                        'value' => '',
+                    ],
+                    'url' => [
+                        'default' => '',
+                        'required' => true,
+                        'value' => '',
+                    ],
+                    'thumb_url' => [
+                        'default' => '',
+                        'required' => true,
+                        'value' => '',
+                    ],
+                ],
             ],
             'miniprogrampage' => [
-                'title' => '',
-                'pagepath' => '',
-                'thumb_media_id' => '',
+                'default' => '',
+                'required' => true,
+                'value' => [
+                    'title' => [
+                        'default' => '',
+                        'required' => true,
+                        'value' => '',
+                    ],
+                    'pagepath' => [
+                        'default' => '',
+                        'required' => true,
+                        'value' => '',
+                    ],
+                    'thumb_media_id' => [
+                        'default' => '',
+                        'required' => true,
+                        'value' => '',
+                    ],
+                ],
             ],
         ],
         'setTyping' => [
-            'access_token' => '',
-            'touser' => '',
-            'command' => '',
+            'access_token' => [
+                'default' => '',
+                'required' => true,
+                'value' => '',
+            ],
+            'touser' => [
+                'default' => '',
+                'required' => true,
+                'value' => '',
+            ],
+            'command' => [
+                'default' => '',
+                'required' => false,
+                'value' => '',
+                'enum' => [
+                    'Typing',
+                    'CancelTyping',
+                ],
+            ],
         ],
         'uploadTempMedia' => [
-            'access_token' => '',
-            'type' => '',
-            'media' => '',
+            'access_token' => [
+                'default' => '',
+                'required' => true,
+                'value' => '',
+            ],
+            'type' => [
+                'default' => '',
+                'required' => true,
+                'value' => '',
+                'enum' => [
+                    'image',
+                ],
+            ],
+            'media' => [
+                'default' => '',
+                'required' => true,
+                'value' => '',
+            ],
         ],
     ];
 }
