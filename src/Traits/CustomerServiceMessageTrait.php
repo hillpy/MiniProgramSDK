@@ -2,8 +2,8 @@
 
 namespace Hillpy\MiniProgramSDK\Traits;
 
+use Hillpy\MiniProgramSDK\Common;
 use Hillpy\MiniProgramSDK\Constants\CustomerServiceMessageConstant;
-use Hillpy\MiniProgramSDK\Libraries\Common\Common;
 use Hillpy\MiniProgramSDK\Libraries\Curl\Curl;
 use Hillpy\MiniProgramSDK\Params\CustomerServiceMessageParam;
 
@@ -11,7 +11,7 @@ trait CustomerServiceMessageTrait
 {
     public function getTempMedia($paramArr = [])
     {
-        $urlParamArr = Common::updateArrayData(CustomerServiceMessageParam::$customerServiceMessage[__FUNCTION__], $paramArr);
+        $urlParamArr = Common::handleParam(CustomerServiceMessageParam::$customerServiceMessage[__FUNCTION__], $paramArr);
 
         $url = CustomerServiceMessageConstant::HOST . CustomerServiceMessageConstant::GET_TEMP_MEDIA_PATH . http_build_query($urlParamArr);
 
@@ -20,7 +20,7 @@ trait CustomerServiceMessageTrait
 
     public function send($paramArr = [])
     {
-        $finalParamArr = Common::updateArrayData(CustomerServiceMessageParam::$customerServiceMessage[__FUNCTION__], $paramArr);
+        $finalParamArr = Common::handleParam(CustomerServiceMessageParam::$customerServiceMessage[__FUNCTION__], $paramArr);
 
         $url = CustomerServiceMessageConstant::HOST . CustomerServiceMessageConstant::SEND_PATH . http_build_query(['access_token' => $finalParamArr['access_token']]);
 
@@ -29,7 +29,7 @@ trait CustomerServiceMessageTrait
 
     public function setTyping($paramArr = [])
     {
-        $finalParamArr = Common::updateArrayData(CustomerServiceMessageParam::$customerServiceMessage[__FUNCTION__], $paramArr);
+        $finalParamArr = Common::handleParam(CustomerServiceMessageParam::$customerServiceMessage[__FUNCTION__], $paramArr);
 
         $url = CustomerServiceMessageConstant::HOST . CustomerServiceMessageConstant::SET_TYPING_PATH . http_build_query(['access_token' => $finalParamArr['access_token']]);
 
@@ -38,7 +38,7 @@ trait CustomerServiceMessageTrait
 
     public function uploadTempMedia($paramArr = [])
     {
-        $finalParamArr = Common::updateArrayData(CustomerServiceMessageParam::$customerServiceMessage[__FUNCTION__], $paramArr);
+        $finalParamArr = Common::handleParam(CustomerServiceMessageParam::$customerServiceMessage[__FUNCTION__], $paramArr);
 
         $url = CustomerServiceMessageConstant::HOST . CustomerServiceMessageConstant::UPLOAD_TEMP_MEDIA_PATH . http_build_query(['access_token' => $finalParamArr['access_token'], 'type' => $finalParamArr['type']]);
 

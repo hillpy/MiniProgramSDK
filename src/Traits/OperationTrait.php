@@ -2,8 +2,8 @@
 
 namespace Hillpy\MiniProgramSDK\Traits;
 
+use Hillpy\MiniProgramSDK\Common;
 use Hillpy\MiniProgramSDK\Constants\OperationConstant;
-use Hillpy\MiniProgramSDK\Libraries\Common\Common;
 use Hillpy\MiniProgramSDK\Libraries\Curl\Curl;
 use Hillpy\MiniProgramSDK\Params\OperationParam;
 
@@ -11,7 +11,7 @@ trait OperationTrait
 {
     public function getFeedback($paramArr = [])
     {
-        $finalParamArr = Common::updateArrayData(OperationParam::$operation[__FUNCTION__], $paramArr);
+        $finalParamArr = Common::handleParam(OperationParam::$operation[__FUNCTION__], $paramArr);
 
         $url = OperationConstant::HOST . OperationConstant::GET_FEEDBACK_PATH . http_build_query(['access_token' => $finalParamArr['access_token']]);
 
@@ -20,7 +20,7 @@ trait OperationTrait
 
     public function getJsErrSearch($paramArr = [])
     {
-        $finalParamArr = Common::updateArrayData(OperationParam::$operation[__FUNCTION__], $paramArr);
+        $finalParamArr = Common::handleParam(OperationParam::$operation[__FUNCTION__], $paramArr);
 
         $url = OperationConstant::HOST . OperationConstant::GET_JS_ERR_SEARCH_PATH . http_build_query(['access_token' => $finalParamArr['access_token']]);
 
@@ -29,7 +29,7 @@ trait OperationTrait
 
     public function getPerformance($paramArr = [])
     {
-        $finalParamArr = Common::updateArrayData(OperationParam::$operation[__FUNCTION__], $paramArr);
+        $finalParamArr = Common::handleParam(OperationParam::$operation[__FUNCTION__], $paramArr);
 
         $url = OperationConstant::HOST . OperationConstant::GET_PERFORMANCE_PATH . http_build_query(['access_token' => $finalParamArr['access_token']]);
 
@@ -38,7 +38,7 @@ trait OperationTrait
 
     public function getSceneList($paramArr = [])
     {
-        $urlParamArr = Common::updateArrayData(OperationParam::$operation[__FUNCTION__], $paramArr);
+        $urlParamArr = Common::handleParam(OperationParam::$operation[__FUNCTION__], $paramArr);
 
         $url = OperationConstant::HOST . OperationConstant::GET_SCENE_LIST_PATH . http_build_query($urlParamArr);
 
@@ -47,7 +47,7 @@ trait OperationTrait
 
     public function getVersionList($paramArr = [])
     {
-        $urlParamArr = Common::updateArrayData(OperationParam::$operation[__FUNCTION__], $paramArr);
+        $urlParamArr = Common::handleParam(OperationParam::$operation[__FUNCTION__], $paramArr);
 
         $url = OperationConstant::HOST . OperationConstant::GET_VERSION_LIST_PATH . http_build_query($urlParamArr);
 
@@ -56,7 +56,7 @@ trait OperationTrait
 
     public function realtimeLogSearch($paramArr = [])
     {
-        $urlParamArr = Common::updateArrayData(OperationParam::$operation[__FUNCTION__], $paramArr);
+        $urlParamArr = Common::handleParam(OperationParam::$operation[__FUNCTION__], $paramArr);
 
         $url = OperationConstant::HOST . OperationConstant::REALTIME_LOG_SEARCH_PATH . http_build_query($urlParamArr);
 
